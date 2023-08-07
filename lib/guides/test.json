@@ -1,0 +1,31 @@
+{
+
+
+    "guides": [
+        {
+            "guide": "",
+            "guideID": "",
+            "guideDetails": {
+                "headline": "How to not soak garri anymore (Only the first letter of the first word in this sentence should be capitalized)",
+                "feature": "Analytics",
+                "body": ""
+            }
+        }
+    ],
+
+    "searchSuggestions": [
+        {
+            "suggestion": "",
+            "isFAQ": false,
+            "suggestionID": "",
+            "guideDetails": {
+                "headline": "How to not soak garri anymore (Only the first letter of the first word in this sentence should be capitalized)",
+                "feature": "Analytics",
+                "body": ""
+            }
+        }
+    ]
+
+
+
+}
