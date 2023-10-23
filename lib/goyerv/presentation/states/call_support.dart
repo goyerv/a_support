@@ -31,37 +31,51 @@ class _CallSupportState extends State<CallSupport> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appBar(context),
-      body: Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
+      body: Title(
+        title: AppLocalizations.of(context).translate('Goyerv - Call support'),
         color: Theme.of(context).primaryColor,
-        child: ListView(
-          children: [
-
-
-            Text(AppLocalizations.of(context).translate('Call Support'), style: Theme.of(context).textTheme.titleLarge, textAlign: TextAlign.center),
-
-            sbhavg,
-
-            RichText(
-              textAlign: TextAlign.center,
-              text: TextSpan(
-                children: [
-                  TextSpan(text: AppLocalizations.of(context).translate('The phone numbers below are not toll free. This includes calls that are coming in from within Nigeria and Internationally. Additionally, due to the difference in timezones, there are times when you\'d call us and not get through. We\'re working to localize call support for every region Goyerv is active in. We encourage you to go through the '), style: Theme.of(context).textTheme.bodyLarge),
-                  TextSpan(text: AppLocalizations.of(context).translate('FAQs '), recognizer: TapGestureRecognizer()..onTap = () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (BuildContext context) => const Guides(true))), style: Theme.of(context).textTheme.bodyLarge!..copyWith(color: defaultColor)),
-                  TextSpan(text: AppLocalizations.of(context).translate('and '), style: Theme.of(context).textTheme.bodyLarge),
-                  TextSpan(text: AppLocalizations.of(context).translate('How Tos '), recognizer: TapGestureRecognizer()..onTap = () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (BuildContext context) => const Guides(false))), style: Theme.of(context).textTheme.bodyLarge!..copyWith(color: defaultColor)),
-                  TextSpan(text: AppLocalizations.of(context).translate('guides before calling'), style: Theme.of(context).textTheme.bodyLarge),
-
-                ],
+        child: Container(
+          width: MediaQuery.of(context).size.width,
+          color: Theme.of(context).primaryColor,
+          child: ListView(
+            children: [
+      
+              sbhmax,
+              sbhmax,
+              sbhmax,
+      
+      
+              Text(AppLocalizations.of(context).translate('Call Support'), style: Theme.of(context).textTheme.titleLarge, textAlign: TextAlign.center),
+      
+              sbhmax,
+      
+              Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: RichText(
+                  text: TextSpan(
+                    children: [
+                      TextSpan(text: AppLocalizations.of(context).translate('''The phone numbers below are not toll free. This includes calls that are coming in from within Nigeria and Internationally. Additionally, due to the difference in timezones, there are times when you'd call us and not get through. We're working to localize call support for every region Goyerv is active in. We encourage you to go through the '''), style: Theme.of(context).textTheme.bodyLarge),
+                      TextSpan(text: AppLocalizations.of(context).translate('FAQs '), recognizer: TapGestureRecognizer()..onTap = () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (BuildContext context) => const Guides(true))), style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: defaultColor)),
+                      TextSpan(text: AppLocalizations.of(context).translate('and '), style: Theme.of(context).textTheme.bodyLarge),
+                      TextSpan(text: AppLocalizations.of(context).translate('How Tos '), recognizer: TapGestureRecognizer()..onTap = () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (BuildContext context) => const Guides(false))), style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: defaultColor)),
+                      TextSpan(text: AppLocalizations.of(context).translate('guides before calling'), style: Theme.of(context).textTheme.bodyLarge),
+                    
+                    ],
+                  ),
+                ),
               ),
-            ),
-
-
-            //footer
-            footer(context, setState)
-
-          ]
+      
+      
+              sbhmax,
+              sbhmax,
+              sbhmax,
+      
+      
+              //footer
+              footer(context, setState)
+      
+            ]
+          ),
         ),
       ),
     );

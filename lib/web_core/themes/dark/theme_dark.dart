@@ -1,4 +1,5 @@
-// Goyerv Ltd © 2022. All rights reserved
+// Copyright (c) 2022 Goyerv Ltd. All rights reserved.
+// Author: Emmanuel Okorafor
 
 
 
@@ -15,7 +16,6 @@ ThemeData darkTheme = ThemeData(
     backgroundColor: black,
     elevation: 0.0,
     toolbarHeight: tbh,
-    color: black,
   ),
   brightness: Brightness.dark,
   bottomAppBarTheme: BottomAppBarTheme(
@@ -56,7 +56,7 @@ ThemeData darkTheme = ThemeData(
     color: black,
     elevation: 0.0,
     shadowColor: white..withOpacity(0.5),
-    shape: RoundedRectangleBorder(borderRadius: BorderRadiusDirectional.circular(15.0), side: const BorderSide(color: black, width: 5.0)),
+    shape: RoundedRectangleBorder(borderRadius: BorderRadiusDirectional.circular(15.0),),
   ),
   checkboxTheme: CheckboxThemeData(
     fillColor: MaterialStateProperty.all(transparent),
@@ -81,8 +81,8 @@ ThemeData darkTheme = ThemeData(
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(10.0),
     ),
-    titleTextStyle: headline1,
-    contentTextStyle: bodyText1,
+    titleTextStyle: titleLarge,
+    contentTextStyle: bodyLarge,
     alignment: Alignment.center,
     elevation: 10.0,
   ),
@@ -93,7 +93,7 @@ ThemeData darkTheme = ThemeData(
       shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0))),
       elevation: MaterialStateProperty.all(0.0),
       side: MaterialStateProperty.all(const BorderSide(color: defaultColor, width: 0.5)),
-      textStyle: MaterialStateProperty.all(bodyText1),
+      textStyle: MaterialStateProperty.all(bodyLarge),
       animationDuration: const Duration(milliseconds: 60),
     ),
   ),
@@ -101,15 +101,15 @@ ThemeData darkTheme = ThemeData(
   hoverColor: monaiki,
   hintColor: white54,
   inputDecorationTheme: InputDecorationTheme(
-    labelStyle: bodyText1.copyWith(color: white),
+    labelStyle: bodyLarge.copyWith(color: white),
     floatingLabelStyle: labelLarge.copyWith(color: white),
     helperStyle: labelLarge.copyWith(color: white54),
     hintStyle: labelLarge.copyWith(color: white54),
     errorStyle: labelMedium.copyWith(color: red),
     iconColor: defaultColor,
-    prefixStyle: caption,
+    prefixStyle: labelMedium,
     prefixIconColor: defaultColor,
-    suffixStyle: caption,
+    suffixStyle: labelMedium,
     suffixIconColor: defaultColor, 
     filled: false,
     errorBorder: const OutlineInputBorder(
@@ -129,7 +129,7 @@ ThemeData darkTheme = ThemeData(
     enabledBorder: const OutlineInputBorder(
       borderRadius: BorderRadius.all(Radius.circular(4.0)),
       borderSide:  BorderSide(
-        color: black,
+        color: white,
         width: 1.0,
       ),
     ),
@@ -160,7 +160,7 @@ ThemeData darkTheme = ThemeData(
   outlinedButtonTheme: OutlinedButtonThemeData(
     style: ButtonStyle(
       backgroundColor: MaterialStateProperty.all(defaultColor),
-      textStyle: MaterialStateProperty.all(button.copyWith(color: white)),
+      textStyle: MaterialStateProperty.all(labelLarge.copyWith(color: white)),
       side: MaterialStateProperty.all(const BorderSide(color: defaultColor, width: 0.5)),
     ),
   ),
@@ -188,14 +188,7 @@ ThemeData darkTheme = ThemeData(
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(10.0),
     ),
-    contentTextStyle: bodyText1,
-  ),
-  scrollbarTheme: ScrollbarThemeData(
-    thumbVisibility: MaterialStateProperty.all(true),
-    trackVisibility: MaterialStateProperty.all(false),
-    thumbColor: MaterialStateProperty.all(defaultColor),
-    minThumbLength: 30.0,
-    interactive: true,
+    contentTextStyle: bodyLarge,
   ),
   tabBarTheme: const TabBarTheme(
     indicator: BoxDecoration(
@@ -207,8 +200,8 @@ ThemeData darkTheme = ThemeData(
   textButtonTheme: TextButtonThemeData(
     style: ButtonStyle(
       overlayColor: MaterialStateColor.resolveWith((states) => transparent),
-      backgroundColor: MaterialStateProperty.all(white),
-      textStyle: MaterialStateProperty.all(button..copyWith(color: defaultColor)),
+      backgroundColor: MaterialStateProperty.all(transparent),
+      textStyle: MaterialStateProperty.all(labelLarge..copyWith(color: defaultColor)),
     ),
   ),
   textSelectionTheme: const TextSelectionThemeData(
@@ -217,18 +210,18 @@ ThemeData darkTheme = ThemeData(
     selectionColor: defaultColorLighter,
   ),
   textTheme: TextTheme(
-    displayLarge: displayLarge..copyWith(color: white),
-    displayMedium: displayMedium..copyWith(color: white),
-    displaySmall: displaySmall..copyWith(color: white),
-    headlineLarge: headlineLarge..copyWith(color: white),
-    headlineMedium: headlineMedium..copyWith(color: white),
+    displayLarge: displayLarge..copyWith(color: Colors.white70),
+    displayMedium: displayMedium..copyWith(color: Colors.white70),
+    displaySmall: displaySmall..copyWith(color: Colors.white70),
+    headlineLarge: headlineLarge..copyWith(color: Colors.white70),
+    headlineMedium: headlineMedium..copyWith(color: Colors.white70),
     headlineSmall: headlineSmall..copyWith(color: white),
     titleLarge: titleLarge..copyWith(color: white),
     titleMedium: titleMedium..copyWith(color: white),
     titleSmall: titleSmall..copyWith(color: white),
     bodyLarge: bodyLarge..copyWith(color: white),
     bodyMedium: bodyMedium..copyWith(color: white),
-    bodySmall: bodySmall..copyWith(color: white),
+    bodySmall: bodySmall..copyWith(color: Colors.white70),
     labelLarge: labelLarge..copyWith(color: white),
     labelMedium: labelMedium..copyWith(color: white),
     labelSmall: labelSmall..copyWith(color: white),

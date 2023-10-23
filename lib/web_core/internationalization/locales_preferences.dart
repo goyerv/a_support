@@ -7,7 +7,7 @@
 
 
 
-import 'dart:io';
+import 'package:universal_io/io.dart'; 
 import 'package:shared_preferences/shared_preferences.dart';
 
 const String platformKey = "platform_Key";
@@ -19,29 +19,30 @@ abstract class LocalesPreferences {
 
   Future<String> getLanguageKey();
   Future<void> setLanguageKey(String language);
+
 }
 
 class LocalesPreferencesImpl implements LocalesPreferences {
 
-  final SharedPreferences sharedPreferences;
+  final Future<SharedPreferences> sharedPreferences;
 
-  LocalesPreferencesImpl(this.sharedPreferences); // At the end, use VSCode's reges to remove the required keyword.
+  LocalesPreferencesImpl(this.sharedPreferences); 
 
   @override
   Future<List<String>> getPlatformLocale() async {
-    final locale = sharedPreferences.getStringList(platformKey);
+    final locale = await sharedPreferences.then((value) => value.getStringList(platformKey));
 
     if (locale == null) {
-      if (Platform.localeName.contains('.UTF-8', 5) || Platform.localeName.contains('.UTF-8', 6) || Platform.localeName.contains('_.UTF-8')) {
+      if (Platform.localeName.contains('.UTF-8') || Platform.localeName.contains('.UTF-8') || Platform.localeName.contains('_.UTF-8')) {
         var firstCut = Platform.localeName.split('.').first;
         return [firstCut.split('_').first, firstCut.split('_').last];
       
       } else 
-      if (Platform.localeName.contains('_', 2) || Platform.localeName.contains('_', 3) || Platform.localeName.contains('_') && !(Platform.localeName.contains('.UTF-8', 5) || Platform.localeName.contains('.UTF-8', 6) || Platform.localeName.contains('.UTF-8')) ) {
+      if (Platform.localeName.contains('_') || Platform.localeName.contains('_') || Platform.localeName.contains('_') && !(Platform.localeName.contains('.UTF-8') || Platform.localeName.contains('.UTF-8') || Platform.localeName.contains('.UTF-8')) ) {
         return [Platform.localeName.split('_').first, Platform.localeName.split('_').last];
       
       } else 
-      if ((Platform.localeName.contains('.UTF-8', 5) && Platform.localeName.contains('.UTF-8', 6) && Platform.localeName.contains('_.UTF-8') && Platform.localeName.contains('_', 2) && Platform.localeName.contains('_', 3) && Platform.localeName.contains('_') )) {
+      if ((Platform.localeName.contains('.UTF-8') && Platform.localeName.contains('.UTF-8') && Platform.localeName.contains('_.UTF-8') && Platform.localeName.contains('_') && Platform.localeName.contains('_') && Platform.localeName.contains('_') )) {
         return [Platform.localeName, ''];
       }
     
@@ -51,17 +52,17 @@ class LocalesPreferencesImpl implements LocalesPreferences {
   @override
   Future<void> setPlatformLocale(List<String> locale) async {
     // sharedPreferences.setString(platformKey, locale);
-    sharedPreferences.setStringList(platformKey, locale);
+    sharedPreferences.then((value) => value.setStringList(platformKey, locale));
   }
   
   @override
   Future<String> getLanguageKey() async {
-    return sharedPreferences.getString(languageKey) ?? 'English';
+    return await sharedPreferences.then((value) => value.getString(languageKey) ?? 'English');
   }
   
   @override
   Future<void> setLanguageKey(String language) async {
-    sharedPreferences.setString(languageKey, language);
+    sharedPreferences.then((value) => value.setString(languageKey, language));
   }
 
 

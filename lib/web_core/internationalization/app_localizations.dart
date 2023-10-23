@@ -18,7 +18,7 @@ class AppLocalizations {
 
   AppLocalizations(this.locale);
 
-  late Map<String, String> localizedStrings;
+  late var localizedStrings;
   
   static AppLocalizations of(BuildContext context) {
     return Localizations.of<AppLocalizations>(context, AppLocalizations)!;
@@ -28,7 +28,7 @@ class AppLocalizations {
 
   Future<bool> load() async {
     String jsonString = await rootBundle.loadString(locale.languageCode == 'zh'? 'assets/languages/${locale.languageCode}_${locale.countryCode}.json' : 'assets/languages/${locale.languageCode}.json');
-    Map<String, String> jsonMap = json.decode(jsonString);
+    var jsonMap = json.decode(jsonString);
     localizedStrings = jsonMap.map((key, value) => MapEntry(key, value.toString()));
     return true;
   }

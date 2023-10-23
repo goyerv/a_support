@@ -1,4 +1,5 @@
-// Goyerv Ltd © 2022. All rights reserved
+// Copyright (c) 2022 Goyerv Ltd. All rights reserved.
+// Author: Emmanuel Okorafor
 
 
 
@@ -11,11 +12,10 @@ import 'package:flutter/material.dart';
 import '../../global_fields/fields.dart';
 
 ThemeData lightTheme = ThemeData(
-  appBarTheme: AppBarTheme(
+  appBarTheme: const AppBarTheme(
     backgroundColor: white,
     elevation: 0.0,
     toolbarHeight: tbh,
-    color: white,
   ),
   brightness: Brightness.light,
   bottomAppBarTheme: BottomAppBarTheme(
@@ -56,7 +56,7 @@ ThemeData lightTheme = ThemeData(
     color: white,
     elevation: 0.0,
     shadowColor: black..withOpacity(0.4),
-    shape: RoundedRectangleBorder(borderRadius: BorderRadiusDirectional.circular(15.0), side: const BorderSide(color: black, width: 5.0)),
+    shape: RoundedRectangleBorder(borderRadius: BorderRadiusDirectional.circular(15.0)),
   ),
   checkboxTheme: CheckboxThemeData(
     fillColor: MaterialStateProperty.all(white),
@@ -81,8 +81,8 @@ ThemeData lightTheme = ThemeData(
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(10.0),
     ),
-    titleTextStyle: headline1,
-    contentTextStyle: bodyText1,
+    titleTextStyle: labelLarge,
+    contentTextStyle: bodyLarge,
     elevation: 10.0
   ),
   disabledColor: grey..withOpacity(0.7),
@@ -92,7 +92,7 @@ ThemeData lightTheme = ThemeData(
       shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0))),
       elevation: MaterialStateProperty.all(0.5),
       side: MaterialStateProperty.all(const BorderSide(color: defaultColor, width: 0.5)),
-      textStyle: MaterialStateProperty.all(bodyText1),
+      textStyle: MaterialStateProperty.all(bodyLarge),
       animationDuration: const Duration(milliseconds: 60),
     ),
   ),
@@ -101,33 +101,33 @@ ThemeData lightTheme = ThemeData(
   hoverColor: whiteSmoke,
   hintColor: black54,
   inputDecorationTheme: InputDecorationTheme(
-    labelStyle: bodyText1,
+    labelStyle: bodyLarge,
     floatingLabelStyle: labelLarge,
     helperStyle: labelLarge.copyWith(color: black54),
-    hintStyle: bodyText1.copyWith(color: black54), 
+    hintStyle: bodyLarge.copyWith(color: black54), 
     errorStyle: labelMedium.copyWith(color: red),
     iconColor: black,
-    prefixStyle: caption,
+    prefixStyle: labelMedium,
     prefixIconColor: black,
-    suffixStyle: caption,
+    suffixStyle: labelMedium,
     suffixIconColor: defaultColor, 
     filled: false,
     errorBorder: const OutlineInputBorder(
-      borderRadius: BorderRadius.all(Radius.circular(4.0)),
+      borderRadius: BorderRadius.all(Radius.circular(10.0)),
       borderSide:  BorderSide(
         color: red,
         width: 1.0,
       ),
     ),
     focusedBorder: const OutlineInputBorder(
-      borderRadius: BorderRadius.all(Radius.circular(4.0)),
+      borderRadius: BorderRadius.all(Radius.circular(10.0)),
       borderSide:  BorderSide(
         color: defaultColor,
         width: 1.0,
       ),
     ),
     enabledBorder: const OutlineInputBorder(
-      borderRadius: BorderRadius.all(Radius.circular(4.0)),
+      borderRadius: BorderRadius.all(Radius.circular(10.0)),
       borderSide:  BorderSide(
         color: black,
         width: 1.0,
@@ -160,7 +160,7 @@ ThemeData lightTheme = ThemeData(
   outlinedButtonTheme: OutlinedButtonThemeData(
     style: ButtonStyle(
       backgroundColor: MaterialStateProperty.all(white),
-      textStyle: MaterialStateProperty.all(button),
+      textStyle: MaterialStateProperty.all(labelLarge),
       side: MaterialStateProperty.all(const BorderSide(color: defaultColor, width: 0.5)),
     ),
   ),
@@ -188,15 +188,9 @@ ThemeData lightTheme = ThemeData(
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(10.0),
     ),
-    contentTextStyle: bodyText1,
+    contentTextStyle: bodyLarge,
   ),
-  scrollbarTheme: ScrollbarThemeData(
-    thumbVisibility: MaterialStateProperty.all(true),
-    trackVisibility: MaterialStateProperty.all(false),
-    thumbColor: MaterialStateProperty.all(defaultColor),
-    minThumbLength: 30.0,
-    interactive: true,
-  ),
+
   tabBarTheme: const TabBarTheme(
     indicator: BoxDecoration(
       color: defaultColor,
@@ -207,8 +201,8 @@ ThemeData lightTheme = ThemeData(
   textButtonTheme: TextButtonThemeData(
     style: ButtonStyle(
       overlayColor: MaterialStateColor.resolveWith((states) => transparent),
-      backgroundColor: MaterialStateProperty.all(white),
-      textStyle: MaterialStateProperty.all(button..copyWith(color: defaultColor)),
+      backgroundColor: MaterialStateProperty.all(transparent),
+      textStyle: MaterialStateProperty.all(labelLarge.copyWith(color: defaultColor)),
     ),
   ),
   textSelectionTheme: const TextSelectionThemeData(

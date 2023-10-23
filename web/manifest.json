@@ -1,11 +1,11 @@
 {
-    "name": "goyerv_support_web_app",
-    "short_name": "goyerv_support_web_app",
+    "name": "Goyerv - Support",
+    "short_name": "Goyerv - Support",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
     "theme_color": "#0175C2",
-    "description": "A new Flutter project.",
+    "description": "Get the help you need with Goyerv Support. Ask the community, browse our articles, call us or send us an email. Which ever you choose, we are here for you.",
     "orientation": "portrait-primary",
     "prefer_related_applications": false,
     "icons": [

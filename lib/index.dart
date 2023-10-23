@@ -12,6 +12,7 @@ import 'package:goyerv_support_web_app/web_core/internationalization/app_localiz
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
+import 'email_support/presentation/states/email_support.dart';
 import 'homepage/presentation/states/homepage.dart';
 import 'web_core/internationalization/locales_preferences.dart';
 import 'web_core/themes/dark/theme_dark.dart';
@@ -31,19 +32,18 @@ class _GoyervSupportState extends State<GoyervSupport> {
   late LocalesPreferencesImpl localesPreferences;
 
   @override 
-  void initState() async {
-    localesPreferences = LocalesPreferencesImpl(await SharedPreferences.getInstance());
+  void initState() {
+    // localesPreferences = LocalesPreferencesImpl(await SharedPreferences.getInstance());
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Goyerv',
       theme: lightTheme,
       darkTheme: darkTheme,
       themeMode: ThemeMode.system,
-      locale: Locale('${localesPreferences.getPlatformLocale().then((value) => value.first)}', '${localesPreferences.getPlatformLocale().then((value) => value.elementAt(1) == ''? null : value.elementAt(1))}'),
+      // locale: Locale('${localesPreferences.getPlatformLocale().then((value) => value.first)}', '${localesPreferences.getPlatformLocale().then((value) => value.elementAt(1) == ''? null : value.elementAt(1))}'),
       /// As for routes;
       /// 
       /// Every single guide and faq on the support website will have to also have an accompanying

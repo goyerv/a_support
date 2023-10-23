@@ -39,8 +39,8 @@ part 'email_support/email_support_dependency_injection_container.dart';
 
 final sl = GetIt.instance;
 
-void init() {
-  sl.registerLazySingleton(() => initEmailSupport());
-  sl.registerLazySingleton(() => initGuides());
-  sl.registerLazySingleton(() => initHomepage());
+Future<void> init() async {
+  // sl.registerLazySingleton(() => initEmailSupport());
+  // sl.registerLazySingleton(() => initGuides());
+  // sl.registerLazySingleton(() => initHomepage());
 }

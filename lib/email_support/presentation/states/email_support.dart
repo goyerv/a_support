@@ -11,6 +11,7 @@ import 'dart:convert';
 import 'dart:io';
 
 import 'package:file_picker/file_picker.dart';
+import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -18,6 +19,7 @@ import 'package:gradient_widgets/gradient_widgets.dart';
 import 'package:path_provider/path_provider.dart';
 
 import '../../../dependency_injections.dart';
+import '../../../guides/presentation/states/guides.dart';
 import '../../../web_core/auth/security.dart';
 import '../../../web_core/global_fields/fields.dart';
 import '../../../web_core/internationalization/app_localizations.dart';
@@ -58,10 +60,55 @@ class _EmailSupportState extends State<EmailSupport> {
     _buttonFocusNodeOne = FocusNode();
     _buttonFocusNodeTwo = FocusNode();
     _formKey = GlobalKey();
+    images = null;
     super.initState();
   }
 
 
+
+
+
+  // @override
+  // Widget build(BuildContext context) {
+    // return Scaffold(
+      // appBar: appBar(context),
+      // body: Container(
+        // width: MediaQuery.of(context).size.width,
+        // height: MediaQuery.of(context).size.height,
+        // color: Theme.of(context).primaryColor,
+        // child: BlocProvider(
+          // create: ((context) => sl<EmailSupportBloc>()),
+          // child: Column(
+            // children: [
+// 
+              // BlocConsumer(
+                // listener: ((context, state) {}),
+                // builder: ((context, state) {
+                  // if (state is EmailSupportInitial) {
+                    // return Padding(padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10), child: form(context));
+                  // 
+                  // } else 
+                  // if (state is EmailSupportLoading) {
+                    // return const Center(child: GradientCircularProgressIndicator(gradient: LinearGradient(begin: Alignment.centerLeft, end: Alignment.centerRight, colors: [defaultColor, white]), radius: 200));
+                  // 
+                  // } else 
+                  // if (state is EmailSupportLoaded) {
+                    // if(state.emailSupportEntity.supportRequestSent!) {
+                      // images!.clear();
+                      // Navigator.of(context).pop();
+// 
+                    // }
+                  // 
+                  // } return Padding(padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10), child: form(context));
+                // }),
+              // )
+// 
+            // ],
+          // )
+        // ),
+      // )
+    // );
+  // }
 
 
 
@@ -70,196 +117,88 @@ class _EmailSupportState extends State<EmailSupport> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appBar(context),
-      body: Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
+
+      body: Title(
+        // title: AppLocalizations.of(context).translate('Goyerv - Email support'),
+        title: 'Goyerv - Email support',
         color: Theme.of(context).primaryColor,
-        child: BlocProvider(
-          create: ((context) => sl<EmailSupportBloc>()),
-          child: Column(
+        child: Container(
+          width: MediaQuery.of(context).size.width,
+          color: Theme.of(context).primaryColor,
+          child: ListView(
             children: [
 
-              BlocConsumer(
-                listener: ((context, state) {}),
-                builder: ((context, state) {
-                  if (state is EmailSupportInitial) {
-                    return Padding(padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10), child: form(context));
+
+
+              Padding(
+                padding: const EdgeInsets.all(15.0),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+              
+                    sbhmax,
+                    sbhmax,
                   
-                  } else 
-                  if (state is EmailSupportLoading) {
-                    return const Center(child: GradientCircularProgressIndicator(gradient: LinearGradient(begin: Alignment.centerLeft, end: Alignment.centerRight, colors: [defaultColor, white]), radius: 200));
+                    // Text(AppLocalizations.of(context).translate('Email Support'), textAlign: TextAlign.center, style: Theme.of(context).textTheme.titleLarge) ,
+                    Text('Email Support', textAlign: TextAlign.center, style: Theme.of(context).textTheme.titleLarge) ,
+                   
+                    sbhmax,
+                    sbhmax,
                   
-                  } else 
-                  if (state is EmailSupportLoaded) {
-                    if(state.emailSupportEntity.supportRequestSent!) {
-                      images!.clear();
-                      Navigator.of(context).pop();
-
-                    }
                   
-                  } return Padding(padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 10), child: form(context));
-                }),
-              )
-
-            ],
-          )
-        ),
-      )
-    );
-  }
-
-
-
-
-
-  Widget form(BuildContext context) {
-    return ListView(
-      children: [
-
-        Text(AppLocalizations.of(context).translate('Email Support'), style: Theme.of(context).textTheme.titleLarge) ,
-       
-        sbhavg,
-
-        sbhmin,
-
-        Text(AppLocalizations.of(context).translate('Submit a ticket'), style: Theme.of(context).textTheme.titleMedium),
-
-        sbhmin,
-
-        Text(AppLocalizations.of(context).translate('We strongly suggest that you go through the HOW Tos guides and the FAQ first before you submit a ticket to us for support. Only until you\'re fully convinced that the issue you\'re having has\'nt been addressed on the How Tos guides and FAQ, should you proceed to to filling out this support ticket form'), style: Theme.of(context).textTheme.bodyLarge),
-
-        sbhmin,
-
-        LayoutBuilder(
-          builder: (context, constraints) {
-            if (constraints.maxWidth < 1500) {
-            return Column(
-              children: [
-
-                SizedBox(
-                  width: MediaQuery.of(context).size.width * 0.4,
-                  child: Form(
-                    key: _formKey,
-                    child: Column(
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
 
-                        Row(children: [Text(AppLocalizations.of(context).translate('Email address'), style: Theme.of(context).textTheme.titleMedium), Text('*', style: Theme.of(context).textTheme.bodyLarge!..copyWith(color: red),)],),
+                        // Text(AppLocalizations.of(context).translate('Submit a ticket'), textAlign: TextAlign.center, style: Theme.of(context).textTheme.titleMedium),
+                        Text('Submit a ticket', textAlign: TextAlign.center, style: Theme.of(context).textTheme.titleMedium),
 
                         sbhmin,
 
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width,
-                          height: 30.0,
-                          child: TextFormField(
-                            controller: _textFieldControllerOne,
-                            style: Theme.of(context).textTheme.bodyLarge,
-                            decoration: InputDecoration(
-                              contentPadding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-                              hintText: AppLocalizations.of(context).translate('Email'),
-                            ),
-                            cursorColor: Theme.of(context).textSelectionTheme.cursorColor,
-                            textInputAction: TextInputAction.done,
-                            validator: (value) {if (value!.trim().contains('<') || value.trim().contains('>') || value.isEmpty || !value.trim().contains('@') || !value.trim().contains('.')) {return AppLocalizations.of(context).translate('Invalid email address'); } return null; },
-                            onFieldSubmitted: (String value) { FocusScope.of(context).requestFocus(_textFieldFocusNodeTwo); },
-                            onChanged: (value) {email = value.trim();},
-                            focusNode: _textFieldFocusNodeOne,
+                        RichText(
+                          text: TextSpan(
+                            children: [
+                              // TextSpan(text: AppLocalizations.of(context).translate('We strongly suggest that you go through the '), style: Theme.of(context).textTheme.bodyLarge),
+                              TextSpan(text: 'We strongly suggest that you go through the ', style: Theme.of(context).textTheme.bodyLarge),
+              
+                              // TextSpan(text: AppLocalizations.of(context).translate('How Tos'), recognizer: TapGestureRecognizer()..onTap = () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (BuildContext context) => const Guides(false))), style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontWeight: FontWeight.w600, color: defaultColor)),
+                              TextSpan(text: 'How Tos', recognizer: TapGestureRecognizer()..onTap = () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (BuildContext context) => const Guides(false))), style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontWeight: FontWeight.w600, color: defaultColor)),
+              
+                              // TextSpan(text: AppLocalizations.of(context).translate(' and the '), style: Theme.of(context).textTheme.bodyLarge),
+                              TextSpan(text: ' and the ', style: Theme.of(context).textTheme.bodyLarge),
+              
+                              // TextSpan(text: AppLocalizations.of(context).translate('FAQs'), recognizer: TapGestureRecognizer()..onTap = () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (BuildContext context) => const Guides(true))), style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontWeight: FontWeight.w600, color: defaultColor)),
+                              TextSpan(text: 'FAQs', recognizer: TapGestureRecognizer()..onTap = () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (BuildContext context) => const Guides(true))), style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontWeight: FontWeight.w600, color: defaultColor)),
+              
+                              // TextSpan(text: AppLocalizations.of(context).translate(''' first before you submit a ticket to us for support. Only until you're fully convinced that the issue you're having has'nt been addressed on the How Tos guides and FAQs, should you proceed to to filling out this support ticket form'''), style: Theme.of(context).textTheme.bodyLarge),
+                              TextSpan(text: ''' first before you submit a ticket to us for support. Only until you're fully convinced that the issue you're having has'nt been addressed on the How Tos guides and FAQs, should you proceed to to filling out this support ticket form''', style: Theme.of(context).textTheme.bodyLarge),
+              
+              
+                            ]
                           )
                         ),
-
-                        sbhmin,
-
-                        Row(children: [Text(AppLocalizations.of(context).translate('Describe your issue'), style: Theme.of(context).textTheme.titleMedium), Text('*', style: Theme.of(context).textTheme.bodyLarge!..copyWith(color: red),)],),
-
-                        sbhmin,
-
-                        SizedBox(
-                          width: MediaQuery.of(context).size.width,
-                          child: TextFormField(
-                            controller: _textFieldControllerTwo,
-                            style: Theme.of(context).textTheme.bodyLarge,
-                            maxLines: MediaQuery.of(context).size.height.toInt(),
-                            decoration: InputDecoration(
-                              contentPadding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-                              hintText: AppLocalizations.of(context).translate('What is the problem?'),
-                            ),
-                            cursorColor: Theme.of(context).textSelectionTheme.cursorColor,
-                            textInputAction: TextInputAction.done,
-                            validator: (value) {if (value!.isEmpty) {return AppLocalizations.of(context).translate('Invalid input');} return null; },
-                            onFieldSubmitted: (String value) { FocusScope.of(context).requestFocus(_buttonFocusNodeTwo); },
-                            onChanged: (value) {email = value.trim();},
-                            focusNode: _textFieldFocusNodeTwo,
-                          )
-                        ),
-
-
                       ],
                     ),
-                  ),
+                  
 
-                ),
-
-                sbhavg,
-
-                Container(
-                  width: MediaQuery.of(context).size.width,
-                  height: MediaQuery.of(context).size.height,
-                  color: Theme.of(context).primaryColor,
-                  child: Card(
-                    elevation: 0.0,
-                    child: images != null?  GridView.builder(
-                      itemCount: images!.length,
-                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, crossAxisSpacing: 10, mainAxisSpacing: 10), 
-                      itemBuilder: (context, index) {
-                        return GestureDetector(
-                          child: SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.3,
-                            height: 200,
-                            child: Card(
-                              child: Image.memory(base64Decode(decrypt((images![index]))), fit: BoxFit.scaleDown, semanticLabel: AppLocalizations.of(context).translate('Support ticket images')),
-                            ),
-                          ),
-                        );
-                      }
-                    ) : Center(
-                      child: Column(
-                        children: [
-
-                          IconButton(onPressed: () async => await pickImage(), icon: photoIcon, focusColor: defaultColor, focusNode: _buttonFocusNodeOne),
-
-                          sbhmin,
-
-                          Text(AppLocalizations.of(context).translate('Choose image'), style: Theme.of(context).textTheme.bodyLarge),
-
-                        ]
-                      ),
-                    ),
-
-                  )
-                )
-
-
-
-              ],
-            );
-          
-          } else {
-              return Row(
-                children: [
-
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.4,
-                    child: Form(
+                    sbhmax,
+                    sbhmax,
+                    
+              
+                  
+                    Form(
                       key: _formKey,
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
 
-                          Row(children: [Text(AppLocalizations.of(context).translate('Email address'), style: Theme.of(context).textTheme.titleMedium), Text('*', style: Theme.of(context).textTheme.bodyLarge!..copyWith(color: red),)],),
-
+                          Wrap(children: [Text(AppLocalizations.of(context).translate('Email address'), style: Theme.of(context).textTheme.titleMedium), Text('*', style: Theme.of(context).textTheme.titleLarge!.copyWith(color: red),),]),
+                  
                           sbhmin,
-
+                  
                           SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.95,
-                            height: 30.0,
+                            width: MediaQuery.of(context).size.width < 800? MediaQuery.of(context).size.width : MediaQuery.of(context).size.width * 0.5,
+                            height: 40.0,
                             child: TextFormField(
                               controller: _textFieldControllerOne,
                               style: Theme.of(context).textTheme.bodyLarge,
@@ -275,21 +214,22 @@ class _EmailSupportState extends State<EmailSupport> {
                               focusNode: _textFieldFocusNodeOne,
                             )
                           ),
-
-                          sbhavg,
-
-                          Row(children: [Text(AppLocalizations.of(context).translate('Describe your issue'), style: Theme.of(context).textTheme.titleMedium), Text('*', style: Theme.of(context).textTheme.bodyLarge!..copyWith(color: red),)],),
-
+                  
+                          sbhmax,
+                  
+                          Wrap(children: [Text(AppLocalizations.of(context).translate('Describe your issue'), style: Theme.of(context).textTheme.titleMedium), Text('*', style: Theme.of(context).textTheme.titleLarge!.copyWith(color: red),)],),
+                  
                           sbhmin,
-
+                  
                           SizedBox(
-                            width: MediaQuery.of(context).size.width * 0.95,
+                            width: MediaQuery.of(context).size.width < 800? MediaQuery.of(context).size.width : MediaQuery.of(context).size.width * 0.5,
+                            height: 100.0,
                             child: TextFormField(
                               controller: _textFieldControllerTwo,
                               style: Theme.of(context).textTheme.bodyLarge,
                               maxLines: MediaQuery.of(context).size.height.toInt(),
                               decoration: InputDecoration(
-                                contentPadding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+                                contentPadding: const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
                                 hintText: AppLocalizations.of(context).translate('What is the problem?'),
                               ),
                               cursorColor: Theme.of(context).textSelectionTheme.cursorColor,
@@ -300,100 +240,93 @@ class _EmailSupportState extends State<EmailSupport> {
                               focusNode: _textFieldFocusNodeTwo,
                             )
                           ),
+              
+              
+                          sbhavg,
+              
+              
+                          // Container(
+                            // width: MediaQuery.of(context).size.width,
+                            // height: MediaQuery.of(context).size.height,
+                            // color: Theme.of(context).primaryColor,
+                            // child: Card(
+                              // elevation: 0.0,
+                              // child: images != null?  GridView.builder(
+                                // itemCount: images!.length,
+                                // gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, crossAxisSpacing: 10, mainAxisSpacing: 10), 
+                                // itemBuilder: (context, index) {
+                                  // return GestureDetector(
+                                    // child: SizedBox(
+                                      // width: MediaQuery.of(context).size.width * 0.3,
+                                      // height: 200,
+                                      // child: Card(
+                                        // child: Image.memory(base64Decode(decrypt((images![index]))), fit: BoxFit.scaleDown, semanticLabel: AppLocalizations.of(context).translate('Support ticket images')),
+                                      // ),
+                                    // ),
+                                  // );
+                                // }
+                              // ) : Center(
+                                // child: Column(
+                                  // children: [
+                        // 
+                                    // IconButton(onPressed: () async => await pickImage(), iconSize: 30.0, icon: photoIcon, focusColor: defaultColor, focusNode: _buttonFocusNodeOne),
+                        // 
+                                    // sbhmin,
+                        // 
+                                    // Text(AppLocalizations.of(context).translate('Choose image'), style: Theme.of(context).textTheme.bodyLarge),
+                        // 
+                                  // ]
+                                // ),
+                              // ),
+                        // 
+                            // )
+                          // ),
 
 
+
+                          ElevatedButton(
+                            onPressed: (){},
+                            // onPressed: () { if(_formKey.currentState!.validate()) { _textFieldControllerOne.clear(); _textFieldControllerTwo.clear();  BlocProvider.of<EmailSupportBloc>(context).add(SendSupportTicketEvent(email, issue, images));} }, 
+                            child: Text(AppLocalizations.of(context).translate('Submit'), style: Theme.of(context).textTheme.labelLarge!.copyWith(color: white)),
+                            style: Theme.of(context).elevatedButtonTheme.style!.copyWith(padding: MaterialStateProperty.all(EdgeInsets.symmetric(horizontal: MediaQuery.of(context).size.width < 800? MediaQuery.of(context).size.width * 0.43 : MediaQuery.of(context).size.width * 0.23, vertical: 25.0))),
+                            focusNode: _buttonFocusNodeTwo,
+                          ),
+
+                          sbhmax,
+
+                          SizedBox(width: MediaQuery.of(context).size.width < 800? MediaQuery.of(context).size.width : MediaQuery.of(context).size.width * 0.5, child: Text(AppLocalizations.of(context).translate('Please note: ensure that the form you have just filled dose not contain personal or sensitive details like your credit card information, home address, passwords etc.'), style: Theme.of(context).textTheme.labelLarge!.copyWith(fontWeight: FontWeight.w500))),
+
+                          sbhmin,
+
+                          SizedBox(width: MediaQuery.of(context).size.width < 800? MediaQuery.of(context).size.width : MediaQuery.of(context).size.width * 0.5, child: Text(AppLocalizations.of(context).translate('Expect a response from us within one business day or less.'), style: Theme.of(context).textTheme.labelLarge)),
+
+
+                  
                         ],
                       ),
                     ),
+                  
+                    
+                  
+              
 
-                  ),
+              
+                  
+                  
+                  ],
+                ),
+              ),
 
-                  sbwmin,
-
-                  Container(
-                    width: MediaQuery.of(context).size.width * 0.4,
-                    height: MediaQuery.of(context).size.height * 0.75,
-                    color: Theme.of(context).primaryColorLight,
-                    child: Card(
-                      elevation: 0.0,
-                      child: images != null?  GridView.builder(
-                        itemCount: images!.length,
-                        gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2, crossAxisSpacing: 10, mainAxisSpacing: 10), 
-                        itemBuilder: (context, index) {
-                          return GestureDetector(
-                            child: SizedBox(
-                              width: MediaQuery.of(context).size.width * 0.3,
-                              height: 200,
-                              child: Card(
-                                child: Image.memory(base64Decode(decrypt((images![index]))), fit: BoxFit.scaleDown, semanticLabel: AppLocalizations.of(context).translate('Support ticket images')),
-                              ),
-                            ),
-                          );
-                        }
-                      ) : Center(
-                        child: Column(
-                          children: [
-
-                            IconButton(onPressed: () async => await pickImage(), icon: photoIcon, focusColor: defaultColor, focusNode: _buttonFocusNodeOne),
-
-                            sbhmin,
-
-                            Text(AppLocalizations.of(context).translate('Choose image'), style: Theme.of(context).textTheme.bodyLarge),
-
-                          ]
-                        ),
-                      ),
-
-                    )
-                  )
-
-
-
-                ],
-              );
-
-
-            }
-          }
+              sbhmax,
+              sbhmax,
+              
+              // Footer
+              footer(context, setState)
+              
+            ],
+          ),
         ),
-
-
-        sbhavg,
-
-        Text(AppLocalizations.of(context).translate('Please note: ensure that the form you have just filled dose not contain personal and or sensitive details like you credit card information, home address, passwords e.t.c.'), style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontWeight: FontWeight.w500)),
-
-        sbhmin,
-
-        LayoutBuilder(
-          builder: (context, constraints) {
-            if(constraints.maxWidth < 1500 ) {
-              return Expanded(
-                child: ElevatedButton(
-                  onPressed: () { if(_formKey.currentState!.validate()) { _textFieldControllerOne.clear(); _textFieldControllerTwo.clear();  BlocProvider.of<EmailSupportBloc>(context).add(SendSupportTicketEvent(email, issue, images));} }, 
-                  child: Text(AppLocalizations.of(context).translate('Submit'), style: Theme.of(context).textTheme.labelLarge!.copyWith(color: white)),
-                  style: Theme.of(context).elevatedButtonTheme.style!..copyWith(padding: MaterialStateProperty.all(EdgeInsets.symmetric(horizontal: (MediaQuery.of(context).size.width * 0.9 ) * 0.12, vertical: 17.0))),
-                  focusNode: _buttonFocusNodeTwo,
-                )
-              );
-                
-            } else {
-              return ElevatedButton(
-                onPressed: () { if(_formKey.currentState!.validate()) { _textFieldControllerOne.clear(); _textFieldControllerTwo.clear();  BlocProvider.of<EmailSupportBloc>(context).add(SendSupportTicketEvent(email, issue, images));} },
-                child: Text(AppLocalizations.of(context).translate('Submit'), style: Theme.of(context).textTheme.labelLarge!.copyWith(color: white)),
-                style: Theme.of(context).elevatedButtonTheme.style!..copyWith(padding: MaterialStateProperty.all(EdgeInsets.symmetric(horizontal: (MediaQuery.of(context).size.width * 0.9 ) * 0.12, vertical: 17.0))),
-                focusNode: _buttonFocusNodeTwo
-              );
-            }
-          }
-        ),
-
-
-        sbhmin,
-
-        Text(AppLocalizations.of(context).translate('Expect a response from us within one business day or less.'), style: Theme.of(context).textTheme.bodyLarge),
-
-
-      ],
+      ),
     );
  
   }

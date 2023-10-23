@@ -3,10 +3,6 @@
 #
 
 list(APPEND FLUTTER_PLUGIN_LIST
-  audioplayers_windows
-  emoji_picker_flutter
-  pdfx
-  share_plus
   url_launcher_windows
 )
 
