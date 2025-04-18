@@ -1,0 +1,19 @@
+// Copyright (c) 2024 Goyerv Ltd. All rights reserved.
+// Author: Emmanuel Okorafor
+
+
+
+
+
+
+
+syntax = "proto2";
+
+package rate_guide;
+
+
+message RateGuideRequestMessage {
+    optional int32 version = 1;
+    optional string guideID = 2;
+    optional bool rating = 3;
+}

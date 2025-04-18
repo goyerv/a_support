@@ -1,0 +1,18 @@
+// Copyright (c) 2024 Goyerv Ltd. All rights reserved.
+// Author: Emmanuel Okorafor
+
+
+
+
+
+
+
+syntax = "proto2";
+
+package search_support;
+
+
+message SupportSearchRequestMessage {
+    optional int32 version = 1;
+    optional string query = 2;
+}

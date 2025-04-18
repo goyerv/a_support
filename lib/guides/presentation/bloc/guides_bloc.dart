@@ -18,32 +18,32 @@ part 'guides_event.dart';
 part 'guides_state.dart';
 
 
-const String NETWORK_ERROR_MESSAGE = 'No network connection at this time. Please connect to a network and try again';
-const String SERVER_ERROR_MESSAGE = 'There\'s been a problem connecting to goyerv. Please try again later';
+const String NETWORK_ERROR_MESSAGE = "Slow or no internet connection";
+const String SERVER_ERROR_MESSAGE = "There's been a problem connecting to goyerv. Please try again later";
 
 
 
 class GuidesBloc extends Bloc<GuidesEvent, GuidesState> {
 
   final GuidesSearch guidesSearch;
-  final FetchGuides fetchGuides;
+  final SupportSearch supportSearch;
   final RateGuide rateGuide;
 
-  GuidesBloc(this.guidesSearch, this.fetchGuides, this.rateGuide) : super(const GuidesInitial()) {
+  GuidesBloc(this.guidesSearch, this.supportSearch, this.rateGuide) : super(const GuidesInitial()) {
     on<GuidesEvent>((event, emit) async {
       if (event is  GuidesSearchEvent) {
         emit(const GuidesLoading());
-        final guidesSearchEither = await guidesSearch.get(Parameters(query: event.query, isFAQ: event.isFAQ));
+        final guidesSearchEither = await guidesSearch.get(Parameters(query: event.query));
 
         emit(guidesSearchEither.fold((l) => Err(mapErrorsToErrorMessage(l)), (r) => GuidesLoaded(r)));
 
       } else 
-      if (event is FetchGuidesEvent) {
+      if (event is SupportSearchEvent) {
         emit(const GuidesLoading());
 
-        final fetchGuidesEither = await fetchGuides.get(Parameters(isFAQ: event.isFAQ, locale: event.locale));
+        final supportSearchEither = await supportSearch.get(Parameters(query: event.query));
 
-        emit(fetchGuidesEither.fold((l) => Err(mapErrorsToErrorMessage(l)), (r) => GuidesLoaded(r)));
+        emit(supportSearchEither.fold((l) => Err(mapErrorsToErrorMessage(l)), (r) => GuidesLoaded(r)));
       
       } else 
       if (event is RateGuideEvent) {

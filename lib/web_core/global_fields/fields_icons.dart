@@ -16,3 +16,4 @@ const searchIcon = FaIcon(Icons.search);
 const chevronRightIcon = FaIcon(Icons.chevron_right_rounded);
 const chevronLeftIcon = FaIcon(Icons.chevron_left_rounded);
 const photoIcon = FaIcon(Icons.photo);
+const xMarkIcon = FaIcon(Icons.cancel_outlined);

@@ -11,8 +11,8 @@ import 'package:equatable/equatable.dart';
 
 class GuidesEntity extends Equatable {
 
-  final List<Map<String, dynamic>>? guides; // Serves FAQ and How Tos
-  final List<Map<String, dynamic>>? searchSuggestions;
+  final List<Map<String, dynamic>>? guides; 
+  final List<String>? searchSuggestions;
 
   const GuidesEntity({this.guides, this.searchSuggestions});
 

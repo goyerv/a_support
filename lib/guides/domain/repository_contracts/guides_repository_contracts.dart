@@ -14,7 +14,7 @@ import '../entity/guides_entity.dart';
 
 
 abstract class GuidesRepositoryContracts {
-  Future<Either<Errors, GuidesEntity>> guidesSearch(String? query, bool? isFAQ);
-  Future<Either<Errors, GuidesEntity>> fetchGuides(bool? isFAQ, String? locale);
+  Future<Either<Errors, GuidesEntity>> guidesSearch(String? query);
+  Future<Either<Errors, GuidesEntity>> supportSearch(String? query);
   Future<Either<Errors, GuidesEntity>> rateGuide(String? guideID, bool? isHelpful);
 }

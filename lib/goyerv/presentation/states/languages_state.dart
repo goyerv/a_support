@@ -13,7 +13,7 @@ import 'package:shared_preferences/shared_preferences.dart';
 import '../../../web_core/global_fields/fields.dart';
 import '../../../web_core/internationalization/app_localizations.dart';
 import '../../../web_core/internationalization/locales_preferences.dart';
-import '../../../web_core/widget/widget.dart';
+import '../../../web_core/util/hover.dart';
 
 
 class Languages extends StatefulWidget {
@@ -27,10 +27,15 @@ class Languages extends StatefulWidget {
 
 class _LanguagesState extends State<Languages> {
 
+
+
   late List<String> languages;
   late Map<String, dynamic> locales;
 
+
   late LocalesPreferencesImpl localesPreferences;
+
+
 
   @override 
   void initState() {
@@ -42,47 +47,43 @@ class _LanguagesState extends State<Languages> {
 
 
 
+  
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: appBar(context),
-
-      body: Container(
-        width: MediaQuery.of(context).size.width,
-        height: MediaQuery.of(context).size.height,
+    return Dialog(
+      child: Container(
+        width: MediaQuery.of(context).size.width >= 800? MediaQuery.of(context).size.width * 0.6 : MediaQuery.of(context).size.width,
+        height: MediaQuery.of(context).size.width >= 800? MediaQuery.of(context).size.width * 0.7 : null,
+        padding: EdgeInsets.all(15.0),
         color: Theme.of(context).primaryColor,
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-         
-              ListView.separated(
-                shrinkWrap: true,
-                itemCount: languages.length,
-                separatorBuilder: (context, _) => sbhmin, 
-                itemBuilder: (context, index) => Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: ListTile(
-                    onTap: (){ localesPreferences.setPlatformLocale(locales[languages[index]]); localesPreferences.setLanguageKey(languages[index]);},
-                    title: Text(AppLocalizations.of(context).translate(languages[index]), style: Theme.of(context).textTheme.bodyLarge),
-                    shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
-                    contentPadding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
-                    hoverColor: Theme.of(context).primaryColorLight,
-                  ),
-                ), 
-              ),
-        
-              sbhavg,
-        
-        
-              //footer
-              footer(context, setState),
-        
-            ],
+        child: Scaffold(
+          appBar: AppBar(
+            leading: InkWell(onTap: () => Navigator.of(context).pop(), hoverColor: Theme.of(context).primaryColorLight, child: Icon(xMark, size: 20.0),),
+          ),
+
+          body: Wrap(
+            spacing: 10,
+            runSpacing: 10,
+            children: List.generate(languages.length, (index) => OnHover(
+              builder: (isHovered, context) => OutlinedButton(
+                onPressed: (){ localesPreferences.setPlatformLocale(locales[languages[index]]); localesPreferences.setLanguageKey(languages[index]); }, 
+                style: Theme.of(context).outlinedButtonTheme.style!.copyWith(padding: WidgetStateProperty.all(const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20.0)), backgroundColor: WidgetStateProperty.all(isHovered? defaultColor : transparent), side: WidgetStateProperty.all(BorderSide(color: isHovered? transparent : defaultColor))),
+                child: Text(AppLocalizations.of(context).translate(languages[index]), style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: isHovered? white : Theme.of(context).textTheme.bodyLarge!.color))
+              )
+            )), 
           ),
         )
       ),
     );
   }
+
+
+
+
+
+
+
 
   @override 
   void dispose() {

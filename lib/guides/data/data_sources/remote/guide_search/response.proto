@@ -1,0 +1,28 @@
+// Copyright (c) 2024 Goyerv Ltd. All rights reserved.
+// Author: Emmanuel Okorafor
+
+
+
+
+
+
+
+syntax = "proto2";
+
+package guide_search;
+
+message GuideSearchResponseMessage { 
+
+    repeated Discussion guides = 1;
+    optional Discussion recentDiscussionsReference = 2;
+
+
+    message Discussion {
+        optional string discussionID = 1;
+        optional string discussHeadline = 2;
+        optional string discussBody = 3;
+        optional string discussLink = 4;
+        optional string dateTime = 5;
+    }
+
+}

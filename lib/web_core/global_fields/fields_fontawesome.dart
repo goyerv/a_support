@@ -18,3 +18,6 @@ const apple = Icons.apple;
 const android = Icons.android;
 const search = Icons.search;
 const file = Icons.file_copy;
+const check = Icons.check;
+const pin = Icons.attach_file;
+const xMark = Icons.cancel_outlined;

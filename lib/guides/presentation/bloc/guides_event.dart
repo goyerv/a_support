@@ -14,15 +14,14 @@ abstract class GuidesEvent extends Equatable {
 }
 
 
-class FetchGuidesEvent extends GuidesEvent {
+class SupportSearchEvent extends GuidesEvent {
 
-  final String? locale;
-  final bool? isFAQ;
+  final String? query;
 
-  const FetchGuidesEvent( this.locale, this.isFAQ);
+  const SupportSearchEvent(this.query);
 
   @override 
-  List<Object?> get props => [locale, isFAQ];
+  List<Object?> get props => [query];
   
 }
 
@@ -30,12 +29,11 @@ class FetchGuidesEvent extends GuidesEvent {
 class GuidesSearchEvent extends GuidesEvent {
 
   final String? query;
-  final bool? isFAQ;
 
-  const GuidesSearchEvent(this.query, this.isFAQ);
+  const GuidesSearchEvent(this.query);
 
   @override 
-  List<Object?> get props => [query, isFAQ];
+  List<Object?> get props => [query];
   
 }
 

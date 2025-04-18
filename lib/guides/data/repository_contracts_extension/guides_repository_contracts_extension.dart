@@ -29,13 +29,13 @@ class GuidesRepositoryContractsImpl implements GuidesRepositoryContracts {
 
 
   @override
-  Future<Either<Errors, GuidesEntity>> fetchGuides(bool? isFAQ, String? locale) async {
-    return await _getGuidesData(() => remoteDataSource.fetchGuides(isFAQ, locale));
+  Future<Either<Errors, GuidesEntity>> supportSearch(String? query)async {
+    return await _getGuidesData(() => remoteDataSource.supportSearch(query));
   }
   
   @override
-  Future<Either<Errors, GuidesEntity>> guidesSearch(String? query, bool? isFAQ) async {
-    return await _getGuidesData(() => remoteDataSource.guidesSearch(query, isFAQ));
+  Future<Either<Errors, GuidesEntity>> guidesSearch(String? query) async {
+    return await _getGuidesData(() => remoteDataSource.guidesSearch(query));
   }
 
   @override

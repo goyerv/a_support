@@ -12,10 +12,10 @@ part of 'package:goyerv_support_web_app/dependency_injections.dart';
 Future<void> initGuides() async {
 
   // Data sources
-  sl.registerLazySingleton<GuidesRemoteDataSource>(() => GuidesRemoteDataSourceImpl(sl(), sl()));
+  sl.registerLazySingleton<GuidesRemoteDataSource>(() => GuidesRemoteDataSourceImpl());
 
   // Use cases
-  sl.registerLazySingleton(() => FetchGuides(sl()));
+  sl.registerLazySingleton(() => SupportSearch(sl()));
   sl.registerLazySingleton(() => GuidesSearch(sl()));
   sl.registerLazySingleton(() => RateGuide(sl()));
 
@@ -25,13 +25,6 @@ Future<void> initGuides() async {
 
   // Bloc
   sl.registerFactory(() => GuidesBloc(sl(), sl(), sl()));
-
-
-  // External
-  final sharedPreferences = await SharedPreferences.getInstance();
-  sl.registerLazySingleton(() => sharedPreferences);
-  sl.registerLazySingleton(() => HttpClient());
-  sl.registerLazySingleton(() => InternetConnectionChecker());
 
 
 }

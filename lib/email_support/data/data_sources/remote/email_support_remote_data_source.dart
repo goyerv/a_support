@@ -7,14 +7,16 @@
 
 
 
-import 'dart:convert';
+import 'dart:typed_data';
 
-import 'package:goyerv_support_web_app/web_core/auth/auth.dart';
 import 'package:http/http.dart' as http;
+import 'package:http/http.dart';
 import 'package:http/retry.dart';
 
 import '../../../../web_core/error/exceptions.dart';
 import '../../models/email_support_model.dart';
+import 'email_support/request.pb.dart';
+import 'email_support/response.pb.dart';
 
 
 
@@ -25,45 +27,45 @@ abstract class EmailSupportRemoteDataSource {
 
 class EmailSupportRemoteDataSourceImpl implements EmailSupportRemoteDataSource {
 
-  final http.Client client;
-  final AuthenticationFragments authFragments;
-
-  EmailSupportRemoteDataSourceImpl(this.client, this.authFragments);
+  EmailSupportRemoteDataSourceImpl();
   
+
+  final http.Client client = Client();
+
+
   @override
   Future<EmailSupportModel> sendSupportTicket(String? email, String? issue, List<String>? images) async {
     
-    final _client = RetryClient(client);
+    final client_ = RetryClient(client);
+
+    var request = RequestMessage();
+    
+    request.version = 1;
+    request.emailAddress = email!;
+    request.issue = issue!;
+    request.images.addAll(images!.cast<String>());
+
+    Uint8List body = request.writeToBuffer();
+
 
     try {
-      final response = await _client.post(
-        Uri.https(
-          'static.goyerv.com', 
-          '/web/v1/email_support/send_support_ticket',
-          {
-            'version': 1,
-            'email': email,
-            'issue': issue,
-            'images': images,
-            'userID': await authFragments.getUserID().then((value) => value.userID),
-            'accessToken': await authFragments.getAccessToken().then((value) => value.accessToken),
-            'refreshToken': await authFragments.getRefreshToken().then((value) => value.refreshToken),
-            'webApiKey': await authFragments.getWebApiKey().then((value) => value.webApiKey)
-          }
-        ),
-        headers: {'content-type': 'application/json'},
+      final response = await client_.post(
+        Uri.parse('https://static.goyerv.com/v1/support/email_support'),
+        headers: {'content-type': 'application/x-protobuf'},
+        body: body,
       );
 
       if (response.statusCode == 200) {
-        return EmailSupportModel.fromJson(json.decode(response.body));
+        var post = ResponseMessage.fromBuffer(response.bodyBytes);
+        return EmailSupportModel.fromJson(post.writeToJsonMap());
         
       } else {
         throw ServerException();
 
       }
 
-    } finally  {
-      _client.close();
+    } finally {
+      client_.close();
 
     }
 

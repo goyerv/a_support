@@ -98,6 +98,10 @@ class _HomepageState extends State<Homepage> {
 
               // HomepageWidget(),
 
+
+              REMEMBER THAT FOR EACH ARTICLE YOU CREATE, YOU NEED TO MANUALLY CREATE THEIR HTML PAGE,
+              UPLOAD TO QSERVERS AND THEN TO GOOGLE CONSOLE
+
 Container(
       width: MediaQuery.of(context).size.width,
       color: Theme.of(context).primaryColor,
@@ -245,7 +249,7 @@ Container(
                     cursorColor: Theme.of(context).textSelectionTheme.cursorColor,
                     textInputAction: TextInputAction.done,
                     validator: (value) {return null;},
-                    onFieldSubmitted: (String value) { FocusScope.of(context).requestFocus(_buttonFocusNode); },
+                    onFieldSubmitted: (String value) { FocusScope.of(context).requzestFocus(_buttonFocusNode); },
                     onChanged: (value) {query = value.trim();},
                     focusNode: _textFieldFocusNode,
                     onTap: () { while(_textFieldController.text.isNotEmpty) { setState(() => makeSuggestionsModalVisible = true); }}
@@ -253,61 +257,61 @@ Container(
                 ),
         
         
-                // Offstage(
-                  // offstage: !makeSuggestionsModalVisible,
-                  // child: Container(
-                    // width: MediaQuery.of(context).size.width * 0.6,
-                    // height: MediaQuery.of(context).size.height * 0.3,
-                    // padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
-                    // child: Card(
-                      // color: Theme.of(context).primaryColor,
-                      // elevation: 0.5,
-                      // child: Column(
-                        // children: [
-        // 
-                          // BlocProvider(
-                            // create: ((context) => sl<HomepageBloc>()),
-                            // child: BlocConsumer(
-                              // listener: ((context, state) {}),
-                              // builder: ((context, state) {
-                                // if (state is HomepageInitial) {
-                                  // return Container();
-                                // 
-                                // } else 
-                                // if (state is HomepageLoading) {
-                                  // return const Center(child: GradientCircularProgressIndicator(gradient: LinearGradient(begin: Alignment.centerLeft, end: Alignment.centerRight, colors: [defaultColor, white]), radius: 200));
-                                // 
-                                // } else 
-                                // if (state is HomepageLoaded) {
-                                  // if (state.homepageEntity.searchSuggestions != null) {
-                                    // setState(() => suggestions = state.homepageEntity.searchSuggestions!);
-        // 
-                                    // return Expanded(
-                                      // child: ListView.builder(
-                                        // itemCount: suggestions!.length,
-                                        // itemBuilder: (context, index) => ListTile(
-                                          // onTap: () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (BuildContext context) => GuideDetails(suggestions![index]['suggestionID']!, suggestions![index]['guideDetails']!))),
-                                          // leading: Icon(search, semanticLabel: AppLocalizations.of(context).translate('Search icon')),
-                                          //  title: DetectableText(
-                                            // text: suggestions![index]['suggestion']!, 
-                                            // detectionRegExp: RegExp('^\\w{"$query"}'),
-                                            // basicStyle: Theme.of(context).textTheme.bodyMedium,
-                                            // detectedStyle: Theme.of(context).textTheme.bodyMedium!..copyWith(fontWeight: FontWeight.w500),
-                                          // ),
-                                        // )
-                                      // )
-                                    // );
-                                  // }
-                                // } return Container();
-                              // })
-                            // )
-                          // )
-        // 
-                        // ]
-                      // )
-                    // ),
-                  // )
-                // )
+                Offstage(
+                  offstage: !makeSuggestionsModalVisible,
+                  child: Container(
+                    width: MediaQuery.of(context).size.width * 0.6,
+                    height: MediaQuery.of(context).size.height * 0.3,
+                    padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
+                    child: Card(
+                      color: Theme.of(context).primaryColor,
+                      elevation: 0.5,
+                      child: Column(
+                        children: [
+        
+                          BlocProvider(
+                            create: ((context) => sl<HomepageBloc>()),
+                            child: BlocConsumer(
+                              listener: ((context, state) {}),
+                              builder: ((context, state) {
+                                if (state is HomepageInitial) {
+                                  return Container();
+                                
+                                } else 
+                                if (state is HomepageLoading) {
+                                  return const Center(child: GradientCircularProgressIndicator(gradient: LinearGradient(begin: Alignment.centerLeft, end: Alignment.centerRight, colors: [defaultColor, white]), radius: 200));
+                                
+                                } else 
+                                if (state is HomepageLoaded) {
+                                  if (state.homepageEntity.searchSuggestions != null) {
+                                    setState(() => suggestions = state.homepageEntity.searchSuggestions!);
+        
+                                    return Expanded(
+                                      child: ListView.builder(
+                                        itemCount: suggestions!.length,
+                                        itemBuilder: (context, index) => ListTile(
+                                          onTap: () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (BuildContext context) => GuideDetails(suggestions![index]['suggestionID']!, suggestions![index]['guideDetails']!))),
+                                          leading: Icon(search, semanticLabel: AppLocalizations.of(context).translate('Search icon')),
+                                           title: DetectableText(
+                                            text: suggestions![index]['suggestion']!, 
+                                            detectionRegExp: RegExp('^\\w{"$query"}'),
+                                            basicStyle: Theme.of(context).textTheme.bodyMedium,
+                                            detectedStyle: Theme.of(context).textTheme.bodyMedium!..copyWith(fontWeight: FontWeight.w500),
+                                          ),
+                                        )
+                                      )
+                                    );
+                                  }
+                                } return Container();
+                              })
+                            )
+                          )
+        
+                        ]
+                      )
+                    ),
+                  )
+                )
         
         
               ],

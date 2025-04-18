@@ -1,0 +1,20 @@
+// Copyright (c) 2024 Goyerv Ltd. All rights reserved.
+// Author: Emmanuel Okorafor
+
+
+
+
+
+
+
+syntax = "proto2";
+
+package email_support;
+
+
+message RequestMessage {
+    optional int32 version = 1;
+    optional string emailAddress = 2;
+    optional string issue = 3;
+    repeated string images = 4;
+}

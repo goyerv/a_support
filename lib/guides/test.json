@@ -1,28 +1,21 @@
 {
 
 
-    "guides": [
-        {
-            "guide": "",
-            "guideID": "",
-            "guideDetails": {
-                "headline": "How to not soak garri anymore (Only the first letter of the first word in this sentence should be capitalized)",
-                "feature": "Analytics",
-                "body": ""
-            }
-        }
-    ],
 
     "searchSuggestions": [
+        "this is an array of discussion headlines from the server and also locally. They'd be combined. if the user clicks on a guides tile, then the guides will be brought up cause they're local. If they click on the community suggestion tile, then that discussion will be fetched using the discussion id. "
+    ],
+
+
+    "guides": [
         {
-            "suggestion": "",
-            "isFAQ": false,
-            "suggestionID": "",
-            "guideDetails": {
-                "headline": "How to not soak garri anymore (Only the first letter of the first word in this sentence should be capitalized)",
-                "feature": "Analytics",
-                "body": ""
-            }
+            "note": "the discussionLink comes only in responses in the support website. This is from deep-linking purposes as the user will be immediately taken to the discussion page in the community website on-clicking any of these tiles",
+
+            "discussionID": "",
+            "discussHeadline": "",
+            "discussBody": "",
+            "dateTime": "date posted",
+            "discussLink": ""
         }
     ]
 

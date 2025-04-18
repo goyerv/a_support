@@ -1,0 +1,16 @@
+// Copyright (c) 2024 Goyerv Ltd. All rights reserved.
+// Author: Emmanuel Okorafor
+
+
+
+
+
+
+
+syntax = "proto2";
+
+package email_support;
+
+message ResponseMessage { 
+    optional bool supportRequestSent = 1;
+}

@@ -11,7 +11,7 @@ import '../../domain/entity/guides_entity.dart';
 
 class GuidesModel extends GuidesEntity {
   
-  const GuidesModel({ List<Map<String, dynamic>>? guides, List<Map<String, dynamic>>? searchSuggestions}) : super(guides: guides, searchSuggestions: searchSuggestions);
+  const GuidesModel({ List<Map<String, dynamic>>? guides, List<String>? searchSuggestions}) : super(guides: guides, searchSuggestions: searchSuggestions);
 
   factory GuidesModel.fromJson(Map<String, dynamic> json) {
     return GuidesModel(guides: json['guides'], searchSuggestions: json['searchSuggestions']);

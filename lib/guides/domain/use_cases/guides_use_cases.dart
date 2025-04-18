@@ -24,7 +24,7 @@ class GuidesSearch extends UseCases<GuidesEntity, Parameters> {
 
   @override
   Future<Either<Errors, GuidesEntity>> get(Parameters parameters) async {
-    return await repositoryContracts.guidesSearch(parameters.query, parameters.isFAQ,);
+    return await repositoryContracts.guidesSearch(parameters.query,);
   }
 
   @override 
@@ -32,15 +32,15 @@ class GuidesSearch extends UseCases<GuidesEntity, Parameters> {
 
 }
 
-class FetchGuides extends UseCases<GuidesEntity, Parameters> {
+class SupportSearch extends UseCases<GuidesEntity, Parameters> {
 
   final GuidesRepositoryContracts repositoryContracts;
 
-  FetchGuides(this.repositoryContracts);
+  SupportSearch(this.repositoryContracts);
 
   @override
   Future<Either<Errors, GuidesEntity>> get(Parameters parameters) async {
-    return await repositoryContracts.fetchGuides(parameters.isFAQ, parameters.locale);
+    return await repositoryContracts.supportSearch(parameters.query);
   }
 
   @override 
@@ -74,13 +74,11 @@ class Parameters extends Equatable {
   
   final String? query;
   final String? guideID;
-  final bool? isFAQ;
-  final String? locale;
   final bool? isHelpful;
 
-  const Parameters({this.query, this.guideID, this.isFAQ, this.locale, this.isHelpful});
+  const Parameters({this.query, this.guideID, this.isHelpful});
 
   @override 
-  List<Object?> get props => [query, guideID, isFAQ, locale, isHelpful];
+  List<Object?> get props => [query, guideID, isHelpful];
 
 }
