@@ -187,55 +187,13 @@ flutter:
     - assets/images/YouTube_logo.svg
 
     # Languages
-    - assets/languages/ar.json
-    - assets/languages/bn.json
-    - assets/languages/bg.json
-    - assets/languages/my.json
-    - assets/languages/ce.json
     - assets/languages/zh_CN.json
     - assets/languages/zh_TW.json
-    - assets/languages/hr.json
-    - assets/languages/cs.json
-    - assets/languages/da.json
-    - assets/languages/nl.json
     - assets/languages/en.json
-    - assets/languages/et.json
-    - assets/languages/fil.json
-    - assets/languages/fi.json
     - assets/languages/fr.json
-    - assets/languages/ka.json
-    - assets/languages/de.json
-    - assets/languages/el.json
-    - assets/languages/gu.json
-    - assets/languages/ha.json
     - assets/languages/hi.json
-    - assets/languages/hu.json
-    - assets/languages/ig.json
-    - assets/languages/id.json
-    - assets/languages/it.json
     - assets/languages/ja.json
-    - assets/languages/kn.json
-    - assets/languages/km.json
-    - assets/languages/ko.json
-    - assets/languages/ms.json
-    - assets/languages/ml.json
-    - assets/languages/mr.json
-    - assets/languages/nb.json
-    - assets/languages/or.json
-    - assets/languages/pl.json
-    - assets/languages/pt.json
-    - assets/languages/pa.json
-    - assets/languages/ro.json
-    - assets/languages/ru.json
     - assets/languages/es.json
-    - assets/languages/ta.json
-    - assets/languages/th.json
-    - assets/languages/tr.json
-    - assets/languages/uk.json
-    - assets/languages/vi.json
-    - assets/languages/cy.json
-    - assets/languages/yr.json
-    
 
 
   # An image asset can refer to one or more resolution-specific "variants", see
