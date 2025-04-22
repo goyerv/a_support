@@ -84,7 +84,7 @@ class _GuidesState extends State<Guides> {
           width: MediaQuery.of(context).size.width,
           color: Theme.of(context).primaryColor,
           child: FooterView(
-            footer: footer(),
+            footer: footer(context),
             children: [
 
               Padding(

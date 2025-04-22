@@ -16,6 +16,7 @@ import '../../../../../guides/presentation/bloc/guides_bloc.dart';
 import '../../../../../web_core/global_fields/fields.dart';
 import '../../../../../web_core/internationalization/app_localizations.dart';
 import '../../../../../web_core/util/hover.dart';
+import '../../../../../widget/widget.dart';
 import '../analytics/analytics.dart';
 import 'how_do_i_make_withdrawals.dart';
 import 'locks.dart';

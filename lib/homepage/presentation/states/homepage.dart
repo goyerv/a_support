@@ -22,6 +22,7 @@ import '../../../guides/presentation/states/guides.dart';
 import '../../../web_core/global_fields/fields.dart';
 import '../../../web_core/internationalization/app_localizations.dart';
 import '../../../web_core/util/hover.dart';
+import '../../../widget/widget.dart';
 import '../widgets/2025/analytics/analytics.dart';
 import '../widgets/2025/convert/becoming_a_runner.dart';
 import '../widgets/2025/convert/resigning.dart';
@@ -104,7 +105,7 @@ class _HomepageState extends State<Homepage> {
   @override 
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: appBar(),
+      appBar: appBar(context),
       body: Title(
         title: AppLocalizations.of(context).translate('Goyerv - Support'),
         color: Theme.of(context).primaryColor,

@@ -12,7 +12,6 @@ import 'dart:io';
 import 'dart:ui';
 
 import 'package:file_picker/file_picker.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -20,9 +19,9 @@ import 'package:footer/footer_view.dart';
 import 'package:gradient_widgets/gradient_widgets.dart';
 import 'package:path_provider/path_provider.dart';
 
-import '../../../guides/presentation/states/guides.dart';
 import '../../../web_core/global_fields/fields.dart';
 import '../../../web_core/internationalization/app_localizations.dart';
+import '../../../widget/widget.dart';
 import '../bloc/email_support_bloc.dart';
 
 class EmailSupport extends StatefulWidget {

@@ -16,6 +16,7 @@ import '../../../../../guides/presentation/bloc/guides_bloc.dart';
 import '../../../../../web_core/global_fields/fields.dart';
 import '../../../../../web_core/internationalization/app_localizations.dart';
 import '../../../../../web_core/util/hover.dart';
+import '../../../../../widget/widget.dart';
 import '../requests/how_do_I_make_a_request.dart';
 import '../requests/how_do_i_counter_a_request.dart';
 import '../requests/terminating_requests.dart';
