@@ -81,7 +81,7 @@ class _HowDoICounterARequestState extends State<HowDoICounterARequest> {
 
 
                     GestureDetector(
-                      onTap: () => Share.share("https://support.goyerv.com/2025/requests/how-do-I-make-a-request.html"),
+                      onTap: () => Share.share("https://support.goyerv.com/2025/requests/how-do-I-counter-a-request.html"),
                       child: Container(
                         padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 10),
                         decoration: BoxDecoration(
@@ -145,7 +145,7 @@ class _HowDoICounterARequestState extends State<HowDoICounterARequest> {
                             foregroundColor: grey,
                             padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
                           ),
-                          child: Text("Helpful", style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: grey),),
+                          child: Text(AppLocalizations.of(context).translate("Helpful"), style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: grey),),
                         ),
 
 
@@ -160,7 +160,7 @@ class _HowDoICounterARequestState extends State<HowDoICounterARequest> {
                             foregroundColor: grey,
                             padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
                           ),
-                          child: Text("Not Helpful", style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: grey),),
+                          child: Text(AppLocalizations.of(context).translate("Not Helpful"), style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: grey),),
                         ),
 
 

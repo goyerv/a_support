@@ -11,458 +11,165 @@ import 'dart:ui';
 
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
+import 'package:footer/footer.dart';
+import 'package:goyerv_support_web_app/web_core/util/hover.dart';
 import 'package:intl/intl.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:flutter_animate/flutter_animate.dart';
-import 'package:shared_preferences/shared_preferences.dart';
 
-import '../../email_support/presentation/states/email_support.dart';
-import '../../goyerv/presentation/states/call_support.dart';
-import '../../goyerv/presentation/states/languages_state.dart';
-import '../../homepage/presentation/states/homepage.dart';
-import '../global_fields/fields.dart';
-import '../internationalization/app_localizations.dart';
-import '../internationalization/locales_preferences.dart';
-import '../util/hover.dart';
+import '../../../goyerv/presentation/states/languages_state.dart';
+import '../../../web_core/global_fields/fields.dart';
+import '../../../web_core/internationalization/app_localizations.dart';
 
 
-  bool makeResourcesVisible = false;
-  bool makeReachOutVisible = false;
-  bool makeSoftwareVisible = false;
-  bool makeLegalVisible = false;
+
+
+Uri uriGoyerv = Uri.parse('https://www.goyerv.com/goyerv');
+Uri uriFacebook = Uri.parse('https://web.facebook.com/profile.php?id=61573027977193');
+// Remember to update this username
+Uri uriX = Uri.parse('https://x.com/goyervltd');
+Uri uriInstagram = Uri.parse('https://www.instagram.com/goyervltd/');
+Uri uriThreads = Uri.parse('https://www.threads.net/@goyervltd');  
+Uri uriYouTube = Uri.parse('https://www.youtube.com/@Goyerv');  
+Uri uriLinkedIn = Uri.parse('https://www.linkedin.com/company/goyerv/');  
+// TikTok
+
+
+Uri uriTerms = Uri.parse('https://legal.goyerv.com');
+Uri uriPrivacy = Uri.parse('https://legal.goyerv.com');
+Uri uriSupport = Uri.parse('https://support.goyerv.com');
+Uri uriDevelopers = Uri.parse('https://developers.goyerv.com');
+Uri uriCommunity = Uri.parse('https://community.goyerv.com');
+Uri uriBulletin = Uri.parse('https://bulletin.goyerv.com');
+Uri uriCareers = Uri.parse('https://careers.goyerv.com');
+Uri uriResources = Uri.parse('https://Resources.goyerv.com');
+Uri uriAbout = Uri.parse('https://legal.goyerv.com');
+
+
+FocusNode focusNodeOne = FocusNode();
+FocusNode focusNodeTwo = FocusNode();
+FocusNode focusNodeThree = FocusNode();
+FocusNode focusNodeFour = FocusNode();
+FocusNode focusNodeFive = FocusNode();
+
+
+
 
 PreferredSizeWidget? appBar(BuildContext context) {
+
   return AppBar(
     automaticallyImplyLeading: false,
-    // leading: InkWell(onTap: () => launchUrl(Uri.parse('https://www.goyerv.com')), child: Image.asset('images/goyerv_logo.png', fit: BoxFit.scaleDown, filterQuality: FilterQuality.high, semanticLabel: AppLocalizations.of(context).translate('Goyerv logo'), matchTextDirection: false)),
-
-    title: Row(children: [InkWell(overlayColor: MaterialStateColor.resolveWith((states) => transparent), onTap: () => launchUrl(Uri.parse('https://www.goyerv.com')), child: SizedBox(width: 35.0, height: 35.0, child: Image.asset('images/goyerv_logo.png', fit: BoxFit.scaleDown, filterQuality: FilterQuality.high, semanticLabel: AppLocalizations.of(context).translate('Goyerv logo'), matchTextDirection: false))), const SizedBox(width: 10.0), TextButton(onPressed: () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (BuildContext context) => const Homepage())), child: Text(AppLocalizations.of(context).translate('Support'), style: Theme.of(context).textTheme.titleLarge))]),
-    flexibleSpace: ClipRect(child: BackdropFilter(filter: ImageFilter.blur(sigmaX: 30.0, sigmaY: 30.0), child: Container(color: transparent))),
+    leading: InkWell(overlayColor: WidgetStateColor.resolveWith((states) => transparent), onTap: () => launchUrl(Uri.parse('https://www.goyerv.com')), child: Image.asset('images/goyerv_logo.png', fit: BoxFit.scaleDown, filterQuality: FilterQuality.high, semanticLabel: 'Goyerv logo', matchTextDirection: false)),
+    title: Text(AppLocalizations.of(context).translate('Support'), style: Theme.of(context).textTheme.titleLarge),
+    flexibleSpace: ClipRect(child: BackdropFilter(filter: ImageFilter.blur(sigmaX: 40.0, sigmaY: 40.0), child: Container(color: transparent))),
   );
+  
 }
 
 
-Widget footer(BuildContext context, void Function(void Function() n) setState) {
 
-  FocusNode focusNodeOne = FocusNode();
-  FocusNode focusNodeTwo = FocusNode();
-  FocusNode focusNodeThree = FocusNode();
-  FocusNode focusNodeFour = FocusNode();
-  FocusNode focusNodeFive = FocusNode();
-  FocusNode focusNodeSix = FocusNode();
-  FocusNode focusNodeSeven = FocusNode();
-  FocusNode focusNodeEight = FocusNode();
-  FocusNode focusNodeNine = FocusNode();
-  FocusNode focusNodeTen = FocusNode();
-  FocusNode focusNodeEleven = FocusNode();
-  FocusNode focusNodeTwelve = FocusNode();
-  FocusNode focusNodeThirteen = FocusNode();
-  FocusNode focusNodeFourteen = FocusNode();
-  FocusNode focusNodeFifteen = FocusNode();
-  FocusNode focusNodeSixteen = FocusNode();
-  FocusNode focusNodeSeventeen = FocusNode();
-  FocusNode focusNodeEighteen = FocusNode();
-  FocusNode focusNodeNineteen = FocusNode();
-  FocusNode focusNodeTwenty = FocusNode();
-  FocusNode focusNodeTwentyOne = FocusNode();
-  FocusNode focusNodeTwentyTwo = FocusNode();
-  FocusNode focusNodeTwentyThree = FocusNode();
-  FocusNode focusNodeTwentyFour = FocusNode();
+Footer footer(BuildContext context) {
+
+  double screenWidth = MediaQuery.of(context).size.width;
 
 
-  // SharedPreferences sharedPreferences = await SharedPreferences.getInstance().then((value) => value);
-  // LocalesPreferencesImpl localesPreferences = LocalesPreferencesImpl(sharedPreferences);
-  // String language = await localesPreferences.getLanguageKey();
-  
-  
-  Uri uri = Uri.parse('https://www.goyerv.com');
-  
-  Uri uriResources = Uri.parse('https://resources.goyerv.com');
-  Uri uriNews = Uri.parse('https://news.goyerv.com');
-  Uri uriVideos = Uri.parse('https://www.youtube.com/@Goyerv');
-  // Uri uriGoyerv = Uri.parse('https://www.goyerv.com/profiles/goyerv');
-  Uri uriFacebook = Uri.parse('https://www.facebook.com/Goyerv.temporary?mibextid=ZbWKwL');
-  Uri uriTwitter = Uri.parse('https://twitter.com/goyerv_');
-  Uri uriInstagram = Uri.parse('https://www.instagram.com/goyerv_/');
-  
-  Uri uriApi = Uri.parse('https://developers.goyerv.com'); // Later: https://developers.goyerv.com/api
-  Uri uriOpenSource = Uri.parse('https://www.github.com/goyerv');
-  Uri uriDocumentation = Uri.parse('https://developers.goyerv.com'); //Later: https://developers.goyerv.com/documentation
-  Uri uriEmbedding = Uri.parse('https://developers.goyerv.com/'); //Later: https://developers.goyerv.com/embedding
-  
-  
-  Uri uriTerms = Uri.parse('https://legal.goyerv.com'); //Later: https://legal.goyerv.com/terms
-  Uri uriPrivacy = Uri.parse('https://legal.goyerv.com'); //Later: https://legal.goyerv.com/privacy
-  Uri uriAbout = Uri.parse('https://legal.goyerv.com'); //Later: https://legal.goyerv.com/about
-  Uri uriCareers = Uri.parse('https://careers.goyerv.com');
-  
-  
-  // Uri uriGoyervSupport = Uri.parse('https://goyerv.com/profiles/goyerv_support');
-  Uri uriCommunities = Uri.parse('https://community.goyerv.com');
-  Uri uriTwitterSupport = Uri.parse('https://twitter.com/---');
-
-
-  return Container(
-    alignment: Alignment.bottomCenter,
-    color: Theme.of(context).primaryColorLight,
-    padding: MediaQuery.of(context).size.width < 1100? const EdgeInsets.all(15) : const EdgeInsets.all(20),
-    child: MediaQuery.of(context).size.width < 1100?  Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
+  return Footer(
+    backgroundColor: Theme.of(context).primaryColor,
+    padding: EdgeInsets.all(15.0),
+    child: Column(
       children: [
-    
-        ListTile(
-          onTap: () {setState(() {makeResourcesVisible = !makeResourcesVisible;});  },
-          title: Text(AppLocalizations.of(context).translate('Resources'), style: Theme.of(context).textTheme.labelLarge!..copyWith(fontWeight: FontWeight.w600)),
-          trailing: Icon(makeResourcesVisible? chevronUp : chevronDown, size: 20.0, semanticLabel: AppLocalizations.of(context).translate(makeResourcesVisible? 'Keyboard arrow up' : 'Keyboard arrow down')),
-          focusNode: focusNodeTwentyOne,
-        ),
-    
-        sbhmin,
-
-        const Divider(color: grey, thickness: 2.0),
-
-        sbhmin,
-    
-        Animate(
-          effects: const [FadeEffect(duration: Duration(milliseconds: 1000), curve: Curves.easeOut)],
-          child: Offstage(
-            offstage: !makeResourcesVisible,
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-        
-                Animate(effects: const [FadeEffect(duration: Duration(milliseconds: 1000), curve: Curves.easeOut)], child: OnHover(builder: (isHovered, context) => TextButton(onPressed: () => launchUrl(uriResources), focusNode: focusNodeOne, child: Text(AppLocalizations.of(context).translate('Resources'), style: Theme.of(context).textTheme.labelSmall!..copyWith(color: isHovered? defaultColor : Theme.of(context).textTheme.bodyLarge!.color)),))),
-          
-                sbhmin,
-          
-                AnimatedContainer(duration: const Duration(milliseconds: 60), child: OnHover(builder: (isHovered, context) => TextButton(onPressed: () => launchUrl(uriNews), focusNode: focusNodeTwo, child: Text(AppLocalizations.of(context).translate('News'), style: Theme.of(context).textTheme.labelSmall!..copyWith(color: isHovered? defaultColor : Theme.of(context).textTheme.labelSmall!.color)),))),
-          
-                sbhmin,
-          
-                AnimatedContainer(duration: const Duration(milliseconds: 88), child: OnHover(builder: (isHovered, context) => TextButton(onPressed: () => launchUrl(uriVideos), focusNode: focusNodeThree, child: Text(AppLocalizations.of(context).translate('Goyerv guide videos'), style: Theme.of(context).textTheme.labelSmall!..copyWith(color: isHovered? defaultColor : Theme.of(context).textTheme.labelSmall!.color)),))),
-          
-                sbhmin,
-          
-                AnimatedContainer(duration: const Duration(milliseconds: 116), child: OnHover(builder: (isHovered, context) => TextButton(onPressed: () {}, focusNode: focusNodeFour, child: Text(AppLocalizations.of(context).translate('@Goyerv (Goyerv)'), style: Theme.of(context).textTheme.labelSmall!..copyWith(color: isHovered? defaultColor : Theme.of(context).textTheme.labelSmall!.color)),))),
-          
-                sbhmin,
-          
-                AnimatedContainer(duration: const Duration(milliseconds: 144), child: OnHover(builder: (isHovered, context) => TextButton(onPressed: () => launchUrl(uriFacebook), focusNode: focusNodeFive, child: Text(AppLocalizations.of(context).translate('@Goyerv (FaceBook)'), style: Theme.of(context).textTheme.labelSmall!..copyWith(color: isHovered? defaultColor : Theme.of(context).textTheme.labelSmall!.color)),))),
-          
-                sbhmin,
-          
-                AnimatedContainer(duration: const Duration(milliseconds: 172), child: OnHover(builder: (isHovered, context) => TextButton(onPressed: () => launchUrl(uriTwitter), focusNode: focusNodeSix, child: Text(AppLocalizations.of(context).translate('@Goyerv (Twitter)'), style: Theme.of(context).textTheme.labelSmall!..copyWith(color: isHovered? defaultColor : Theme.of(context).textTheme.labelSmall!.color)),))),
-          
-                sbhmin,
-          
-                AnimatedContainer(duration: const Duration(milliseconds: 200), child: OnHover(builder: (isHovered, context) => TextButton(onPressed: () => launchUrl(uriInstagram), focusNode: focusNodeSeven, child: Text(AppLocalizations.of(context).translate('@Goyerv (Instagram)'), style: Theme.of(context).textTheme.labelSmall!..copyWith(color: isHovered? defaultColor : Theme.of(context).textTheme.labelSmall!.color)),))),
-            
-              ],
-            )
-          ),
-        ),
-    
-        ListTile(
-          onTap: () => setState(() => makeReachOutVisible = !makeReachOutVisible),
-          title: Text(AppLocalizations.of(context).translate('Reach Out'), style: Theme.of(context).textTheme.labelLarge!..copyWith(fontWeight: FontWeight.w600)),
-          trailing: Icon(makeReachOutVisible? chevronUp : chevronDown, size: 20.0, semanticLabel: AppLocalizations.of(context).translate(makeResourcesVisible? 'Keyboard arrow up' : 'Keyboard arrow down')),
-          focusNode: focusNodeTwentyTwo,
-        ),
-                      
-        sbhmin,
-
-        const Divider(color: grey, thickness: 2.0),
-
-        sbhmin,
-    
-        Offstage(
-          offstage: !makeReachOutVisible,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-                      
-              AnimatedContainer(duration: const Duration(milliseconds: 0), child: OnHover(builder: (isHovered, context) => TextButton(onPressed: () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (BuildContext context) => const EmailSupport())), focusNode: focusNodeEight, child: Text(AppLocalizations.of(context).translate('Email us'), style: Theme.of(context).textTheme.labelSmall!..copyWith(color: isHovered? red : Theme.of(context).textTheme.labelSmall!.color)),))),
-    
-              sbhmin,
-    
-              AnimatedContainer(duration: const Duration(milliseconds: 40), child: OnHover(builder: (isHovered, context) => TextButton(onPressed: ()  => Navigator.of(context).push(MaterialPageRoute<void>(builder: (BuildContext context) => const CallSupport())), focusNode: focusNodeNine, child: Text(AppLocalizations.of(context).translate('Call us'), style: Theme.of(context).textTheme.labelSmall!..copyWith(color: isHovered? defaultColor : Theme.of(context).textTheme.labelSmall!.color)),))),
-    
-              sbhmin,
-    
-              AnimatedContainer(duration: const Duration(milliseconds: 80), child: OnHover(builder: (isHovered, context) => TextButton(onPressed: ()  => launchUrl(uriCommunities), focusNode: focusNodeTen, child: Text(AppLocalizations.of(context).translate('Goyerv communities'), style: Theme.of(context).textTheme.labelSmall!..copyWith(color: isHovered? defaultColor : Theme.of(context).textTheme.labelSmall!.color)),))),
-    
-              sbhmin,
-    
-              AnimatedContainer(duration: const Duration(milliseconds: 120), child: OnHover(builder: (isHovered, context) => TextButton(onPressed: () {}, focusNode: focusNodeEleven, child: Text(AppLocalizations.of(context).translate('@GoyervSupport (Goyerv)'), style: Theme.of(context).textTheme.labelSmall!..copyWith(color: isHovered? defaultColor : Theme.of(context).textTheme.labelSmall!.color)),))),
-    
-              sbhmin,
-    
-              AnimatedContainer(duration: const Duration(milliseconds: 160), child: OnHover(builder: (isHovered, context) => TextButton(onPressed: () => launchUrl(uriTwitterSupport), focusNode: focusNodeTwelve, child: Text(AppLocalizations.of(context).translate('@GoyervSupport (Twitter)'), style: Theme.of(context).textTheme.labelSmall!..copyWith(color: isHovered? defaultColor : Theme.of(context).textTheme.labelSmall!.color)),))),
-
-            ],
-           )
-         ),
-    
-    
-    
-        ListTile(
-          onTap: () => setState(() => makeSoftwareVisible = !makeSoftwareVisible),
-          title: Text(AppLocalizations.of(context).translate('Software'), style: Theme.of(context).textTheme.labelLarge!..copyWith(fontWeight: FontWeight.w600)),
-          trailing: Icon(makeReachOutVisible? chevronUp : chevronDown, size: 20.0, semanticLabel: AppLocalizations.of(context).translate(makeResourcesVisible? 'Keyboard arrow up' : 'Keyboard arrow down')),
-          focusNode: focusNodeTwentyThree,
-        ),
-                      
-        sbhmin,
-
-        const Divider(color: grey, thickness: 2.0),
-
-        sbhmin,
-
-    
-        Offstage(
-          offstage: !makeSoftwareVisible,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-                     
-              AnimatedContainer(duration: const Duration(milliseconds: 0), child: OnHover(builder: (isHovered, context) => TextButton(onPressed: () => launchUrl(uriApi), focusNode: focusNodeThirteen, child: Text(AppLocalizations.of(context).translate('APIs'), style: Theme.of(context).textTheme.labelSmall!..copyWith(color: isHovered? defaultColor : Theme.of(context).textTheme.labelSmall!.color)),))),
-    
-              sbhmin,
-    
-              AnimatedContainer(duration: const Duration(milliseconds: 50), child: OnHover(builder: (isHovered, context) => TextButton(onPressed: () => launchUrl(uriDocumentation), focusNode: focusNodeFourteen, child: Text(AppLocalizations.of(context).translate('Documentation'), style: Theme.of(context).textTheme.labelSmall!..copyWith(color: isHovered? defaultColor : Theme.of(context).textTheme.labelSmall!.color)),))),
-    
-              sbhmin,
-    
-              AnimatedContainer(duration: const Duration(milliseconds: 100), child: OnHover(builder: (isHovered, context) => TextButton(onPressed: () => launchUrl(uriOpenSource), focusNode: focusNodeFifteen, child: Text(AppLocalizations.of(context).translate('Open Source'), style: Theme.of(context).textTheme.labelSmall!..copyWith(color: isHovered? defaultColor : Theme.of(context).textTheme.labelSmall!.color)),))),
-    
-              sbhmin,
-    
-              AnimatedContainer(duration: const Duration(milliseconds: 150), child: OnHover(builder: (isHovered, context) => TextButton(onPressed: () => launchUrl(uriEmbedding), focusNode: focusNodeSixteen, child: Text(AppLocalizations.of(context).translate('Embedding'), style: Theme.of(context).textTheme.labelSmall!..copyWith(color: isHovered? defaultColor : Theme.of(context).textTheme.labelSmall!.color)),))),
-
-            ],
-          )
-         ),
-    
-    
-        ListTile(
-          onTap: () => setState(() => makeLegalVisible = !makeLegalVisible),
-          title: Text(AppLocalizations.of(context).translate('Legal'), style: Theme.of(context).textTheme.labelLarge!..copyWith(fontWeight: FontWeight.w600)),
-          trailing: Icon(makeReachOutVisible? chevronUp : chevronDown, size: 20.0, semanticLabel: AppLocalizations.of(context).translate(makeResourcesVisible? 'Keyboard arrow up' : 'Keyboard arrow down')),
-          focusNode: focusNodeTwentyFour,
-        ),           
-        
-        sbhmin,
-
-        const Divider(color: grey, thickness: 2.0),
-
-        sbhmin,
-    
-        Offstage(
-          offstage: !makeLegalVisible,
-          child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-                            
-              AnimatedContainer(duration: const Duration(milliseconds: 0), child: OnHover(builder: (isHovered, context) => TextButton(onPressed: () => launchUrl(uriTerms), focusNode: focusNodeSeventeen, child: Text(AppLocalizations.of(context).translate('Terms and conditions'), style: Theme.of(context).textTheme.labelSmall!..copyWith(color: isHovered? defaultColor : Theme.of(context).textTheme.labelSmall!.color)),))),
-        
-              sbhmin,
-        
-              AnimatedContainer(duration: const Duration(milliseconds: 50), child: OnHover(builder: (isHovered, context) => TextButton(onPressed: () => launchUrl(uriPrivacy), focusNode: focusNodeEighteen, child: Text(AppLocalizations.of(context).translate('Privacy policy'), style: Theme.of(context).textTheme.labelSmall!..copyWith(color: isHovered? defaultColor : Theme.of(context).textTheme.labelSmall!.color)),))),
-        
-              sbhmin,
-        
-              AnimatedContainer(duration: const Duration(milliseconds: 100), child: OnHover(builder: (isHovered, context) => TextButton(onPressed: () => launchUrl(uriCareers), focusNode: focusNodeNineteen, child: Text(AppLocalizations.of(context).translate('Careers'), style: Theme.of(context).textTheme.labelSmall!..copyWith(color: isHovered? defaultColor : Theme.of(context).textTheme.labelSmall!.color)),))),
-        
-              sbhmin,
-        
-              AnimatedContainer(duration: const Duration(milliseconds: 150), child: OnHover(builder: (isHovered, context) => TextButton(onPressed: () => launchUrl(uriAbout), focusNode: focusNodeTwenty, child: Text(AppLocalizations.of(context).translate('About'), style: Theme.of(context).textTheme.labelSmall!..copyWith(color: isHovered? defaultColor : Theme.of(context).textTheme.labelSmall!.color)),))),
-    
-            ],
-          )
-        ),
-    
-        sbhavg,
-
-        Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-
-            RichText(text: TextSpan(children: [ TextSpan(text: '© ${DateFormat('yyyy').format(DateTime.now())} ', style: Theme.of(context).textTheme.labelSmall),  TextSpan(text: 'Goyerv ', recognizer: TapGestureRecognizer()..onTap = () => launchUrl(uri), style: Theme.of(context).textTheme.labelSmall), TextSpan(text: AppLocalizations.of(context).translate('LLC. All rights reserved'), style: Theme.of(context).textTheme.labelSmall), ])),
-
-          ],
-        ),
 
         sbhavg,
 
         Row(
-          mainAxisAlignment: MainAxisAlignment.end,
           children: [
-            TextButton(onPressed: () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (BuildContext context) => const Languages())), focusNode: focusNodeSix, style: Theme.of(context).textButtonTheme.style!.copyWith(backgroundColor: MaterialStateProperty.all(transparent)), child: RichText(text: TextSpan(children: [ WidgetSpan(child: Icon(Icons.language, color: Theme.of(context).iconTheme.color, size: 20.0, semanticLabel: AppLocalizations.of(context).translate('Globe(Language) icon'))), WidgetSpan(child: sbwmin,), TextSpan(text: AppLocalizations.of(context).translate('English'), style: Theme.of(context).textTheme.labelSmall), ] ))),
+            
+            GestureDetector(onTap: () => launchUrl(uriGoyerv), child: SvgPicture.asset('images/Goyerv_logo.svg', semanticsLabel: AppLocalizations.of(context).translate('Goyerv logo'))),
 
+            sbhmin,
+
+            GestureDetector(onTap: () => launchUrl(uriFacebook), child: SvgPicture.asset('images/Facebook_logo.svg', semanticsLabel: AppLocalizations.of(context).translate('Facebook logo'))),
+
+            sbhmin,
+
+            GestureDetector(onTap: () => launchUrl(uriX), child: SvgPicture.asset('images/X_logo.svg', semanticsLabel: AppLocalizations.of(context).translate('X logo'))),
+
+            sbhmin,
+
+            GestureDetector(onTap: () => launchUrl(uriInstagram), child: SvgPicture.asset('images/Instagram_logo.svg', semanticsLabel: AppLocalizations.of(context).translate('Instagram logo'))),
+
+            sbhmin,
+
+            GestureDetector(onTap: () =>launchUrl(uriThreads), child: SvgPicture.asset('images/Threads_logo.svg', semanticsLabel: AppLocalizations.of(context).translate('Threads logo'))),
+
+            sbhmin,
+
+            GestureDetector(onTap: () => launchUrl(uriYouTube), child: SvgPicture.asset('images/YouTube_logo.svg', semanticsLabel: AppLocalizations.of(context).translate('YouTube logo'))),
+
+            sbhmin,
+
+            GestureDetector(onTap: () => launchUrl(uriLinkedIn), child: SvgPicture.asset('images/LinkedIn_logo.svg', semanticsLabel: AppLocalizations.of(context).translate('LinkedIn logo'))),
+
+
+
+            
           ],
         ),
-        
-      ], // Mobile
-    ) : Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-    
-        // Legal(Terms, Privacy, Careers, About),
-    
-        // Developers (Api, Documentations, OpenSource, Embedding) // Future
-      
-        // Resources(Articles, Blog, Goyerv guide videos, @Goyerv (Goyerv), @Goyerv (Twitter), @Goyerv (Facebook), @Goyerv(Instagram)),
-                        
-        // Reach Out (email us, call us, Goyerv communities, @GoyervSupport(Goyerv), @GoyervSupport(Twitter))
-      
-        Wrap(
-          // crossAxisAlignment: WrapCrossAlignment.center,
-          // alignment: WrapAlignment.spaceEvenly, 
-          spacing: MediaQuery.of(context).size.height * 0.28,
-          children: [
-                            
 
-            Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-          
-              Text(AppLocalizations.of(context).translate('Resources'), style: Theme.of(context).textTheme.labelLarge!..copyWith(fontWeight: FontWeight.w600)),
-          
-              sbhavg,
-          
-              OnHover(builder: (isHovered, context) => TextButton(onPressed: () => launchUrl(uriResources), focusNode: focusNodeOne, child: Text(AppLocalizations.of(context).translate('Resources'), style: Theme.of(context).textTheme.labelSmall!..copyWith(color: isHovered? defaultColor : Theme.of(context).textTheme.labelSmall!.color)),)),
-          
-              sbhmin,
-          
-              OnHover(builder: (isHovered, context) => TextButton(onPressed: () => launchUrl(uriNews), focusNode: focusNodeTwo, child: Text(AppLocalizations.of(context).translate('News'), style: Theme.of(context).textTheme.labelSmall!..copyWith(color: isHovered? defaultColor : Theme.of(context).textTheme.labelSmall!.color)),)),
-          
-              sbhmin,
-          
-              OnHover(builder: (isHovered, context) => TextButton(onPressed: () => launchUrl(uriVideos), focusNode: focusNodeThree, child: Text(AppLocalizations.of(context).translate('Goyerv guide videos'), style: Theme.of(context).textTheme.labelSmall!..copyWith(color: isHovered? defaultColor : Theme.of(context).textTheme.labelSmall!.color)),)),
-          
-              sbhmin,
-          
-              OnHover(builder: (isHovered, context) => TextButton(onPressed: () {}, focusNode: focusNodeFour, child: Text(AppLocalizations.of(context).translate('@Goyerv (Goyerv)'), style: Theme.of(context).textTheme.labelSmall!..copyWith(color: isHovered? defaultColor : Theme.of(context).textTheme.labelSmall!.color)),)),
-          
-              sbhmin,
-          
-              OnHover(builder: (isHovered, context) => TextButton(onPressed: () => launchUrl(uriFacebook), focusNode: focusNodeFive, child: Text(AppLocalizations.of(context).translate('@Goyerv (FaceBook)'), style: Theme.of(context).textTheme.labelSmall!..copyWith(color: isHovered? defaultColor : Theme.of(context).textTheme.labelSmall!.color)),)),
-          
-              sbhmin,
-          
-              OnHover(builder: (isHovered, context) => TextButton(onPressed: () => launchUrl(uriTwitter), focusNode: focusNodeSix, child: Text(AppLocalizations.of(context).translate('@Goyerv (Twitter)'), style: Theme.of(context).textTheme.labelSmall!..copyWith(color: isHovered? defaultColor : Theme.of(context).textTheme.labelSmall!.color)),)),
-          
-              sbhmin,
-          
-              OnHover(builder: (isHovered, context) => TextButton(onPressed: () => launchUrl(uriInstagram), focusNode: focusNodeSeven, child: Text(AppLocalizations.of(context).translate('@Goyerv (Instagram)'), style: Theme.of(context).textTheme.labelSmall!..copyWith(color: isHovered? defaultColor : Theme.of(context).textTheme.labelSmall!.color)),)),
-      
-      
-          
-            ],
-          ),
-      
-      
-          
-            
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+        sbhmin,
+
+        RichText(text: TextSpan(children: [ TextSpan(text: '© ${DateFormat('yyyy').format(DateTime.now())} ', style: Theme.of(context).textTheme.labelSmall),  TextSpan(text: '${AppLocalizations.of(context).translate('Goyerv')} ', recognizer: TapGestureRecognizer()..onTap = () => launchUrl(uriGoyerv), style: Theme.of(context).textTheme.labelSmall), TextSpan(text: AppLocalizations.of(context).translate('Ltd. All rights reserved'), style: Theme.of(context).textTheme.labelSmall), ])),
+
+        sbhmin,
+
+        OutlinedButton(
+          onPressed: () => showDialog(context: context, barrierDismissible: true, builder: (builder) => Languages()),
+          style: OutlinedButton.styleFrom(padding: EdgeInsets.symmetric(horizontal: 9, vertical: 10), backgroundColor: transparent, side: const BorderSide(color: grey, width: 2), shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50))), 
+          child: Row(
             children: [
-          
-              Text(AppLocalizations.of(context).translate('Reach Out'), style: Theme.of(context).textTheme.labelLarge!..copyWith(fontWeight: FontWeight.w600)),
-          
-              sbhavg,
-          
-              OnHover(builder: (isHovered, context) => TextButton(onPressed: ()  => Navigator.of(context).push(MaterialPageRoute<void>(builder: (BuildContext context) => const EmailSupport())), focusNode: focusNodeEight, child: Text(AppLocalizations.of(context).translate('Email us'), style: Theme.of(context).textTheme.labelSmall!..copyWith(color: isHovered? defaultColor : Theme.of(context).textTheme.labelSmall!.color)),)),
-          
-              sbhmin,
-          
-              OnHover(builder: (isHovered, context) => TextButton(onPressed: () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (BuildContext context) => const CallSupport())), focusNode: focusNodeNine, child: Text(AppLocalizations.of(context).translate('Call us'), style: Theme.of(context).textTheme.labelSmall!..copyWith(color: isHovered? defaultColor : Theme.of(context).textTheme.labelSmall!.color)),)),
-          
-              sbhmin,
-          
-              OnHover(builder: (isHovered, context) => TextButton(onPressed: () => launchUrl(uriCommunities), focusNode: focusNodeTen, child: Text(AppLocalizations.of(context).translate('Goyerv communities'), style: Theme.of(context).textTheme.labelSmall!..copyWith(color: isHovered? defaultColor : Theme.of(context).textTheme.labelSmall!.color)),)),
-          
-              sbhmin,
-          
-              OnHover(builder: (isHovered, context) => TextButton(onPressed: () {}, focusNode: focusNodeEleven, child: Text(AppLocalizations.of(context).translate('@GoyervSupport (Goyerv)'), style: Theme.of(context).textTheme.labelSmall!..copyWith(color: isHovered? defaultColor : Theme.of(context).textTheme.labelSmall!.color)),)),
-          
-              sbhmin,
-          
-              OnHover(builder: (isHovered, context) => TextButton(onPressed: () => launchUrl(uriTwitterSupport), focusNode: focusNodeTwelve, child: Text(AppLocalizations.of(context).translate('@GoyervSupport (Twitter)'), style: Theme.of(context).textTheme.labelSmall!..copyWith(color: isHovered? defaultColor : Theme.of(context).textTheme.labelSmall!.color)),)),
-          
+              Icon(language, color: Theme.of(context).iconTheme.color, size: 20.0, semanticLabel: AppLocalizations.of(context).translate('Globe(Language) icon')),
+
+              sbwmin,
+
+              Text(AppLocalizations.of(context).translate('Language'), style: Theme.of(context).textTheme.labelLarge,)
             ],
-          ),
-      
-          
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+          )
+        ),
+
+
+        sbhavg,
+
+
+        Center(
+          child: Wrap(
+            alignment: WrapAlignment.center,
+            crossAxisAlignment: WrapCrossAlignment.center,
+            spacing: 16,
+            runSpacing: 16,
+            direction: screenWidth > 600 ? Axis.horizontal : Axis.vertical,
             children: [
+
+
+              OnHover(builder: (isHovered, context) => TextButton(onPressed: () => launchUrl(uriTerms), focusNode: focusNodeOne, child: Text(AppLocalizations.of(context).translate('Terms'), style: Theme.of(context).textTheme.bodyLarge))),
+              OnHover(builder: (isHovered, context) => TextButton(onPressed: () => launchUrl(uriPrivacy), focusNode: focusNodeTwo, child: Text(AppLocalizations.of(context).translate('Privacy'), style: Theme.of(context).textTheme.bodyLarge))),
+              OnHover(builder: (isHovered, context) => TextButton(onPressed: () => launchUrl(uriSupport), focusNode: focusNodeThree, child: Text(AppLocalizations.of(context).translate('Support'), style: Theme.of(context).textTheme.bodyLarge))),
+              OnHover(builder: (isHovered, context) => TextButton(onPressed: () => launchUrl(uriSupport), focusNode: focusNodeFour, child: Text(AppLocalizations.of(context).translate('Community'), style: Theme.of(context).textTheme.bodyLarge))),
+              OnHover(builder: (isHovered, context) => TextButton(onPressed: () => launchUrl(uriBulletin), focusNode: focusNodeFour, child: Text(AppLocalizations.of(context).translate('Bulletin'), style: Theme.of(context).textTheme.bodyLarge))),
+              OnHover(builder: (isHovered, context) => TextButton(onPressed: () => launchUrl(uriCareers), focusNode: focusNodeFour, child: Text(AppLocalizations.of(context).translate('Careers'), style: Theme.of(context).textTheme.bodyLarge))),
+              OnHover(builder: (isHovered, context) => TextButton(onPressed: () => launchUrl(uriResources), focusNode: focusNodeFour, child: Text(AppLocalizations.of(context).translate('Resources'), style: Theme.of(context).textTheme.bodyLarge))),
+              OnHover(builder: (isHovered, context) => TextButton(onPressed: () => launchUrl(uriDevelopers), focusNode: focusNodeFour, child: Text(AppLocalizations.of(context).translate('Developers'), style: Theme.of(context).textTheme.bodyLarge))),
+              OnHover(builder: (isHovered, context) => TextButton(onPressed: () => launchUrl(uriDevelopers), focusNode: focusNodeFive, child: Text(AppLocalizations.of(context).translate('About'), style: Theme.of(context).textTheme.bodyLarge))),
+
+
+
           
-              Text(AppLocalizations.of(context).translate('Software'), style: Theme.of(context).textTheme.labelLarge!..copyWith(fontWeight: FontWeight.w600)),
-          
-              sbhavg,
-          
-              OnHover(builder: (isHovered, context) => TextButton(onPressed: () => launchUrl(uriApi), focusNode: focusNodeThirteen, child: Text(AppLocalizations.of(context).translate('APIs'), style: Theme.of(context).textTheme.labelSmall!..copyWith(color: isHovered? defaultColor : Theme.of(context).textTheme.labelSmall!.color)),)),
-          
-              sbhmin,
-          
-              OnHover(builder: (isHovered, context) => TextButton(onPressed: () => launchUrl(uriDocumentation), focusNode: focusNodeFourteen, child: Text(AppLocalizations.of(context).translate('Documentation'), style: Theme.of(context).textTheme.labelSmall!..copyWith(color: isHovered? defaultColor : Theme.of(context).textTheme.labelSmall!.color)),)),
-          
-              sbhmin,
-          
-              OnHover(builder: (isHovered, context) => TextButton(onPressed: () => launchUrl(uriOpenSource), focusNode: focusNodeFifteen, child: Text(AppLocalizations.of(context).translate('Open Source'), style: Theme.of(context).textTheme.labelSmall!..copyWith(color: isHovered? defaultColor : Theme.of(context).textTheme.labelSmall!.color)),)),
-          
-              sbhmin,
-          
-              OnHover(builder: (isHovered, context) => TextButton(onPressed: () => launchUrl(uriEmbedding), focusNode: focusNodeSixteen, child: Text(AppLocalizations.of(context).translate('Embedding'), style: Theme.of(context).textTheme.labelSmall!..copyWith(color: isHovered? defaultColor : Theme.of(context).textTheme.labelSmall!.color)),)),
           
             ],
           ),
-      
-          
-          Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-          
-              Text(AppLocalizations.of(context).translate('Legal'), style: Theme.of(context).textTheme.labelLarge!..copyWith(fontWeight: FontWeight.w600)),
-          
-              sbhavg,
-          
-              OnHover(builder: (isHovered, context) => TextButton(onPressed: () => launchUrl(uriTerms), focusNode: focusNodeSeventeen, child: Text(AppLocalizations.of(context).translate('Terms and conditions'), style: Theme.of(context).textTheme.labelSmall!..copyWith(color: isHovered? defaultColor : Theme.of(context).textTheme.labelSmall!.color)),)),
-          
-              sbhmin,
-          
-              OnHover(builder: (isHovered, context) => TextButton(onPressed: () => launchUrl(uriPrivacy), focusNode: focusNodeEighteen, child: Text(AppLocalizations.of(context).translate('Privacy policy'), style: Theme.of(context).textTheme.labelSmall!..copyWith(color: isHovered? defaultColor : Theme.of(context).textTheme.labelSmall!.color)),)),
-          
-              sbhmin,
-          
-              OnHover(builder: (isHovered, context) => TextButton(onPressed: () => launchUrl(uriCareers), focusNode: focusNodeNineteen, child: Text(AppLocalizations.of(context).translate('Careers'), style: Theme.of(context).textTheme.labelSmall!..copyWith(color: isHovered? defaultColor : Theme.of(context).textTheme.labelSmall!.color)),)),
-          
-              sbhmin,
-          
-              OnHover(builder: (isHovered, context) => TextButton(onPressed: () => launchUrl(uriAbout), focusNode: focusNodeTwenty, child: Text(AppLocalizations.of(context).translate('About'), style: Theme.of(context).textTheme.labelSmall!..copyWith(color: isHovered? defaultColor : Theme.of(context).textTheme.labelSmall!.color)),)),
-          
-            ],
-          ),
-    
-        ],
-      ),
-    
-      sbhavg,
-    
-      Row(
-        mainAxisAlignment: MainAxisAlignment.spaceBetween,
-        children: [
+        )
 
-          RichText(text: TextSpan(children: [ TextSpan(text: '© ${DateFormat('yyyy').format(DateTime.now())} ', style: Theme.of(context).textTheme.labelSmall),  TextSpan(text: 'Goyerv ', recognizer: TapGestureRecognizer()..onTap = () => launchUrl(uri), style: Theme.of(context).textTheme.labelSmall), TextSpan(text: AppLocalizations.of(context).translate('LLC. All rights reserved'), style: Theme.of(context).textTheme.labelSmall), ])),
 
-      
-          TextButton(onPressed: () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (BuildContext context) => const Languages())), focusNode: focusNodeSix, style: Theme.of(context).textButtonTheme.style!.copyWith(backgroundColor: MaterialStateProperty.all(transparent)), child: RichText(text: TextSpan(children: [ WidgetSpan(child: Icon(language, color: Theme.of(context).iconTheme.color, size: 20.0, semanticLabel: AppLocalizations.of(context).translate('Globe(Language) icon'))), WidgetSpan(child: sbwmin,), TextSpan(text: AppLocalizations.of(context).translate('English'), style: Theme.of(context).textTheme.labelSmall), ] ))),
-
-        ],
-      )
-
-    ]),
+      ],
+    )
   );
-
 }

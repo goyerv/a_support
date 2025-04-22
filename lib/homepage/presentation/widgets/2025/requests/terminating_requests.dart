@@ -143,7 +143,7 @@ class _TerminatingRequestsState extends State<TerminatingRequests> {
                             foregroundColor: grey,
                             padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
                           ),
-                          child: Text("Helpful", style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: grey),),
+                          child: Text(AppLocalizations.of(context).translate("Helpful"), style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: grey),),
                         ),
 
 
@@ -158,7 +158,7 @@ class _TerminatingRequestsState extends State<TerminatingRequests> {
                             foregroundColor: grey,
                             padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
                           ),
-                          child: Text("Not Helpful", style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: grey),),
+                          child: Text(AppLocalizations.of(context).translate("Not Helpful"), style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: grey),),
                         ),
 
 

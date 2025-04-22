@@ -16,7 +16,7 @@ import '../../../../../guides/presentation/bloc/guides_bloc.dart';
 import '../../../../../web_core/global_fields/fields.dart';
 import '../../../../../web_core/internationalization/app_localizations.dart';
 import '../../../../../web_core/util/hover.dart';
-import '../qr_scanner/how_do_I_scan_a_qr_code.dart';
+import '../qr_scanner/how_do_i_scan_qr_code.dart';
 import '../requests/how_do_I_make_a_request.dart';
 import '../requests/how_do_i_counter_a_request.dart';
 import '../requests/terminating_requests.dart';
@@ -162,7 +162,7 @@ class _HowDoIMakeAPostState extends State<HowDoIMakeAPost> {
                             foregroundColor: grey,
                             padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
                           ),
-                          child: Text("Helpful", style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: grey),),
+                          child: Text(AppLocalizations.of(context).translate("Helpful"), style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: grey),),
                         ),
 
 
@@ -177,7 +177,7 @@ class _HowDoIMakeAPostState extends State<HowDoIMakeAPost> {
                             foregroundColor: grey,
                             padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
                           ),
-                          child: Text("Not Helpful", style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: grey),),
+                          child: Text(AppLocalizations.of(context).translate("Not Helpful"), style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: grey),),
                         ),
 
 

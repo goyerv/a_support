@@ -141,12 +141,50 @@ flutter:
   # the material Icons class.
   uses-material-design: true
 
+  # THICCCBOI FONT [https://github.com/wonderunit/font-thicccboi]
+  fonts:
+    - family: THICCCBOI
+      fonts:
+        - asset: assets/fonts/THICCCBOI-Black.ttf
+          weight: 900
+
+        - asset: assets/fonts/THICCCBOI-Bold.ttf
+          weight: 700
+
+        - asset: assets/fonts/THICCCBOI-ExtraBold.ttf
+          weight: 800
+
+        - asset: assets/fonts/THICCCBOI-Light.ttf
+          weight: 300
+
+        - asset: assets/fonts/THICCCBOI-Medium.ttf
+          weight: 500
+
+        - asset: assets/fonts/THICCCBOI-Regular.ttf
+          weight: 400
+
+        - asset: assets/fonts/THICCCBOI-SemiBold.ttf
+          weight: 600
+
+        - asset: assets/fonts/THICCCBOI-ThicccAF.ttf
+          weight: 900
+
+        - asset: assets/fonts/THICCCBOI-Thin.ttf
+          weight: 100
+
   # To add assets to your application, add an assets section, like this:
   assets:
 
     #  Images / Illustrations 
     - assets/images/icon.png
     - assets/images/goyerv_logo.png
+    - assets/images/Facebook_logo.svg
+    - assets/images/Goyerv_logo.svg
+    - assets/images/Instagram_logo.svg
+    - assets/images/LinkedIn_logo.svg
+    - assets/images/Threads_logo.svg
+    - assets/images/X_logo.svg
+    - assets/images/YouTube_logo.svg
 
     # Languages
     - assets/languages/ar.json

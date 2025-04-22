@@ -21,10 +21,8 @@ import 'package:gradient_widgets/gradient_widgets.dart';
 import 'package:path_provider/path_provider.dart';
 
 import '../../../guides/presentation/states/guides.dart';
-import '../../../web_core/auth/security.dart';
 import '../../../web_core/global_fields/fields.dart';
 import '../../../web_core/internationalization/app_localizations.dart';
-import '../../../web_core/widget/widget.dart';
 import '../bloc/email_support_bloc.dart';
 
 class EmailSupport extends StatefulWidget {
@@ -151,30 +149,6 @@ class _EmailSupportState extends State<EmailSupport> with SingleTickerProviderSt
         Text(AppLocalizations.of(context).translate('Email Support'), textAlign: TextAlign.center, style: Theme.of(context).textTheme.headlineLarge),
 
         sbhmax,
-
-
-        Text(AppLocalizations.of(context).translate('Submit a ticket'), textAlign: TextAlign.center, style: Theme.of(context).textTheme.titleLarge),
-
-        sbhavg,
-
-
-        RichText(
-          text: TextSpan(
-            children: [
-              TextSpan(text: AppLocalizations.of(context).translate('We strongly suggest that you go through the '), style: Theme.of(context).textTheme.bodyLarge),
-
-              TextSpan(text: AppLocalizations.of(context).translate('How Tos'), recognizer: TapGestureRecognizer()..onTap = () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (BuildContext context) => const Guides(false))), style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: blue)),
-
-              TextSpan(text: AppLocalizations.of(context).translate(' and the '), style: Theme.of(context).textTheme.bodyLarge),
-
-              TextSpan(text: AppLocalizations.of(context).translate('FAQs'), recognizer: TapGestureRecognizer()..onTap = () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (BuildContext context) => const Guides(true))), style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: blue)),
-
-              TextSpan(text: AppLocalizations.of(context).translate(''' first before you submit a ticket to us for support. Only until you're fully convinced that the issue you're having has'nt been addressed on the How Tos guides and FAQs, should you proceed to to filling out this support ticket form'''), style: Theme.of(context).textTheme.bodyLarge),
-            ]
-          )
-        ),
-
-
 
 
 
@@ -348,7 +322,7 @@ class _EmailSupportState extends State<EmailSupport> with SingleTickerProviderSt
       final result = await FilePicker.platform.pickFiles(onFileLoading: (FilePickerStatus status) { setState(() { imageLoading = status == FilePickerStatus.picking; });}, type: FileType.image, allowMultiple: true );
 
       if (result != null) {
-        setState(() {images = result.files.map((e) => encrypt(base64Encode(e.bytes!))).toList(); });
+        setState(() {images = result.files.map((e) => base64Encode(e.bytes!)).toList(); });
       }
     
     } on PlatformException {
