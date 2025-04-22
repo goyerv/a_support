@@ -12,7 +12,7 @@ import 'package:flutter/material.dart';
 import '../../global_fields/fields.dart';
 
 ThemeData darkTheme = ThemeData(
-  appBarTheme: AppBarTheme(
+  appBarTheme: const AppBarTheme(
     backgroundColor: black,
     elevation: 0.0,
     toolbarHeight: tbh,
@@ -56,11 +56,11 @@ ThemeData darkTheme = ThemeData(
     color: black,
     elevation: 0.0,
     shadowColor: white..withOpacity(0.5),
-    shape: RoundedRectangleBorder(borderRadius: BorderRadiusDirectional.circular(15.0),),
+    shape: RoundedRectangleBorder(borderRadius: BorderRadiusDirectional.circular(15.0), side: const BorderSide(color: black, width: 5.0)),
   ),
   checkboxTheme: CheckboxThemeData(
-    fillColor: MaterialStateProperty.all(transparent),
-    checkColor: MaterialStateProperty.all(defaultColor),
+    fillColor: WidgetStateProperty.all(transparent),
+    checkColor: WidgetStateProperty.all(defaultColor),
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(6.0),
     ),
@@ -87,13 +87,49 @@ ThemeData darkTheme = ThemeData(
     elevation: 10.0,
   ),
   disabledColor: grey..withOpacity(0.7),
+  dropdownMenuTheme: DropdownMenuThemeData(
+    inputDecorationTheme: InputDecorationTheme(
+      labelStyle: bodyLarge.copyWith(color: white),
+      floatingLabelStyle: labelLarge.copyWith(color: white),
+      helperStyle: labelLarge.copyWith(color: white54),
+      hintStyle: labelLarge.copyWith(color: white54),
+      errorStyle: labelMedium.copyWith(color: red),
+      iconColor: defaultColor,
+      prefixStyle: labelMedium,
+      prefixIconColor: defaultColor,
+      suffixStyle: labelMedium,
+      suffixIconColor: defaultColor, 
+      filled: false,
+      errorBorder: const OutlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(10.0)),
+        borderSide:  BorderSide(
+          color: red,
+          width: 1.0,
+        ),
+      ),
+      focusedBorder: const OutlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(10.0)),
+        borderSide:  BorderSide(
+          color: defaultColor,
+          width: 1.0,
+        ),
+      ),
+      enabledBorder: const OutlineInputBorder(
+        borderRadius: BorderRadius.all(Radius.circular(10.0)),
+        borderSide:  BorderSide(
+          color: white,
+          width: 1.0,
+        ),
+      ),
+    ),
+  ),
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ButtonStyle(
-      backgroundColor: MaterialStateProperty.all(defaultColor),
-      shape: MaterialStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0))),
-      elevation: MaterialStateProperty.all(0.0),
-      side: MaterialStateProperty.all(const BorderSide(color: defaultColor, width: 0.5)),
-      textStyle: MaterialStateProperty.all(bodyLarge),
+      backgroundColor: WidgetStateProperty.all(defaultColor),
+      shape: WidgetStateProperty.all(RoundedRectangleBorder(borderRadius: BorderRadius.circular(15.0))),
+      elevation: WidgetStateProperty.all(0.0),
+      side: WidgetStateProperty.all(const BorderSide(color: defaultColor, width: 0.5)),
+      textStyle: WidgetStateProperty.all(bodyLarge),
       animationDuration: const Duration(milliseconds: 60),
     ),
   ),
@@ -113,21 +149,21 @@ ThemeData darkTheme = ThemeData(
     suffixIconColor: defaultColor, 
     filled: false,
     errorBorder: const OutlineInputBorder(
-      borderRadius: BorderRadius.all(Radius.circular(4.0)),
+      borderRadius: BorderRadius.all(Radius.circular(10.0)),
       borderSide:  BorderSide(
         color: red,
         width: 1.0,
       ),
     ),
     focusedBorder: const OutlineInputBorder(
-      borderRadius: BorderRadius.all(Radius.circular(4.0)),
+      borderRadius: BorderRadius.all(Radius.circular(10.0)),
       borderSide:  BorderSide(
         color: defaultColor,
         width: 1.0,
       ),
     ),
     enabledBorder: const OutlineInputBorder(
-      borderRadius: BorderRadius.all(Radius.circular(4.0)),
+      borderRadius: BorderRadius.all(Radius.circular(10.0)),
       borderSide:  BorderSide(
         color: white,
         width: 1.0,
@@ -159,18 +195,18 @@ ThemeData darkTheme = ThemeData(
   // platform: TargetPlatform.android, for mobile device
   outlinedButtonTheme: OutlinedButtonThemeData(
     style: ButtonStyle(
-      backgroundColor: MaterialStateProperty.all(defaultColor),
-      textStyle: MaterialStateProperty.all(labelLarge.copyWith(color: white)),
-      side: MaterialStateProperty.all(const BorderSide(color: defaultColor, width: 0.5)),
+      backgroundColor: WidgetStateProperty.all(transparent),
+      textStyle: WidgetStateProperty.all(labelLarge),
+      side: WidgetStateProperty.all(const BorderSide(color: defaultColor, width: 1)),
     ),
   ),
   radioTheme: RadioThemeData(
-    fillColor: MaterialStateProperty.all(defaultColor),
+    fillColor: WidgetStateProperty.all(defaultColor),
   ),
   scaffoldBackgroundColor: monaiki,
   switchTheme: SwitchThemeData(
-    thumbColor: MaterialStateProperty.all(defaultColor),
-    trackColor: MaterialStateProperty.all(defaultColorLighter),
+    thumbColor: WidgetStateProperty.all(defaultColor),
+    trackColor: WidgetStateProperty.all(defaultColorLighter),
   ),
   sliderTheme: const SliderThemeData(
     activeTrackColor: defaultColor,
@@ -184,24 +220,28 @@ ThemeData darkTheme = ThemeData(
   ),
   snackBarTheme: SnackBarThemeData(
     backgroundColor: black..withOpacity(0.8),
-    actionTextColor: defaultColor,
+    actionTextColor: blue, 
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(10.0),
     ),
     contentTextStyle: bodyLarge,
   ),
-  tabBarTheme: const TabBarTheme(
-    indicator: BoxDecoration(
-      color: defaultColor,
+  tabBarTheme: TabBarTheme(
+    indicator: const UnderlineTabIndicator(
+      borderRadius: BorderRadius.only(topLeft: Radius.circular(4.0), topRight: Radius.circular(4.0)),
+      borderSide: BorderSide(width: 5.0, color: defaultColor),
+      insets: EdgeInsets.symmetric(horizontal: 16.0)
     ),
     indicatorSize: TabBarIndicatorSize.tab,
     labelColor: white,
+    indicatorColor: defaultColor,
+    overlayColor: WidgetStateProperty.all(transparent),
   ),
   textButtonTheme: TextButtonThemeData(
     style: ButtonStyle(
-      overlayColor: MaterialStateColor.resolveWith((states) => transparent),
-      backgroundColor: MaterialStateProperty.all(transparent),
-      textStyle: MaterialStateProperty.all(labelLarge..copyWith(color: defaultColor)),
+      overlayColor: WidgetStateColor.resolveWith((states) => transparent),
+      backgroundColor: WidgetStateProperty.all(transparent),
+      textStyle: WidgetStateProperty.all(labelLarge..copyWith(color: blue)),
     ),
   ),
   textSelectionTheme: const TextSelectionThemeData(
@@ -226,5 +266,15 @@ ThemeData darkTheme = ThemeData(
     labelMedium: labelMedium..copyWith(color: white),
     labelSmall: labelSmall..copyWith(color: white),
   ),
-  
+  tooltipTheme: TooltipThemeData(
+    preferBelow: true, 
+    textStyle: labelSmall, 
+    decoration: BoxDecoration(
+      color: whiteSmokeLighter,
+      borderRadius: BorderRadius.circular(10.0)
+    ),
+    padding: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 8.0),
+    margin: const EdgeInsets.symmetric(vertical: 50.0, horizontal: 8.0), 
+    excludeFromSemantics: false,
+  )
 );

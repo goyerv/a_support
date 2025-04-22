@@ -16,6 +16,7 @@ import '../../../../../guides/presentation/bloc/guides_bloc.dart';
 import '../../../../../web_core/global_fields/fields.dart';
 import '../../../../../web_core/internationalization/app_localizations.dart';
 import '../../../../../web_core/util/hover.dart';
+import '../../../../../widget/widget.dart';
 import '../settings/delete_account.dart';
 import '../settings/delete_saved_bank_account.dart';
 import '../settings/delete_saved_card.dart';
@@ -143,7 +144,7 @@ class _TerminatingRequestsState extends State<TerminatingRequests> {
                             foregroundColor: grey,
                             padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
                           ),
-                          child: Text("Helpful", style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: grey),),
+                          child: Text(AppLocalizations.of(context).translate("Helpful"), style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: grey),),
                         ),
 
 
@@ -158,7 +159,7 @@ class _TerminatingRequestsState extends State<TerminatingRequests> {
                             foregroundColor: grey,
                             padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
                           ),
-                          child: Text("Not Helpful", style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: grey),),
+                          child: Text(AppLocalizations.of(context).translate("Not Helpful"), style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: grey),),
                         ),
 
 

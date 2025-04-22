@@ -8,490 +8,343 @@
 
 
 import 'package:flutter/material.dart';
-import 'package:goyerv_support_web_app/web_core/widget/widget.dart';
-
-import '../../../web_core/global_fields/fields.dart';
-import '../../../web_core/internationalization/app_localizations.dart';
-import '../widgets/homepage_widget.dart';
-import 'package:detectable_text_field/detectable_text_field.dart';
-import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:gradient_widgets/gradient_widgets.dart';
+import 'package:flutter_svg/svg.dart';
+import 'package:footer/footer_view.dart';
+import 'package:shimmer/shimmer.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 
 import '../../../dependency_injections.dart';
 import '../../../email_support/presentation/states/email_support.dart';
-import '../../../goyerv/presentation/states/call_support.dart';
-import '../../../guides/presentation/states/guide_details.dart';
+import '../../../guides/presentation/bloc/guides_bloc.dart';
 import '../../../guides/presentation/states/guides.dart';
 import '../../../web_core/global_fields/fields.dart';
 import '../../../web_core/internationalization/app_localizations.dart';
-import '../bloc/homepage_bloc.dart';
+import '../../../web_core/util/hover.dart';
+import '../../../widget/widget.dart';
+import '../widgets/2025/analytics/analytics.dart';
+import '../widgets/2025/convert/becoming_a_runner.dart';
+import '../widgets/2025/convert/resigning.dart';
+import '../widgets/2025/filter/filter.dart';
+import '../widgets/2025/identity_verification/identity_verification.dart';
+import '../widgets/2025/post/how_do_i_delete_a_post.dart';
+import '../widgets/2025/post/how_do_i_schedule_a_post.dart';
+import '../widgets/2025/post/posts.dart';
+import '../widgets/2025/qr_scanner/how_do_i_scan_qr_code.dart';
+import '../widgets/2025/requests/how_do_i_counter_a_request.dart';
+import '../widgets/2025/requests/how_do_i_make_a_request.dart';
+import '../widgets/2025/requests/terminating_requests.dart';
+import '../widgets/2025/settings/delete_account.dart';
+import '../widgets/2025/settings/delete_saved_bank_account.dart';
+import '../widgets/2025/settings/delete_saved_card.dart';
+import '../widgets/2025/settings/how_do_i_change_my_email_address.dart';
+import '../widgets/2025/settings/how_do_i_change_my_name.dart';
+import '../widgets/2025/settings/how_do_i_change_my_phone_number.dart';
+import '../widgets/2025/settings/set_transaction_pin.dart';
+import '../widgets/2025/settings/toggle_web_indexing.dart';
+import '../widgets/2025/settings/two_factor_authentication.dart';
+import '../widgets/2025/wallet/how_do_i_make_deposits.dart';
+import '../widgets/2025/wallet/how_do_i_make_withdrawals.dart';
+import '../widgets/2025/wallet/locks.dart';
+import '../widgets/2025/wallet/transfer.dart';
+import '../widgets/2025/wallet/wallet_balance.dart';
+import 'download.dart';
+
 
 class Homepage extends StatefulWidget {
-
-  const Homepage({Key? key}) : super(key: key);
   
-  @override
+  const Homepage({Key? key}) : super(key: key);
+
+  @override 
   State<Homepage> createState() => _HomepageState();
 
 }
 
 class _HomepageState extends State<Homepage> {
 
-  late String imageAsset;
-  late String tabletMockup; // This should be a single image that contains an 
-  // iOS, android, tablets, and desktop screens. Arrange them in a creative way 
-  late String iPhoneMockup;
-  late String androidMockup;
-  late bool makeSuggestionsModalVisible;
+
 
   late TextEditingController _textFieldController;
   late FocusNode _textFieldFocusNode;
   late FocusNode _buttonFocusNode;
-  late GlobalKey<FormState> _formKey;
-  late String query;
-  late Uri uri;
 
 
-  late List<Map<String, dynamic>>? suggestions;
+  late List<String> articles;
+  List<String> suggestions = [];
+  late List<Widget> pages;
 
-  @override 
+
+  bool gettingSuggestions = false;
+
+  String? query;
+
+
+
+
+  @override
   void initState() {
-    imageAsset = 'assets/images/box.jpg';
-    tabletMockup = 'assets/images/iPad Pro Mockup.png'; // Rendered for mobile only
-    iPhoneMockup = 'assets/images/iPhone 12 Graphite Pro Top View Mockup.png'; // Rendered for desktop only
-    androidMockup = 'assets/images/Pixel 7 Pro Mockup.png';
-    makeSuggestionsModalVisible = false;
     _textFieldController = TextEditingController();
+
     _textFieldFocusNode = FocusNode();
     _buttonFocusNode = FocusNode();
-    _formKey = GlobalKey();
-    uri = Uri.parse('https://community.goyerv.com');
+
+
+    articles = [AppLocalizations.of(context).translate('Analytics'), AppLocalizations.of(context).translate('Becoming a runner'), AppLocalizations.of(context).translate('How do I stop becoming a runner?'), AppLocalizations.of(context).translate('Filters'), AppLocalizations.of(context).translate('How do I verify my identity?'), AppLocalizations.of(context).translate('How do I delete my post?'), AppLocalizations.of(context).translate('How do I schedule a post?'), AppLocalizations.of(context).translate('How do I create a post?'), AppLocalizations.of(context).translate('How do I scan qr-codes?'), AppLocalizations.of(context).translate('How do I counter a request?'), AppLocalizations.of(context).translate('How do I make a request?'), AppLocalizations.of(context).translate('Terminating request'), AppLocalizations.of(context).translate('How do I delete my account?'), AppLocalizations.of(context).translate('How do I delete a saved bank account?'), AppLocalizations.of(context).translate('How do I delete a saved card?'), AppLocalizations.of(context).translate('How do I change my email address?'), AppLocalizations.of(context).translate('How do I change my name?'), AppLocalizations.of(context).translate('How do I change my phone number?'), AppLocalizations.of(context).translate('Set transaction pin'), AppLocalizations.of(context).translate('Web indexing'), AppLocalizations.of(context).translate('Two-factor authentication'), AppLocalizations.of(context).translate('How do I make deposits into my account?'), AppLocalizations.of(context).translate('How do I make withdrawals from my account?'), AppLocalizations.of(context).translate('What do the locks on my account mean?'), AppLocalizations.of(context).translate('How do I make transfers?'), AppLocalizations.of(context).translate('Wallet balance'), ];
+
+
+    pages = [Analytics(), BecomingARunner(), Resigning(), Filters(), HowDoIVerifyMyIdentity(), HowDoIDeleteAPost(), HowDoIScheduleAPost(), HowDoIMakeAPost(), HowDoIScanAQRCode(),HowDoICounterARequest(), HowDoIMakeARequest(), TerminatingRequests(), HowDoIDeleteMyAccount(), HowDoIDeleteSavedBankAccount(), HowDoIDeleteSavedCard(), HowDoIChangeMyEmailAddress(), HowDoIChangeMyName(), HowDoIChangeMyPhoneNumber(), SetTransactionPin(), ToggleWebIndexing(), TwoFactorAuthentication(), HowDoIMakeDeposits(), HowDoIMakeWithdrawals(), WhatDoLocksMean(), HowDoIMakeTransfers(), WalletBalance()];
+
     super.initState();
+
   }
+
+
 
 
   @override 
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: appBar(context),
-
-      
       body: Title(
         title: AppLocalizations.of(context).translate('Goyerv - Support'),
         color: Theme.of(context).primaryColor,
-        child: SizedBox(
+        child: Container(
           width: MediaQuery.of(context).size.width,
-          height: MediaQuery.of(context).size.height,
-          // padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0), This will
-          // get in the way of some fine wizardry that'll get served in Bloc
-          child: ListView(
+          color: Theme.of(context).primaryColor,
+          child: FooterView(
+            footer: footer(context),
             children: [
 
-              SizedBox(
-                height: MediaQuery.of(context).size.width < 800? MediaQuery.of(context).size.height * 0.5 : MediaQuery.of(context).size.height * 0.7,
-                child: Image.asset('assets/images/box.jpg', filterQuality: FilterQuality.high, semanticLabel: AppLocalizations.of(context).translate('Logistics image'), fit: BoxFit.fill),
-              ),
 
-
-              // HomepageWidget(),
-
-
-              REMEMBER THAT FOR EACH ARTICLE YOU CREATE, YOU NEED TO MANUALLY CREATE THEIR HTML PAGE,
-              UPLOAD TO QSERVERS AND THEN TO GOOGLE CONSOLE
-
-Container(
-      width: MediaQuery.of(context).size.width,
-      color: Theme.of(context).primaryColor,
-      //Don't add padding!
-      padding: const EdgeInsets.symmetric(vertical: 15.0, horizontal: 15.0),
-
-      child: Column(
-        children: [
-      
-          sbhmax,
-          sbhmax,
-      
-          
-          // Text(AppLocalizations.of(context).translate('Goyerv Support'), style: Theme.of(context).textTheme.headlineSmall),
-          Text('Goyerv Support', style: Theme.of(context).textTheme.headlineSmall),
-        
-          sbhmax,
-          sbhmax,
-          sbhmax,
-        
-          Wrap(
-            alignment: MediaQuery.of(context).size.width < 1000? WrapAlignment.start : WrapAlignment.center,
-            runSpacing: 50.0,
-            children: [
-        
-              Container(
-                // width: MediaQuery.of(context).size.width * 0.5,
-                child: Column(
-                  crossAxisAlignment: MediaQuery.of(context).size.width < 1000? CrossAxisAlignment.start : CrossAxisAlignment.center,
-                  children: [
-                  
-                  //   Text(AppLocalizations.of(context).translate('How Tos'), style: Theme.of(context).textTheme.titleMedium),
-                    Text('How Tos', style: Theme.of(context).textTheme.titleMedium),
+              BlocProvider(
+                create: ((context) => sl<GuidesBloc>()),
+                child: BlocConsumer(
+                  listener: ((context, state) {}),
+                  builder: ((context, state) {
+                    if (state is GuidesInitial) {
+                      return boilerPlate(context);
+                                  
+                    } else 
+                    if (state is GuidesLoading) {
+                      WidgetsBinding.instance.addPostFrameCallback((_) { if (mounted) { setState(() {gettingSuggestions = true;}); }}); 
                     
-                    sbhavg,
-                  
-                    // TextButton(onPressed: () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (BuildContext context) => const Guides(false))), child: Text(AppLocalizations.of(context).translate('How to make requests'), style: Theme.of(context).textTheme.bodyLarge)),
-                 
-                    TextButton(onPressed: () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (BuildContext context) => const Guides(false))), child: Text('How to make requests', style: Theme.of(context).textTheme.bodyLarge)),
+                    } else
+                    if (state is GuidesLoaded) {
+                      if (state.guidesEntity.searchSuggestions != null) {
+                        WidgetsBinding.instance.addPostFrameCallback((_) { if (mounted) { 
+                          setState(() {
+                            suggestions.addAll(state.guidesEntity.searchSuggestions!);
+                            suggestions.addAll(articles.where((item) => RegExp(query!).hasMatch(item)).toList());
+                            gettingSuggestions = false;
+                          }); 
+                        }}); 
+                        
+                      } 
                     
-                    sbhmin,
-                  
-                    // TextButton(onPressed: () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (BuildContext context) => const Guides(false))), child: Text(AppLocalizations.of(context).translate('How to filter out posts from your radar'), style: Theme.of(context).textTheme.bodyLarge)),
-                    TextButton(onPressed: () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (BuildContext context) => const Guides(false))), child: Text('How to filter out posts from your radar', style: Theme.of(context).textTheme.bodyLarge)),
-                  
-                    sbhmin,
-                  
-                    // TextButton(onPressed: () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (BuildContext context) => const Guides(false))), child: Text(AppLocalizations.of(context).translate('How to make a money transfer to another goyerv account'), style: Theme.of(context).textTheme.bodyLarge)),
-                    TextButton(onPressed: () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (BuildContext context) => const Guides(false))), child: Text('How to make a money transfer to another goyerv account', style: Theme.of(context).textTheme.bodyLarge)),
-                  
-                    sbhmin,
-                  
-                    // TextButton(onPressed: () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (BuildContext context) => const Guides(false))), child: Text(AppLocalizations.of(context).translate('How to counter requests'), style: Theme.of(context).textTheme.bodyLarge)),
-                    TextButton(onPressed: () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (BuildContext context) => const Guides(false))), child: Text('How to counter requests', style: Theme.of(context).textTheme.bodyLarge)),
-                  
-                    sbhmin,
-                  
-                    // TextButton(onPressed: () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (BuildContext context) => const Guides(false))), child: Text(AppLocalizations.of(context).translate('How to make and share a post'), style: Theme.of(context).textTheme.bodyLarge)),
-                    TextButton(onPressed: () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (BuildContext context) => const Guides(false))), child: Text('How to make and share a post', style: Theme.of(context).textTheme.bodyLarge)),
-                  
-                    sbhavg,
-                  
-                    // TextButton(onPressed: () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (BuildContext context) => const Guides(false))), child: Wrap(children: [Text(AppLocalizations.of(context).translate('See more'), style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: defaultColor)), const Icon(chevronRight, size: 20.0, color: defaultColor)],))
-                    TextButton(onPressed: () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (BuildContext context) => const Guides(false))), child: Wrap(children: [Text('See more', style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: defaultColor)), const Icon(chevronRight, size: 20.0, color: defaultColor)],))
-                  
-                  ],
-                ),
-              ),
-        
-        
-        
-        
-              Container(
-                // width: MediaQuery.of(context).size.width * 0.5,
-                child: Column(
-                  crossAxisAlignment: MediaQuery.of(context).size.width < 1000? CrossAxisAlignment.start : CrossAxisAlignment.center,
-                  children: [
-                  
-                    // Text(AppLocalizations.of(context).translate('FAQs'), style: Theme.of(context).textTheme.titleMedium),
-                    Text('FAQs', style: Theme.of(context).textTheme.titleMedium),
-                    
-                    sbhavg,
-                  
-                    // TextButton(onPressed: () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (BuildContext context) => const Guides(true))), child: Text(AppLocalizations.of(context).translate('How long does it Goyerv take to process conversion applications?'), style: Theme.of(context).textTheme.bodyLarge)),
-                    TextButton(onPressed: () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (BuildContext context) => const Guides(true))), child: Text('How long does it take Goyerv to process conversion applications?', style: Theme.of(context).textTheme.bodyLarge)),
-                    
-                    sbhmin,
-                  
-                    // TextButton(onPressed: () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (BuildContext context) => const Guides(true))), child: Text(AppLocalizations.of(context).translate('How does the available and pending balance on Goyerv mean?'), style: Theme.of(context).textTheme.bodyLarge)),
-                    TextButton(onPressed: () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (BuildContext context) => const Guides(true))), child: Text('What does the available and pending balance on Goyerv mean?', style: Theme.of(context).textTheme.bodyLarge)),
-                  
-                    sbhmin,
-                  
-                    // TextButton(onPressed: () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (BuildContext context) => const Guides(true))), child: Text(AppLocalizations.of(context).translate('Where can I find all my pending funds?'), style: Theme.of(context).textTheme.bodyLarge)),
-                    TextButton(onPressed: () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (BuildContext context) => const Guides(true))), child: Text('Where can I find all my pending funds?', style: Theme.of(context).textTheme.bodyLarge)),
-                  
-                    sbhmin,
-                  
-                    // TextButton(onPressed: () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (BuildContext context) => const Guides(true))), child: Text(AppLocalizations.of(context).translate('How do I make my account private?'), style: Theme.of(context).textTheme.bodyLarge)),
-                    TextButton(onPressed: () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (BuildContext context) => const Guides(true))), child: Text('How do I make my account private?', style: Theme.of(context).textTheme.bodyLarge)),
-                  
-                    sbhmin,
-                  
-                    // TextButton(onPressed: () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (BuildContext context) => const Guides(true))), child: Text(AppLocalizations.of(context).translate('How long does crypto currency deposits take to reflect in my wallet'), style: Theme.of(context).textTheme.bodyLarge)),
-                    TextButton(onPressed: () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (BuildContext context) => const Guides(true))), child: Text('How long does crypto currency deposits take to reflect in my wallet', style: Theme.of(context).textTheme.bodyLarge)),
-                  
-                    sbhavg,
-                  
-                    // TextButton(onPressed: () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (BuildContext context) => const Guides(true))), child: Wrap(children: [Text(AppLocalizations.of(context).translate('See more'), style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: defaultColor)), const Icon(chevronRight, size: 20.0, color: defaultColor)],))
-                    TextButton(onPressed: () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (BuildContext context) => const Guides(true))), child: Wrap(children: [Text('See more', style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: defaultColor)), const Icon(chevronRight, size: 20.0, color: defaultColor)],))
-                  
-                  ],
-                ),
-              )
-            ],
-          ),
-        
-          sbhmax,
-          sbhmax,
-          sbhmax,
-        
-          // Search box
-          // Text(AppLocalizations.of(context).translate('Look for more'), style: Theme.of(context).textTheme.titleLarge),
-          Text('Look for more', style: Theme.of(context).textTheme.titleLarge),
-        
-          sbhavg,
-        
-          Form(
-            key: _formKey,
-            child: Column(
-              children: [
-        
-                SizedBox(
-                  width: MediaQuery.of(context).size.width < 800? MediaQuery.of(context).size.width * 0.8 : MediaQuery.of(context).size.width * 0.65,
-                  height: 40.0,
-                  child: TextFormField(
-                    controller: _textFieldController,
-                    style: Theme.of(context).textTheme.bodyLarge,
-                    decoration: InputDecoration(
-                      contentPadding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
-                      hintText: 'Search',
-                      // hintText: 'Search',
-                      suffixIcon: IconButton(onPressed: () => BlocProvider.of<HomepageBloc>(context).add(QuickSearchEvent(query)), icon: searchIcon, hoverColor: defaultColor, focusNode: _buttonFocusNode)
-                    ),
-                    cursorColor: Theme.of(context).textSelectionTheme.cursorColor,
-                    textInputAction: TextInputAction.done,
-                    validator: (value) {return null;},
-                    onFieldSubmitted: (String value) { FocusScope.of(context).requzestFocus(_buttonFocusNode); },
-                    onChanged: (value) {query = value.trim();},
-                    focusNode: _textFieldFocusNode,
-                    onTap: () { while(_textFieldController.text.isNotEmpty) { setState(() => makeSuggestionsModalVisible = true); }}
-                  ),
-                ),
-        
-        
-                Offstage(
-                  offstage: !makeSuggestionsModalVisible,
-                  child: Container(
-                    width: MediaQuery.of(context).size.width * 0.6,
-                    height: MediaQuery.of(context).size.height * 0.3,
-                    padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
-                    child: Card(
-                      color: Theme.of(context).primaryColor,
-                      elevation: 0.5,
-                      child: Column(
-                        children: [
-        
-                          BlocProvider(
-                            create: ((context) => sl<HomepageBloc>()),
-                            child: BlocConsumer(
-                              listener: ((context, state) {}),
-                              builder: ((context, state) {
-                                if (state is HomepageInitial) {
-                                  return Container();
-                                
-                                } else 
-                                if (state is HomepageLoading) {
-                                  return const Center(child: GradientCircularProgressIndicator(gradient: LinearGradient(begin: Alignment.centerLeft, end: Alignment.centerRight, colors: [defaultColor, white]), radius: 200));
-                                
-                                } else 
-                                if (state is HomepageLoaded) {
-                                  if (state.homepageEntity.searchSuggestions != null) {
-                                    setState(() => suggestions = state.homepageEntity.searchSuggestions!);
-        
-                                    return Expanded(
-                                      child: ListView.builder(
-                                        itemCount: suggestions!.length,
-                                        itemBuilder: (context, index) => ListTile(
-                                          onTap: () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (BuildContext context) => GuideDetails(suggestions![index]['suggestionID']!, suggestions![index]['guideDetails']!))),
-                                          leading: Icon(search, semanticLabel: AppLocalizations.of(context).translate('Search icon')),
-                                           title: DetectableText(
-                                            text: suggestions![index]['suggestion']!, 
-                                            detectionRegExp: RegExp('^\\w{"$query"}'),
-                                            basicStyle: Theme.of(context).textTheme.bodyMedium,
-                                            detectedStyle: Theme.of(context).textTheme.bodyMedium!..copyWith(fontWeight: FontWeight.w500),
-                                          ),
-                                        )
-                                      )
-                                    );
-                                  }
-                                } return Container();
-                              })
-                            )
-                          )
-        
-                        ]
-                      )
-                    ),
-                  )
+                    } return boilerPlate(context);
+                  }),
                 )
-        
-        
-              ],
-            ),
-          ),
-          
-          sbhmax,
-          sbhmax,
-          sbhmax,
-        
-          // Text(AppLocalizations.of(context).translate('Stay updated'), style: Theme.of(context).textTheme.titleLarge),
-          Text('Stay updated', style: Theme.of(context).textTheme.titleLarge),
-        
-          sbhavg,
-        
-          Text('Get the latest releases of the Goyerv app for all of your devices on all platforms.', textAlign: TextAlign.center, style: Theme.of(context).textTheme.bodyLarge),
-        
-          sbhavg,
-        
-          Row(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            children: [
-              // Column(children: [Icon(android, size: 40.0, color: green, semanticLabel: AppLocalizations.of(context).translate('Android logo')), const SizedBox(height: 10.0,), TextButton(onPressed: (){}, child: Text(AppLocalizations.of(context).translate('Android'), style: Theme.of(context).textTheme.bodyLarge!..copyWith(color: defaultColor)))],),
-              Column(children: [Icon(android, size: 40.0, color: green, semanticLabel: AppLocalizations.of(context).translate('Android logo')), const SizedBox(height: 10.0,), TextButton(onPressed: (){}, child: Text('Android', style: Theme.of(context).textTheme.bodyLarge!..copyWith(color: defaultColor)))],),
-              
-              // Column(children: [Icon(apple, size: 40.0, color: grey, semanticLabel: AppLocalizations.of(context).translate('Apple logo'),), const SizedBox(height: 10.0,), TextButton(onPressed: (){}, child: Text(AppLocalizations.of(context).translate('iOS'), style: Theme.of(context).textTheme.bodyLarge!..copyWith(color: defaultColor)))],)
-              Column(children: [Icon(apple, size: 40.0, color: grey, semanticLabel: AppLocalizations.of(context).translate('Apple logo'),), const SizedBox(height: 10.0,), TextButton(onPressed: (){}, child: Text('iOS', style: Theme.of(context).textTheme.bodyLarge!..copyWith(color: defaultColor)))],)
-            ],
-          ),
-        
-          sbhmax,
-          sbhmax,
-        
-          // SizedBox(
-            // width: MediaQuery.of(context).size.width * 0.49,
-            // height: MediaQuery.of(context).size.height * 0.49,
-            // child: Image.asset(tabletMockup, semanticLabel: AppLocalizations.of(context).translate('Screenshots of Goyerv app rendered on multiple devices'), fit: BoxFit.contain)
-          // ),
-        
-          SizedBox(
-            // width: MediaQuery.of(context).size.width * 0.49,
-            height: MediaQuery.of(context).size.height * 0.49,
-            child: Image.asset(tabletMockup, semanticLabel: 'Screenshots of Goyerv app rendered on multiple devices', fit: BoxFit.contain)
-          ),
-        
-          sbhmax,
-        
-          Row(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-        
-              // SizedBox(
-                // width: MediaQuery.of(context).size.width * 0.5,
-                // height: MediaQuery.of(context).size.height * 0.49,
-                // child: Image.asset(iPhoneMockup, semanticLabel: AppLocalizations.of(context).translate('Screenshots of Goyerv app rendered on multiple devices'), fit: BoxFit.contain)
-              // ),
-
-              SizedBox(
-                // width: MediaQuery.of(context).size.width * 0.5,
-                height: MediaQuery.of(context).size.height * 0.49,
-                child: Image.asset(iPhoneMockup, semanticLabel: 'Screenshots of Goyerv app rendered on multiple devices', fit: BoxFit.contain)
               ),
 
-              sbwmax,
-        
-              // SizedBox(
-                // width: MediaQuery.of(context).size.width * 0.5,
-                // height: MediaQuery.of(context).size.height * 0.49,
-                // child: Image.asset(androidMockup, semanticLabel: AppLocalizations.of(context).translate('Screenshots of Goyerv app rendered on multiple devices'), fit: BoxFit.contain)
-              // ),
-        
-              SizedBox(
-                // width: MediaQuery.of(context).size.width * 0.5,
-                height: MediaQuery.of(context).size.height * 0.49,
-                child: Image.asset(androidMockup, semanticLabel: 'Screenshots of Goyerv app rendered on multiple devices', fit: BoxFit.contain)
-              ),
-        
+
+
             ]
-          ),
-        
-          sbhmax,
-          sbhmax,
-          sbhmax,
-          sbhmax,
-          sbhmax,
-        
-          
-          Wrap(
-            crossAxisAlignment: WrapCrossAlignment.center,
-            runSpacing: 30.0,
-            spacing: 30.0,
-            children: [
-        
-              Container(
-                width: MediaQuery.of(context).size.width < 800? MediaQuery.of(context).size.width : MediaQuery.of(context).size.width * 0.3,
-                height: 250.0,
-                padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
-                decoration: BoxDecoration(borderRadius: BorderRadius.circular(10.0), color: Theme.of(context).primaryColorDark,),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                  
-                  
-                    Icon(Icons.headphones, size: 50.0,  color: Theme.of(context).iconTheme.color),
-
-                    sbhmin,
-        
-                    // TextButton(onPressed: () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (BuildContext context) => const EmailSupport())), child: Text(AppLocalizations.of(context).translate('Email support'), style: Theme.of(context).textTheme.bodyLarge!..copyWith(color: defaultColor)))
-                    TextButton(onPressed: () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (BuildContext context) => const EmailSupport())), child: Text('Email support', style: Theme.of(context).textTheme.bodyLarge!..copyWith(color: defaultColor)))
-                    
-                  
-                  ],
-                ),
-              ),
-
-              Container(
-                width: MediaQuery.of(context).size.width < 800? MediaQuery.of(context).size.width : MediaQuery.of(context).size.width * 0.3,
-                height: 250.0,
-                padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
-                decoration: BoxDecoration(borderRadius: BorderRadius.circular(10.0), color: Theme.of(context).primaryColorDark,),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                  
-                  
-                    Icon(Icons.people, size: 50.0,  color: Theme.of(context).iconTheme.color),
-
-                    sbhmin,
-        
-                    // TextButton(onPressed: () => launchUrl(uri), child: Text(AppLocalizations.of(context).translate('Join the community'), style: Theme.of(context).textTheme.bodyLarge!..copyWith(color: defaultColor)),)
-                    TextButton(onPressed: () => launchUrl(uri), child: Text('Join the community', style: Theme.of(context).textTheme.bodyLarge!..copyWith(color: defaultColor)),)
-                  
-                  ],
-                )
-              ),
-
-
-              Container(
-                width: MediaQuery.of(context).size.width < 800? MediaQuery.of(context).size.width : MediaQuery.of(context).size.width * 0.3,
-                height: 250.0,
-                padding: const EdgeInsets.symmetric(vertical: 10.0, horizontal: 10.0),
-                decoration: BoxDecoration(borderRadius: BorderRadius.circular(10.0), color: Theme.of(context).primaryColorDark,),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                  
-                  
-                    // Icon
-                    Icon(Icons.phone, size: 50.0,  color: Theme.of(context).iconTheme.color),
-
-                    sbhmin,
-        
-                    // TextButton(onPressed: () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (BuildContext context) => const CallSupport())), child: Text(AppLocalizations.of(context).translate('Call support'), style: Theme.of(context).textTheme.bodyLarge!..copyWith(color: defaultColor)),)
-                    TextButton(onPressed: () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (BuildContext context) => const CallSupport())), child: Text('Call support', style: Theme.of(context).textTheme.bodyLarge!..copyWith(color: defaultColor)),)
-                  
-                  ],
-                )
-              ),
-        
-            ],
-          ),
-
-
-          sbhmax,
-          sbhmax,
-          sbhmax,
-        
-        ]
-      ),
-    ),
-      
-      
-              // Footer
-              footer(context, setState)
-      
-            ],
           ),
         ),
       ),
     );
   }
 
+
+
+  Widget boilerPlate(BuildContext context) {
+    return Column(
+      children: [
+
+        SvgPicture.asset('images/coffee.svg', colorFilter: ColorFilter.mode(Theme.of(context).brightness == Brightness.dark? white : black, BlendMode.srcIn)),
+
+        sbhmin,
+
+        Text(AppLocalizations.of(context).translate('Goyerv Support'), textAlign: TextAlign.center, style: Theme.of(context).textTheme.headlineLarge!.copyWith(fontWeight: FontWeight.bold)),
+
+        Text(AppLocalizations.of(context).translate('Find answers, explore topics, and connect with the Goyerv team.'), textAlign: TextAlign.center, style: Theme.of(context).textTheme.headlineLarge!.copyWith(fontWeight: FontWeight.w400)),
+
+
+        sbhavg,
+
+
+        Text(AppLocalizations.of(context).translate('Top Articles'), textAlign: TextAlign.center, style: Theme.of(context).textTheme.titleLarge),
+
+        sbhmin,
+        
+        OnHover(builder: (isHovered, context) => TextButton(onPressed: () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (BuildContext context) => const HowDoIMakeAPost())), child: Text(AppLocalizations.of(context).translate("How do I create a post?\n"), style: Theme.of(context).textTheme.titleLarge!.copyWith(color: isHovered? blue : Theme.of(context).textTheme.titleLarge!.color, decoration: isHovered? TextDecoration.underline : TextDecoration.underline)),)),
+
+        OnHover(builder: (isHovered, context) => TextButton(onPressed: () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (BuildContext context) => const HowDoIScanAQRCode())), child: Text(AppLocalizations.of(context).translate("How do I scan QR-Codes?\n"), style: Theme.of(context).textTheme.titleLarge!.copyWith(color: isHovered? blue : Theme.of(context).textTheme.titleLarge!.color, decoration: isHovered? TextDecoration.underline : TextDecoration.underline)),)),
+
+        OnHover(builder: (isHovered, context) => TextButton(onPressed: () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (BuildContext context) => const HowDoIMakeARequest())), child: Text(AppLocalizations.of(context).translate("How do I make a request?\n"), style: Theme.of(context).textTheme.titleLarge!.copyWith(color: isHovered? blue : Theme.of(context).textTheme.titleLarge!.color, decoration: isHovered? TextDecoration.underline : TextDecoration.underline)),)),
+
+        OnHover(builder: (isHovered, context) => TextButton(onPressed: () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (BuildContext context) => const HowDoIMakeWithdrawals())), child: Text(AppLocalizations.of(context).translate("How do I make withdrawals?\n"), style: Theme.of(context).textTheme.titleLarge!.copyWith(color: isHovered? blue : Theme.of(context).textTheme.titleLarge!.color, decoration: isHovered? TextDecoration.underline : TextDecoration.underline)),)),
+
+        OnHover(builder: (isHovered, context) => TextButton(onPressed: () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (BuildContext context) => const SetTransactionPin())), child: Text(AppLocalizations.of(context).translate("Set transaction pin\n"), style: Theme.of(context).textTheme.titleLarge!.copyWith(color: isHovered? blue : Theme.of(context).textTheme.titleLarge!.color, decoration: isHovered? TextDecoration.underline : TextDecoration.underline)),)),
+
+
+        sbhavg,
+
+        Text(AppLocalizations.of(context).translate('Search'), textAlign: TextAlign.center, style: Theme.of(context).textTheme.titleLarge),
+
+        Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Autocomplete<String>(
+            fieldViewBuilder: (context, textEditingController, focusNode, onFieldSubmitted) => SizedBox(
+              width: MediaQuery.of(context).size.width,
+              child: TextFormField(
+                controller: _textFieldController,
+                style: Theme.of(context).textTheme.bodyLarge,
+                decoration: InputDecoration(
+                  contentPadding: const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+                  hintText: AppLocalizations.of(context).translate('Search'),
+                  suffixIcon: IconButton(onPressed: () => BlocProvider.of<GuidesBloc>(context).add(SupportSearchEvent(query)), icon: searchIcon, hoverColor: Theme.of(context).primaryColor, focusNode: _buttonFocusNode)
+                ),
+                cursorColor: Theme.of(context).textSelectionTheme.cursorColor,
+                textInputAction: TextInputAction.done,
+                validator: (value) {return null;},
+                onFieldSubmitted: (String value) { FocusScope.of(context).requestFocus(_buttonFocusNode); },
+                onChanged: (value) {query = value.trim();},
+                focusNode: _textFieldFocusNode,
+              ),
+            ),
+            optionsBuilder: (textEditingValue) {
+                
+              if (suggestions.isNotEmpty) {
+                return suggestions;
+              }
+          
+              return const Iterable.empty();
+              
+            },
+            optionsViewBuilder: (context, onSelected, options) {
+              return Card(
+                child: Padding(
+                  padding: const EdgeInsets.all(15.0),
+                  child: gettingSuggestions? loadingIndicator(context, false) : ListView.builder(
+                    shrinkWrap: true,
+                    itemCount: options.length,
+                    itemBuilder: (context, index) {
+                      final option = options.elementAt(index);
+                      return Material(
+                        type: MaterialType.transparency,
+                        child: ListTile(
+                          onTap: () {
+                            onSelected(option);  
+                            for (int i = 0; i < articles.length; i++) {
+                              if (option == articles[i]) {
+                                Navigator.of(context).push(MaterialPageRoute<void>(builder: (BuildContext context) => pages[i]));
+                              }
+                            
+                            }
+
+                            Navigator.of(context).push(MaterialPageRoute<void>(builder: (BuildContext context) => Guides(option)));
+                              
+                          },
+                          title: Text(option, style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontWeight: FontWeight.bold)),
+                        ),
+                      );
+                    },
+                  ),
+                ),
+              );
+            },
+          
+            displayStringForOption: (result) => result,
+          ),
+        ),
+
+
+
+        sbhavg,
+
+
+        Text(AppLocalizations.of(context).translate('Stay Updated'), textAlign: TextAlign.center, style: Theme.of(context).textTheme.titleLarge),
+
+        sbhmin,
+
+        Text(AppLocalizations.of(context).translate('Get the latest releases of the Goyerv app for all of your devices on all platforms.\n\n'), textAlign: TextAlign.center, style: Theme.of(context).textTheme.bodyLarge),
+
+        Center(
+          child: OutlinedButton(
+            onPressed: () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (BuildContext context) => const Download())),
+            style: OutlinedButton.styleFrom(
+              shape: StadiumBorder(),
+              backgroundColor: blue,
+              foregroundColor: white,
+              padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
+            ),
+            child: Text(AppLocalizations.of(context).translate("Download"), style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: white),),
+          ),
+        ),
+
+
+        sbhavg,
+
+
+
+        Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+                  
+            Icon(Icons.headphones_outlined, size: 50.0,  color: Colors.orange),
+
+            sbhmin,
+            
+            TextButton(onPressed: () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (BuildContext context) => const EmailSupport())), child: Text(AppLocalizations.of(context).translate('Contact support'), style: Theme.of(context).textTheme.bodyLarge!..copyWith(color: blue)),)
+                  
+          ],
+        ),
+
+
+        Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+                  
+            Icon(Icons.people_outline_rounded, size: 50.0,  color: Colors.teal),
+
+            sbhmin,
+            
+            TextButton(onPressed: () => launchUrl(Uri.parse('https://community.goyerv.com')), child: Text(AppLocalizations.of(context).translate('Join the community'), style: Theme.of(context).textTheme.bodyLarge!..copyWith(color: blue)),)
+                  
+          ],
+        ),
+
+
+
+
+
+
+
+
+      ],
+    );
+  }
+
+
+
+
+  Widget loadingIndicator(BuildContext context, bool recent) {
+    return ListView.builder(
+      itemCount: recent? 10 : 4,
+      itemBuilder: (context, index) {
+        return Shimmer.fromColors(
+          baseColor: Colors.grey[300]!,
+          highlightColor: Colors.grey[100]!,
+          child: Container(
+            width: double.infinity,
+            height: 10.0,
+            color: white,
+          ),
+        );
+      }
+    );
+  }
+  
 }

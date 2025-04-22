@@ -8,11 +8,20 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:footer/footer_view.dart';
 import 'package:share_plus/share_plus.dart';
 
+import '../../../../../guides/presentation/bloc/guides_bloc.dart';
 import '../../../../../web_core/global_fields/fields.dart';
 import '../../../../../web_core/internationalization/app_localizations.dart';
+import '../../../../../web_core/util/hover.dart';
+import '../../../../../widget/widget.dart';
+import '../analytics/analytics.dart';
+import '../convert/becoming_a_runner.dart';
+import '../convert/resigning.dart';
+import 'transfer.dart';
+import 'wallet_balance.dart';
 
 
 class WhatDoLocksMean extends StatefulWidget {
@@ -34,7 +43,7 @@ class _WhatDoLocksMeanState extends State<WhatDoLocksMean> {
     return Scaffold(
       appBar: appBar(context),
       body: Title(
-        title: AppLocalizations.of(context).translate("Goyerv Support - What Does The Locks On My Account Mean?"),
+        title: AppLocalizations.of(context).translate("Goyerv Support - What Do The Locks On My Account Mean?"),
         color: Theme.of(context).primaryColor,
         child: Container(
           width: MediaQuery.of(context).size.width,
@@ -48,7 +57,7 @@ class _WhatDoLocksMeanState extends State<WhatDoLocksMean> {
                 child: Column(
                   children: [
 
-                    Text(AppLocalizations.of(context).translate("What Does The Locks On My Account Mean?"), style: Theme.of(context).textTheme.headlineLarge),
+                    Text(AppLocalizations.of(context).translate("What Do The Locks On My Account Mean?"), style: Theme.of(context).textTheme.headlineLarge),
 
                     RichText(
                       text: TextSpan(
@@ -73,7 +82,7 @@ class _WhatDoLocksMeanState extends State<WhatDoLocksMean> {
 
 
                     GestureDetector(
-                      onTap: () => Share.share("https://support.goyerv.com/2025/wallet/wallet-balance.html"),
+                      onTap: () => Share.share("https://support.goyerv.com/2025/wallet/what-do-the-locks-on-my-account-mean.html"),
                       child: Container(
                         padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 10),
                         decoration: BoxDecoration(
@@ -100,10 +109,77 @@ class _WhatDoLocksMeanState extends State<WhatDoLocksMean> {
 
 
                     Text(
-                      AppLocalizations.of(context).translate('''Locks are funds temporarily held from your available balance when a customer places a logistics request. This amount, set by the customer, acts as a form of security and can’t be withdrawn until the request is successfully completed.\n\n\n'''),
+                      AppLocalizations.of(context).translate('''Locks are funds temporarily held from your available balance when a customer places a logistics request. This amount, set by the customer, acts as a form of security and can’t be withdrawn until the request is successfully completed.'''),
                       style: Theme.of(context).textTheme.bodyLarge,
                     ),
 
+
+                    sbhavg,
+
+                    Text(AppLocalizations.of(context).translate("Was this helpful?"), style: Theme.of(context).textTheme.bodyLarge),
+
+                    sbhavg,
+
+
+                    Row(
+                      children: [
+
+                        OutlinedButton(
+                          onPressed: () => BlocProvider.of<GuidesBloc>(context).add(RateGuideEvent("2025/wallet/3", true)),
+                          style: OutlinedButton.styleFrom(
+                            side: BorderSide(color: grey),
+                            shape: StadiumBorder(),
+                            backgroundColor: transparent,
+                            foregroundColor: grey,
+                            padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
+                          ),
+                          child: Text(AppLocalizations.of(context).translate("Helpful"), style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: grey),),
+                        ),
+
+
+                        sbwmin,
+
+                        OutlinedButton(
+                          onPressed: () => BlocProvider.of<GuidesBloc>(context).add(RateGuideEvent("2025/wallet/3", false)),
+                          style: OutlinedButton.styleFrom(
+                            side: BorderSide(color: grey),
+                            shape: StadiumBorder(),
+                            backgroundColor: transparent,
+                            foregroundColor: grey,
+                            padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
+                          ),
+                          child: Text(AppLocalizations.of(context).translate("Not Helpful"), style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: grey),),
+                        ),
+
+
+                      ],
+                    ),
+
+
+                    sbhavg,
+
+
+                    Text(AppLocalizations.of(context).translate("Related Articles"), style: Theme.of(context).textTheme.bodyLarge),
+
+                    sbhmin,
+
+
+
+
+                    OnHover(builder: (isHovered, context) => TextButton(onPressed: () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (BuildContext context) => const HowDoIMakeTransfers())), child: Text(AppLocalizations.of(context).translate("How do i make transfers on Goyerv?\n\n"), style: Theme.of(context).textTheme.titleLarge!.copyWith(color: blue, decoration: isHovered? TextDecoration.underline : TextDecoration.underline)),)),
+
+
+                    OnHover(builder: (isHovered, context) => TextButton(onPressed: () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (BuildContext context) => const WalletBalance())), child: Text(AppLocalizations.of(context).translate("Wallet balance\n\n"), style: Theme.of(context).textTheme.titleLarge!.copyWith(color: blue, decoration: isHovered? TextDecoration.underline : TextDecoration.underline)),)),
+
+                    OnHover(builder: (isHovered, context) => TextButton(onPressed: () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (BuildContext context) => const Analytics())), child: Text(AppLocalizations.of(context).translate("Analytics\n\n"), style: Theme.of(context).textTheme.titleLarge!.copyWith(color: blue, decoration: isHovered? TextDecoration.underline : TextDecoration.underline)),)),
+
+                    OnHover(builder: (isHovered, context) => TextButton(onPressed: () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (BuildContext context) => const BecomingARunner())), child: Text(AppLocalizations.of(context).translate("Becoming a runner\n\n"), style: Theme.of(context).textTheme.titleLarge!.copyWith(color: blue, decoration: isHovered? TextDecoration.underline : TextDecoration.underline)),)),
+
+                    OnHover(builder: (isHovered, context) => TextButton(onPressed: () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (BuildContext context) => const Resigning())), child: Text(AppLocalizations.of(context).translate("How do I stop becoming a runner\n\n"), style: Theme.of(context).textTheme.titleLarge!.copyWith(color: blue, decoration: isHovered? TextDecoration.underline : TextDecoration.underline)),)),
+
+
+
+                    sbhavg,
 
 
                   ],

@@ -141,63 +141,59 @@ flutter:
   # the material Icons class.
   uses-material-design: true
 
+  # THICCCBOI FONT [https://github.com/wonderunit/font-thicccboi]
+  fonts:
+    - family: THICCCBOI
+      fonts:
+        - asset: assets/fonts/THICCCBOI-Black.ttf
+          weight: 900
+
+        - asset: assets/fonts/THICCCBOI-Bold.ttf
+          weight: 700
+
+        - asset: assets/fonts/THICCCBOI-ExtraBold.ttf
+          weight: 800
+
+        - asset: assets/fonts/THICCCBOI-Light.ttf
+          weight: 300
+
+        - asset: assets/fonts/THICCCBOI-Medium.ttf
+          weight: 500
+
+        - asset: assets/fonts/THICCCBOI-Regular.ttf
+          weight: 400
+
+        - asset: assets/fonts/THICCCBOI-SemiBold.ttf
+          weight: 600
+
+        - asset: assets/fonts/THICCCBOI-ThicccAF.ttf
+          weight: 900
+
+        - asset: assets/fonts/THICCCBOI-Thin.ttf
+          weight: 100
+
   # To add assets to your application, add an assets section, like this:
   assets:
 
     #  Images / Illustrations 
     - assets/images/icon.png
     - assets/images/goyerv_logo.png
+    - assets/images/Facebook_logo.svg
+    - assets/images/Goyerv_logo.svg
+    - assets/images/Instagram_logo.svg
+    - assets/images/LinkedIn_logo.svg
+    - assets/images/Threads_logo.svg
+    - assets/images/X_logo.svg
+    - assets/images/YouTube_logo.svg
 
     # Languages
-    - assets/languages/ar.json
-    - assets/languages/bn.json
-    - assets/languages/bg.json
-    - assets/languages/my.json
-    - assets/languages/ce.json
     - assets/languages/zh_CN.json
     - assets/languages/zh_TW.json
-    - assets/languages/hr.json
-    - assets/languages/cs.json
-    - assets/languages/da.json
-    - assets/languages/nl.json
     - assets/languages/en.json
-    - assets/languages/et.json
-    - assets/languages/fil.json
-    - assets/languages/fi.json
     - assets/languages/fr.json
-    - assets/languages/ka.json
-    - assets/languages/de.json
-    - assets/languages/el.json
-    - assets/languages/gu.json
-    - assets/languages/ha.json
     - assets/languages/hi.json
-    - assets/languages/hu.json
-    - assets/languages/ig.json
-    - assets/languages/id.json
-    - assets/languages/it.json
     - assets/languages/ja.json
-    - assets/languages/kn.json
-    - assets/languages/km.json
-    - assets/languages/ko.json
-    - assets/languages/ms.json
-    - assets/languages/ml.json
-    - assets/languages/mr.json
-    - assets/languages/nb.json
-    - assets/languages/or.json
-    - assets/languages/pl.json
-    - assets/languages/pt.json
-    - assets/languages/pa.json
-    - assets/languages/ro.json
-    - assets/languages/ru.json
     - assets/languages/es.json
-    - assets/languages/ta.json
-    - assets/languages/th.json
-    - assets/languages/tr.json
-    - assets/languages/uk.json
-    - assets/languages/vi.json
-    - assets/languages/cy.json
-    - assets/languages/yr.json
-    
 
 
   # An image asset can refer to one or more resolution-specific "variants", see

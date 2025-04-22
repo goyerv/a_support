@@ -1,173 +1,401 @@
 {
- 
-    
-
-
-    "Goyerv logo": "Goyerv logo",
-    "Keyboard arrow up": "Keyboard arrow up",
-    "Keyboard arrow down": "Keyboard arrow down",
-    "Resources": "Resources",
-    "News": "News",
-    "Goyerv guide videos": "Goyerv guide videos",
-    "@Goyerv (Goyerv)": "@Goyerv (Goyerv)",
-    "@Goyerv (FaceBook)": "@Goyerv (FaceBook)",
-    "@Goyerv (Twitter)": "@Goyerv (Twitter)",
-    "@Goyerv (Instagram)": "@Goyerv (Instagram)",
-    "Reach Out": "Reach Out",
-    "Email us": "Email us",
-    "Call us": "Call us",
-    "Goyerv communities": "Goyerv communities",
-    "@GoyervSupport (Goyerv)": "@GoyervSupport (Goyerv)",
-    "@GoyervSupport (Twitter)": "@GoyervSupport (Twitter)",
-    "Software": "Software",
-    "APIs": "APIs",
-    "Documentation": "Documentation",
-    "Open Source": "Open Source",
-    "Embedding": "Embedding",
-    "Legal": "Legal",
-    "Terms and conditions": "Terms and conditions",
-    "Privacy policy": "Privacy policy",
-    "Careers": "Careers",
-    "About": "About",
-    "LLC. All rights reserved": "LLC. All rights reserved",
-    "Site map": "Site map",
-    "Globe(Language) icon": "Globe(Language) icon",
-
-
-
-
-
-
-
-
-    "Goyerv - Support": "Goyerv - Support",
-    "Logistics image": "Logistics image",
-    "Goyerv Support": "Goyerv Support",
-    "How Tos": "How Tos",
-    "How to make requests": "How to make requests",
-    "How to filter out posts from your radar": "How to filter out posts from your radar",
-    "How to make a money transfer to another goyerv account": "How to make a money transfer to another goyerv account",
-    "How to counter requests": "How to counter requests",
-    "How to make and share a post": "How to make and share a post",
-    "See more": "See more",
-    "FAQs": "FAQs",
-    "How long does it take Goyerv to process conversion applications?": "How long does it Goyerv take to process conversion applications?",
-    "What does the available and pending balance on Goyerv mean?": "How does the available and pending balance on Goyerv mean?",
-    "Where can I find all my pending funds?": "Where can I find all my pending funds?",
-    "How do I make my account private?": "How do I make my account private?",
-    "How long does crypto currency deposits take to reflect in my wallet": "How long does crypto currency deposits take to reflect in my wallet",
-    "Look for more": "Look for more",
-    "Search": "Search",
-    "Stay updated": "Stay updated",
-    "Get the latest releases of the Goyerv app for all of your devices on all platforms.": "Get the latest releases of the Goyerv app for all of your devices on all platforms.",
-    "Android logo": "Android logo",
-    "Android": "Android",
-    "Apple logo": "Apple logo",
-    "iOS": "iOS",
-    "Screenshots of Goyerv app rendered on multiple devices": "Screenshots of Goyerv app rendered on multiple devices",
-    "Email support": "Email support",
-    "Join the community": "Join the community",
-    "Call support": "Call support",
     "Goyerv - Email support": "Goyerv - Email support",
-    "We strongly suggest that you go through the ": "We strongly suggest that you go through the ",
-    " and the ": " and the ",
-    " first before you submit a ticket to us for support. Only until you're fully convinced that the issue you're having has'nt been addressed on the How Tos guides and FAQs, should you proceed to to filling out this support ticket form": " first before you submit a ticket to us for support. Only until you're fully convinced that the issue you're having has'nt been addressed on the How Tos guides and FAQs, should you proceed to to filling out this support ticket form",
-    "Please note: ensure that the form you have just filled dose not contain personal or sensitive details like your credit card information, home address, passwords etc.": "Please note: ensure that the form you have just filled dose not contain personal or sensitive details like your credit card information, home address, passwords etc.",
-
-
-
-    "Was this helpful?": "as this helpful?",
-    "Yes": "Yes",
-    "No": "No",
-
-
     "Email Support": "Email Support",
-    "Submit a ticket": "Submit a ticket",
-    "We strongly suggest that you go through the HOW Tos guides and the FAQ first before you submit a ticket to us for support. Only until you\\'re fully convinced that the issue you\\'re having has\\'nt been addressed on the How Tos guides and FAQ, should you proceed to to filling out this support ticket form": "We strongly suggest that you go through the HOW Tos guides and the FAQ first before you submit a ticket to us for support. Only until you\\'re fully convinced that the issue you\\'re having has\\'nt been addressed on the How Tos guides and FAQ, should you proceed to to filling out this support ticket form",
+    "Check mark": "Check mark",
+    "Ticket submitted": "Ticket submitted",
     "Email address": "Email address",
+    "Email": "Email",
     "Invalid email address": "Invalid email address",
-    "Email": "Email",    
     "Describe your issue": "Describe your issue",
     "What is the problem?": "What is the problem?",
     "Invalid input": "Invalid input",
-    "Support ticket images": "Support ticket images",
-    "Choose image": "Choose image",
     "Submit": "Submit",
-    "Expect a response from us within one business day or less.": "Expect a response from us within one business day or less.",
-    "Platform interaction failed": "Platform interaction failed",
-
-
-
-    "Call Support": "Call Support",
-    "Goyerv - Call support": "Goyerv - Call support",
-    "The phone numbers below are not toll free. This includes calls that are coming in from within Nigeria and Internationally. Additionally, due to the difference in timezones, there are times when you'd call us and not get through. We're working to localize call support for every region Goyerv is active in. We encourage you to go through the ": "The phone numbers below are not toll free. This includes calls that are coming in from within Nigeria and Internationally. Additionally, due to the difference in timezones, there are times when you'd call us and not get through. We're working to localize call support for every region Goyerv is active in. We encourage you to go through the ",
-    "FAQs ": "FAQs ",
+    "Please note: ensure that the form you have just filled dose not contain personal or sensitive details like your credit card information, home address, passwords etc.\nExpect a response from us within one business day or less.": "Please note: ensure that the form you have just filled dose not contain personal or sensitive details like your credit card information, home address, passwords etc.\nExpect a response from us within one business day or less.",
+    "We were unable to access your device's gallery": "We were unable to access your device's gallery",
+    "Goyerv - Support - Search": "Goyerv - Support - Search",
+    "Search": "Search",
+    "Field cannot be empty": "Field cannot be empty",
+  
+  
+  
+  
+  
+    "Goyerv Support - Download Goyerv": "Goyerv Support - Download Goyerv",
+    "Download Goyerv": "Download Goyerv",
+    "Free and powered by open source. Crowdsourcing deliveries and logistics.": "Free and powered by open source. Crowdsourcing deliveries and logistics.",
+    "Download\n": "Download\n",
+    "Download (iOS)\n": "Download (iOS)\n",
+    "Download (MacOS)\n": "Download (MacOS)\n",
+    "Analytics": "Analytics",
+    "Becoming a runner": "Becoming a runner",
+    "How do I stop becoming a runner?": "How do I stop becoming a runner?",
+    "Filters": "Filters",
+    "How do I verify my identity?": "How do I verify my identity?",
+    "How do I delete my post?": "How do I delete my post?",
+    "How do I schedule a post?": "How do I schedule a post?",
+    "How do I create a post?": "How do I create a post?",
+    "How do I scan qr-codes?": "How do I scan qr-codes?",
+    "How do I counter a request?": "How do I counter a request?",
+    "How do I make a request?": "How do I make a request?",
+    "Terminating request": "Terminating request",
+    "How do I delete my account?": "How do I delete my account?",
+    "How do I delete a saved bank account?": "How do I delete a saved bank account?",
+    "How do I delete a saved card?": "How do I delete a saved card?",
+    "How do I change my email address?": "How do I change my email address?",
+    "How do I change my name?": "How do I change my name?",
+    "How do I change my phone number?": "How do I change my phone number?",
+    "Set transaction pin": "Set transaction pin",
+    "Web indexing": "Web indexing",
+    "Two-factor authentication": "Two-factor authentication",
+    "How do I make deposits into my account?": "How do I make deposits into my account?",
+    "How do I make withdrawals from my account?": "How do I make withdrawals from my account?",
+    "What do the locks on my account mean?": "What do the locks on my account mean?",
+    "How do I make transfers?": "How do I make transfers?",
+    "Wallet balance": "Wallet balance",
+    "Goyerv - Support": "Goyerv - Support",
+    "Goyerv Support": "Goyerv Support",
+    "Find answers, explore topics, and connect with the Goyerv team.": "Find answers, explore topics, and connect with the Goyerv team.",
+    "Top Articles": "Top Articles",
+    "How do I create a post?\n": "How do I create a post?\n",
+    "How do I scan QR-Codes?\n": "How do I scan QR-Codes?\n",
+    "How do I make a request?\n": "How do I make a request?\n",
+    "How do I make withdrawals?\n": "How do I make withdrawals?\n",
+    "Set transaction pin\n": "Set transaction pin\n",
+    "Stay Updated": "Stay Updated",
+    "Get the latest releases of the Goyerv app for all of your devices on all platforms.\n\n": "Get the latest releases of the Goyerv app for all of your devices on all platforms.\n\n",
+    "Download": "Download",
+    "Contact support": "Contact support",
+    "Join the community": "Join the community",
+  
+  
+  
+  
+  
+    "Goyerv Support - Analytics": "Goyerv Support - Analytics",
+    "Feature: ": "Feature: ",
+    "Share": "Share",
+    "Analytics is your personal performance dashboard, built to help runners measure progress over time—whether it's daily, over the past five days, six months, a year, or year-to-date. It tracks your successful and unsuccessful requests, completed deliveries, and earnings growth at a glance.\n\nA request is deemed unsuccessful if Goyerv had to automatically terminate it.": "Analytics is your personal performance dashboard, built to help runners measure progress over time—whether it's daily, over the past five days, six months, a year, or year-to-date. It tracks your successful and unsuccessful requests, completed deliveries, and earnings growth at a glance.\n\nA request is deemed unsuccessful if Goyerv had to automatically terminate it.",
+    "Was this helpful?": "Was this helpful?",
+    "Helpful": "Helpful",
+    "Not Helpful": "Not Helpful",
+    "Related Articles": "Related Articles",
+    "Becoming a runner\n\n": "Becoming a runner\n\n",
+    "How do I stop becoming a runner?\n\n": "How do I stop becoming a runner?\n\n",
+    "Filters?\n\n": "Filters?\n\n",
+    "How do I verify my identity?\n\n": "How do I verify my identity?\n\n",
+    "How do I delete my post?\n\n\n": "How do I delete my post?\n\n\n",
+  
+  
+  
+  
+  
+    "Goyerv Support - Becoming A Runner": "Goyerv Support - Becoming A Runner",
+    "Becoming A Runner": "Becoming A Runner",
+    "Convert": "Convert",
+    "To become a runner on Goyerv, you’ll need to submit a valid form of identification—this can be your driver’s license, national ID card, or international passport. Once submitted, we’ll run a background check tailored to your country and in line with our internal review process.\n\nApproval typically takes 2 to 7 business days, and we’ll notify you once your application has been reviewed. Every runner is part of the trust we’re building, so we take this process seriously for everyone’s safety.": "To become a runner on Goyerv, you’ll need to submit a valid form of identification—this can be your driver’s license, national ID card, or international passport. Once submitted, we’ll run a background check tailored to your country and in line with our internal review process.\n\nApproval typically takes 2 to 7 business days, and we’ll notify you once your application has been reviewed. Every runner is part of the trust we’re building, so we take this process seriously for everyone’s safety.",
+    "Filters\n\n": "Filters\n\n",
+    "How do I delete my post?\n\n": "How do I delete my post?\n\n",
+    "How do I schedule a post?\n\n\n": "How do I schedule a post?\n\n\n",
+  
+  
+  
+  
+  
+    "Goyerv Support - How Do I Stop Becoming A Runner?": "Goyerv Support - How Do I Stop Becoming A Runner?",
+    "How Do I Stop Becoming A Runner?": "How Do I Stop Becoming A Runner?",
+    "If you decide to stop running on Goyerv, you can simply do that in the ": "If you decide to stop running on Goyerv, you can simply do that in the ",
+    "Conversion screen": "Conversion screen",
+    ".\n\nYour past requests, earnings, and stats will remain intact. They’re part of your record and won’t be deleted, even if you’re no longer active as a runner. You can always turn Runner Mode back on whenever you’re ready to get back in motion.": ".\n\nYour past requests, earnings, and stats will remain intact. They’re part of your record and won’t be deleted, even if you’re no longer active as a runner. You can always turn Runner Mode back on whenever you’re ready to get back in motion.",
+    "How do I schedule a post?\n\n": "How do I schedule a post?\n\n",
+    "How do I create a post?\n\n": "How do I create a post?\n\n",
+  
+  
+  
+  
+  
+    "Goyerv Support - Filters": "Goyerv Support - Filters",
+    "Filter": "Filter",
+    "The filters you have toggled on or off directly shape what you see in your runner post feed. Goyerv’s filtering system is designed to surface the most relevant posts based on your preferences, and it’s broken down into three main categories: Location, Run Category, and Medium of Transportation.\n\nUnder Location, the filters work by priority. The Local filter has the highest priority—when it’s on, you’ll first see posts from runners who share your exact address or are in close proximity. With Intrastate, posts from runners within the same state appear next. Intranational shows posts from anywhere within your country, while Intracontinental expands your view to runners located anywhere on your continent. Finally, International opens up your feed to posts from runners around the globe.\n\nThe second category, Run Category, allows you to choose the type of requests you’re interested in. Turning on Delivery will show posts from runners focused on local deliveries, while Shipping reveals posts from runners handling longer-distance or more logistics-heavy shipping requests.\n\nThe third category is Medium of Transportation, which refers to how runners intend to complete their tasks. You can filter posts based on whether the runner is traveling by foot—ideal for shorter distances—or using a bike, scooter, car, bus (public transport), train, or airplane. These filters work alongside your other selections to fine-tune your feed to match your preferences.": "The filters you have toggled on or off directly shape what you see in your runner post feed. Goyerv’s filtering system is designed to surface the most relevant posts based on your preferences, and it’s broken down into three main categories: Location, Run Category, and Medium of Transportation.\n\nUnder Location, the filters work by priority. The Local filter has the highest priority—when it’s on, you’ll first see posts from runners who share your exact address or are in close proximity. With Intrastate, posts from runners within the same state appear next. Intranational shows posts from anywhere within your country, while Intracontinental expands your view to runners located anywhere on your continent. Finally, International opens up your feed to posts from runners around the globe.\n\nThe second category, Run Category, allows you to choose the type of requests you’re interested in. Turning on Delivery will show posts from runners focused on local deliveries, while Shipping reveals posts from runners handling longer-distance or more logistics-heavy shipping requests.\n\nThe third category is Medium of Transportation, which refers to how runners intend to complete their tasks. You can filter posts based on whether the runner is traveling by foot—ideal for shorter distances—or using a bike, scooter, car, bus (public transport), train, or airplane. These filters work alongside your other selections to fine-tune your feed to match your preferences.",
+    "How do I scan QR-Codes?\n\n\n": "How do I scan QR-Codes?\n\n\n",
+  
+  
+  
+  
+  
+    "Goyerv Support - How Do I Verify My Identity?": "Goyerv Support - How Do I Verify My Identity?",
+    "How Do I Verify My Identity?": "How Do I Verify My Identity?",
+    "Identity Verification": "Identity Verification",
+    "How do I scan QR-Codes?\n\n": "How do I scan QR-Codes?\n\n",
+    "How do I counter a request?\n\n\n": "How do I counter a request?\n\n\n",
+  
+  
+  
+  
+  
+    "Goyerv Support - How Do I Delete My Post?": "Goyerv Support - How Do I Delete My Post?",
+    "How Do I Delete My Post?": "How Do I Delete My Post?",
+    "Post": "Post",
+    "To delete a post, tap the menu icon on the post and select \"Delete.\" This action permanently removes the post from your profile and feed.\n\nPlease note that posts cannot be edited after they have been shared. We recommend reviewing all details carefully before posting to avoid any errors.\n\nOnce a post has expired, it will remain visible on your profile for reference, but you will no longer be able to accept new requests from it.": "To delete a post, tap the menu icon on the post and select \"Delete.\" This action permanently removes the post from your profile and feed.\n\nPlease note that posts cannot be edited after they have been shared. We recommend reviewing all details carefully before posting to avoid any errors.\n\nOnce a post has expired, it will remain visible on your profile for reference, but you will no longer be able to accept new requests from it.",
+    "How do I counter a request?\n\n": "How do I counter a request?\n\n",
+    "How do I make a request?\n\n\n": "How do I make a request?\n\n\n",
+  
+  
+  
+  
+  
+    "Goyerv Support - How Do I Schedule A Post?": "Goyerv Support - How Do I Schedule A Post?",
+    "How Do I Schedule A Post?": "How Do I Schedule A Post?",
+    "Goyerv lets you plan ahead by scheduling posts for locations you intend to be at in the future—even if you’re not there just yet. This feature is perfect for runners who want to start receiving requests before they arrive at their destination.\n\nTo schedule a post, simply tap the ": "Goyerv lets you plan ahead by scheduling posts for locations you intend to be at in the future—even if you’re not there just yet. This feature is perfect for runners who want to start receiving requests before they arrive at their destination.\n\nTo schedule a post, simply tap the ",
+    "“Schedule this post” ": "“Schedule this post” ",
+    "button right below the Create Post screen. Once set, Goyerv will display your post along with a note that you’re not currently at the location, but you’re expected to be there when the timer runs out.\n\nEach scheduled post has two countdowns: the first counts down to when your post becomes live, and the second counts down to when it expires. Once the post is live, requests can roll in. When the post expires, it disappears from view and you’ll no longer be visible for new requests tied to that location.\n\nIt’s a simple way to stay ahead and make every stop count—whether you’re already on the move or just gearing up.": "button right below the Create Post screen. Once set, Goyerv will display your post along with a note that you’re not currently at the location, but you’re expected to be there when the timer runs out.\n\nEach scheduled post has two countdowns: the first counts down to when your post becomes live, and the second counts down to when it expires. Once the post is live, requests can roll in. When the post expires, it disappears from view and you’ll no longer be visible for new requests tied to that location.\n\nIt’s a simple way to stay ahead and make every stop count—whether you’re already on the move or just gearing up.",
+    "How do I make a request?\n\n": "How do I make a request?\n\n",
+    "Terminating a request\n\n": "Terminating a request\n\n",
+  
+  
+  
+  
+  
+    "Goyerv Support - How Do I Create A Post?": "Goyerv Support - How Do I Create A Post?",
+    "How Do I Create A Post?": "How Do I Create A Post?",
+    "Posts on Goyerv fall into two categories: ": "Posts on Goyerv fall into two categories: ",
+    "Delivery ": "Delivery ",
     "and ": "and ",
-    "How Tos ": "How Tos ",
-    "guides before calling": "guides before calling",
-
-
-
+    "Shipping": "Shipping",
+    ". To switch between them, simply ": ". To switch between them, simply ",
+    "toggle the switch ": "toggle the switch ",
+    "on the ": "on the ",
+    "left-hand ": "left-hand ",
+    "side of the Create Post screen.\n\nIn a ": "side of the Create Post screen.\n\nIn a ",
+    "Delivery post": "Delivery post",
+    ", you can only share one location—your current one. It’s ideal for quick errands or nearby deliveries.\n\n": ", you can only share one location—your current one. It’s ideal for quick errands or nearby deliveries.\n\n",
+    "Shipping posts ": "Shipping posts ",
+    "are designed for longer or multi-stop trips. You must share at least two locations: where you are now and where you’re headed. You can add up to four in total—the first is your starting point, the next two are any planned stops, and the last is your final destination.\n\nOnce your details are set, just hit “Post,” and your location will go live for others to see and send you requests while you're active.": "are designed for longer or multi-stop trips. You must share at least two locations: where you are now and where you’re headed. You can add up to four in total—the first is your starting point, the next two are any planned stops, and the last is your final destination.\n\nOnce your details are set, just hit “Post,” and your location will go live for others to see and send you requests while you're active.",
+    "How do I delete my account?\n\n": "How do I delete my account?\n\n",
+  
+  
+  
+  
+  
+    "Goyerv Support - How Do I Scan QR Codes?": "Goyerv Support - How Do I Scan QR Codes?",
+    "How Do I Scan QR Codes?": "How Do I Scan QR Codes?",
+    "QR Scanner": "QR Scanner",
+    "How do I delete a saved bank account?\n\n": "How do I delete a saved bank account?\n\n",
+  
+  
+  
+  
+  
+    "Goyerv Support - How Do I Counter A Request?": "Goyerv Support - How Do I Counter A Request?",
+    "How Do I Counter A Request?": "How Do I Counter A Request?",
+    "Requests": "Requests",
+    "As a runner, if a request doesn’t align with your preferences or capacity, you can submit a counter-offer. Simply tap the ": "As a runner, if a request doesn’t align with your preferences or capacity, you can submit a counter-offer. Simply tap the ",
+    "Counter": "Counter",
+    " button on the request card to get started.\n\nYou’ll be able to adjust key terms including the payment amount, the duration set by the customer, and the compensation fund. There’s also space to include a short reason for your counter, helping the customer understand your proposed changes.\n\nOnce submitted, the customer can review your counter and choose to accept, reject, or respond with further adjustments. Runners cannot counter a request and then accept it. Your counter offer always has to be the last before the user can accept or decline a request.\n\n\n": " button on the request card to get started.\n\nYou’ll be able to adjust key terms including the payment amount, the duration set by the customer, and the compensation fund. There’s also space to include a short reason for your counter, helping the customer understand your proposed changes.\n\nOnce submitted, the customer can review your counter and choose to accept, reject, or respond with further adjustments. Runners cannot counter a request and then accept it. Your counter offer always has to be the last before the user can accept or decline a request.\n\n\n",
+    "How do I delete a saved card?\n\n": "How do I delete a saved card?\n\n",
+  
+  
+  
+  
+  
+    "Goyerv Support - How Do I Make A Request?": "Goyerv Support - How Do I Make A Request?",
+    "How Do I Make A Request?": "How Do I Make A Request?",
+    "To make a request on Goyerv, simply tap the paper plane icon on any active post. This will take you to the request screen where you can provide all the necessary details for the runner.\n\nYou’ll need to specify what you’re asking the runner to do, the amount you’re offering for the request, and the duration within which you expect it to be completed. If it’s a shipping run, you can also include the weight of the item.\n\nYou may upload images to help clarify the request for the runner. Additionally, there is an option to include a ": "To make a request on Goyerv, simply tap the paper plane icon on any active post. This will take you to the request screen where you can provide all the necessary details for the runner.\n\nYou’ll need to specify what you’re asking the runner to do, the amount you’re offering for the request, and the duration within which you expect it to be completed. If it’s a shipping run, you can also include the weight of the item.\n\nYou may upload images to help clarify the request for the runner. Additionally, there is an option to include a ",
+    "Compensation Fund": "Compensation Fund",
+    "—this is an amount you want the runner to have available in their locked balance. It cannot be withdrawn until the run is completed, acting as a form of assurance and support for time-sensitive or higher-value requests.\n\nOnce all the details are filled in, simply submit your request and wait for the runner’s confirmation.": "—this is an amount you want the runner to have available in their locked balance. It cannot be withdrawn until the run is completed, acting as a form of assurance and support for time-sensitive or higher-value requests.\n\nOnce all the details are filled in, simply submit your request and wait for the runner’s confirmation.",
+    "How do I change my email address?\n\n": "How do I change my email address?\n\n",
+  
+  
+  
+  
+  
+    "Goyerv Support - Terminating A Request": "Goyerv Support - Terminating A Request",
+    "Terminating A Request": "Terminating A Request",
+    "You may choose to terminate an ongoing request at any time if you change your mind. However, if you do this after 30% of the specified duration has passed, Goyerv will automatically release any set ": "You may choose to terminate an ongoing request at any time if you change your mind. However, if you do this after 30% of the specified duration has passed, Goyerv will automatically release any set ",
+    " to the runner before the request is officially terminated. In this case, your remaining funds will be refunded.\n\nGoyerv may also terminate a request automatically when the time you set for its completion runs out. If this happens, any funds associated with the request—including the Compensation Fund, if applicable—will be refunded in full.\n\nWe encourage users to monitor their requests closely and communicate clearly with runners to minimize the need for early terminations.": " to the runner before the request is officially terminated. In this case, your remaining funds will be refunded.\n\nGoyerv may also terminate a request automatically when the time you set for its completion runs out. If this happens, any funds associated with the request—including the Compensation Fund, if applicable—will be refunded in full.\n\nWe encourage users to monitor their requests closely and communicate clearly with runners to minimize the need for early terminations.",
+    "How do I change my name?\n\n": "How do I change my name?\n\n",
+  
+  
+  
+  
+  
+    "Goyerv Support - How Do I Delete My Account?": "Goyerv Support - How Do I Delete My Account?",
+    "How Do I Delete My Account?": "How Do I Delete My Account?",
+    "Settings": "Settings",
+    "To permanently delete your account, follow the steps below. Note that this action will not be successful if you have any pending requests, locks, or money left in your wallet. Be sure to resolve these issues before proceeding.\n\n": "To permanently delete your account, follow the steps below. Note that this action will not be successful if you have any pending requests, locks, or money left in your wallet. Be sure to resolve these issues before proceeding.\n\n",
+    "    1. Go to ": "    1. Go to ",
+    "Settings\n\n": "Settings\n\n",
+    "    2. Tap": "    2. Tap",
+    "Account\n\n": "Account\n\n",
+    "    3. Select ": "    3. Select ",
+    "Delete Account\n\n": "Delete Account\n\n",
+    "    4. Ensure all pending requests, locks, and wallet balances are cleared before confirming deletion.\n\n\n": "    4. Ensure all pending requests, locks, and wallet balances are cleared before confirming deletion.\n\n\n",
+    "How do I change my phone number?\n\n": "How do I change my phone number?\n\n",
+  
+  
+  
+  
+  
+    "Goyerv Support - How Do I Delete A Saved Bank Account?": "Goyerv Support - How Do I Delete A Saved Bank Account?",
+    "How Do I Delete A Saved Bank Account?": "How Do I Delete A Saved Bank Account?",
+    "Easily manage your linked bank accounts by removing any you no longer use.\n\n": "Easily manage your linked bank accounts by removing any you no longer use.\n\n",
+    "Wallet\n\n": "Wallet\n\n",
+    "Saved Bank Accounts\n\n": "Saved Bank Accounts\n\n",
+    "    4. 4. Tap the  ": "    4. 4. Tap the  ",
+    "Delete ": "Delete ",
+    "button on the account you want to remove": "button on the account you want to remove",
+    "Set transaction pin\n\n": "Set transaction pin\n\n",
+  
+  
+  
+  
+  
+    "Goyerv Support - How Do I Delete A Saved Card?": "Goyerv Support - How Do I Delete A Saved Card?",
+    "How Do I Delete A Saved Card?": "How Do I Delete A Saved Card?",
+    "Remove any linked debit or credit cards you no longer want saved.\n\n": "Remove any linked debit or credit cards you no longer want saved.\n\n",
+    "Saved Cards\n\n": "Saved Cards\n\n",
+    "    4. Tap the  ": "    4. Tap the  ",
+    "button on the card you wish to remove\n\n\n": "button on the card you wish to remove\n\n\n",
+    "Web indexing\n\n": "Web indexing\n\n",
+  
+  
+  
+  
+  
+    "Goyerv Support - How Do I Change My Email Address?": "Goyerv Support - How Do I Change My Email Address?",
+    "How Do I Change My Email Address?": "How Do I Change My Email Address?",
+    "Keep your contact info up to date by editing your email from your profile settings.\n\n": "Keep your contact info up to date by editing your email from your profile settings.\n\n",
+    "Profile\n\n": "Profile\n\n",
+    "    4. Update your email address and save changes\n\n\n": "    4. Update your email address and save changes\n\n\n",
+    "Two-Factor authentication\n\n": "Two-Factor authentication\n\n",
+  
+  
+  
+  
+  
+    "Goyerv Support - How Do I Change My Name?": "Goyerv Support - How Do I Change My Name?",
+    "How Do I Change My Name?": "How Do I Change My Name?",
+    "You can update your name anytime from your profile settings.\n\n": "You can update your name anytime from your profile settings.\n\n",
+    "    4. Edit your name and save changes": "    4. Edit your name and save changes",
+    "How do I make deposits into my account?\n\n": "How do I make deposits into my account?\n\n",
+  
+  
+  
+  
+  
+    "Goyerv Support - How Do I Change My Phone Number?": "Goyerv Support - How Do I Change My Phone Number?",
+    "How Do I Change My Phone Number?": "How Do I Change My Phone Number?",
+    "You can update your phone number directly from your profile settings.\n\n": "You can update your phone number directly from your profile settings.\n\n",
+    "Security\n\n": "Security\n\n",
+    "Password\n\n": "Password\n\n",
+    "    4. Enter your current password, then choose a new one and save changes\n\n\n": "    4. Enter your current password, then choose a new one and save changes\n\n\n",
+    "How do I make withdrawals from my account?\n\n": "How do I make withdrawals from my account?\n\n",
+  
+  
+  
+  
+  
+    "Goyerv Support - Set Transaction Pin": "Goyerv Support - Set Transaction Pin",
+    "Set Transaction Pin": "Set Transaction Pin",
+    "Secure all wallet activity including transfers, deposits, and withdrawals with a custom Pin.\n\n": "Secure all wallet activity including transfers, deposits, and withdrawals with a custom Pin.\n\n",
+    "Set Transaction Pin ": "Set Transaction Pin ",
+    "and create your code": "and create your code",
+    "What do the locks on my account mean?\n\n": "What do the locks on my account mean?\n\n",
+  
+  
+  
+  
+  
+    "Goyerv Support - Web Indexing": "Goyerv Support - Web Indexing",
+    "Web Indexing": "Web Indexing",
+    "Control whether your profile appears on search engines like Google.\n\n": "Control whether your profile appears on search engines like Google.\n\n",
+    "Privacy\n\n": "Privacy\n\n",
+    "    3. Toggle ": "    3. Toggle ",
+    "Web Indexing ": "Web Indexing ",
+    "on or off": "on or off",
+    "How do i make transfers on Goyerv?\n\n": "How do i make transfers on Goyerv?\n\n",
+  
+  
+  
+  
+  
+    "Goyerv Support - Two-Factor Authentication": "Goyerv Support - Two-Factor Authentication",
+    "Two-Factor Authentication": "Two-Factor Authentication",
+    "Add an extra layer of security to your account by enabling 2FA.\n\n": "Add an extra layer of security to your account by enabling 2FA.\n\n",
+    "Two-Factor Authentication ": "Two-Factor Authentication ",
+    "and follow the prompts\n\n\n": "and follow the prompts\n\n\n",
+    "Wallet balance\n\n": "Wallet balance\n\n",
+  
+  
+  
+  
+  
+    "Goyerv Support - How Do I Make Deposits Into My Account?": "Goyerv Support - How Do I Make Deposits Into My Account?",
+    "How Do I Make Deposits Into My Account?": "How Do I Make Deposits Into My Account?",
+    "Wallet": "Wallet",
+    "To send funds to another user:\n\n": "To send funds to another user:\n\n",
+    "Deposit\n\n": "Deposit\n\n",
+    "    3. Enter the amount": "    3. Enter the amount",
+    "    4. Click  ": "    4. Click  ",
+    "You’ll be redirected to Stripe’s secure checkout to complete the deposit process.\n\n\n": "You’ll be redirected to Stripe’s secure checkout to complete the deposit process.\n\n\n",
+    "Analytics\n\n": "Analytics\n\n",
+  
+  
+  
+  
+  
+    "Goyerv Support - How Do I Make Withdrawals From My Account?": "Goyerv Support - How Do I Make Withdrawals From My Account?",
+    "How Do I Make Withdrawals From My Account?": "How Do I Make Withdrawals From My Account?",
+    "To withdraw funds from your Goyerv wallet:\n\n": "To withdraw funds from your Goyerv wallet:\n\n",
+    "Withdraw\n\n": "Withdraw\n\n",
+    "    3. Enter the amount and your bank details": "    3. Enter the amount and your bank details",
+    "Withdrawals may take some time depending on your country. Note that this feature isn't available in all regions yet, but we're working hard to roll it out everywhere.\n\n\n": "Withdrawals may take some time depending on your country. Note that this feature isn't available in all regions yet, but we're working hard to roll it out everywhere.\n\n\n",
+  
+  
+  
+  
+  
+    "Goyerv Support - What Do The Locks On My Account Mean?": "Goyerv Support - What Do The Locks On My Account Mean?",
+    "What Do The Locks On My Account Mean?": "What Do The Locks On My Account Mean?",
+    "Locks are funds temporarily held from your available balance when a customer places a logistics request. This amount, set by the customer, acts as a form of security and can’t be withdrawn until the request is successfully completed.": "Locks are funds temporarily held from your available balance when a customer places a logistics request. This amount, set by the customer, acts as a form of security and can’t be withdrawn until the request is successfully completed.",
+    "How do I stop becoming a runner\n\n": "How do I stop becoming a runner\n\n",
+  
+  
+  
+  
+  
+    "Goyerv Support - How Do I Make Transfers On Goyerv?": "Goyerv Support - How Do I Make Transfers On Goyerv?",
+    "How Do I Make Transfers On Goyerv?": "How Do I Make Transfers On Goyerv?",
+    "Transfer\n\n": "Transfer\n\n",
+    "A 20% transfer fee will be deducted before the funds are paid out. Transfers to users in a different country from yours are not allowed to help prevent money laundering.": "A 20% transfer fee will be deducted before the funds are paid out. Transfers to users in a different country from yours are not allowed to help prevent money laundering.",
+  
+  
+  
+  
+  
+    "Goyerv Support - Wallet Balance": "Goyerv Support - Wallet Balance",
+    "Wallet Balance": "Wallet Balance",
+    "Your Goyerv wallet has two sections: Available and Pending balance. Funds you deposit go straight into your Available balance, which you can withdraw from at any time. Payments from requests you choose to accept first land in your Pending balance and remain there until the customer releases them as paid. Like a mini escrow. Once released, they move into your Available balance.\n\n\n": "Your Goyerv wallet has two sections: Available and Pending balance. Funds you deposit go straight into your Available balance, which you can withdraw from at any time. Payments from requests you choose to accept first land in your Pending balance and remain there until the customer releases them as paid. Like a mini escrow. Once released, they move into your Available balance.\n\n\n",
+    "How do i verify my identity?\n\n": "How do i verify my identity?\n\n",
     "Support": "Support",
-    "Community": "Community", 
-    "Arabic": "Arabic", 
-    "Bangla": "Bangla", 
-    "Bulgarian": "Bulgarian", 
-    "Burmese": "Burmese",
-    "Cebuano": "Cebuano",
-    "Chinese (Simplified)": "Chinese (Simplified)", 
-    "Chinese (Traditional)": "Chinese (Traditional)", 
-    "Croatian": "Croatian", 
-    "Czech": "Czech",
-    "Danish": "Danish", 
-    "Dutch": "Dutch", 
-    "English": "English", 
-    "Estonian": "Estonian", 
-    "Filipino": "Filipino", 
-    "Finnish": "Finnish",
-    "French": "French",
-    "Georgian": "Georgian", 
-    "German": "German",
-    "Greek": "Greek",
-    "Gujarati": "Gujarati", 
-    "Hausa": "Hausa",
-    "Hindi": "Hindi", 
-    "Hungarian": "Hungarian", 
-    "Igbo": "Igbo",
-    "Indonesian": "Indonesian", 
-    "Italian": "Italian",
-    "Japanese": "Japanese", 
-    "Kannada": "Kannada",
-    "Khmer": "Khmer",
-    "Korean": "Korean", 
-    "Malay": "Malay",
-    "Malayalam": "Malayalam", 
-    "Marathi": "Marathi",
-    "Norwegian": "Norwegian", 
-    "Odia": "Odia",
-    "Polish": "Polish", 
-    "Portuguese": "Portuguese", 
-    "Punjabi": "Punjabi",
-    "Romanian": "Romanian", 
-    "Russian": "Russian",
-    "Spanish": "Spanish", 
-    "Tamil": "Tamil",
-    "Thai": "Thai",
-    "Turkish": "Turkish", 
-    "Ukrainian": "Ukrainian", 
-    "Vietnamese": "Vietnamese", 
-    "Welsh": "Welsh", 
-    "Yoruba": "Yoruba",
-
-
-    "Search icon": "Search icon",
-    "Pages": "Pages",
-    "Page": "Page"
-
-
-    
-
-
-
-
-}
+    "Goyerv logo": "Goyerv logo",
+    "Facebook logo": "Facebook logo",
+    "X logo": "X logo",
+    "Instagram logo": "Instagram logo",
+    "Threads logo": "Threads logo",
+    "YouTube logo": "YouTube logo",
+    "LinkedIn logo": "LinkedIn logo",
+    "Goyerv": "Goyerv",
+    "Ltd. All rights reserved": "Ltd. All rights reserved",
+    "Globe(Language) icon": "Globe(Language) icon",
+    "Language": "Language",
+    "Terms": "Terms",
+    "Privacy": "Privacy",
+    "Community": "Community",
+    "Bulletin": "Bulletin",
+    "Careers": "Careers",
+    "Resources": "Resources",
+    "Developers": "Developers",
+    "About": "About"
+  
+  
+  }

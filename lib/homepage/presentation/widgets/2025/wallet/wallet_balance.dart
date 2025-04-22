@@ -8,11 +8,20 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:footer/footer_view.dart';
 import 'package:share_plus/share_plus.dart';
 
+import '../../../../../guides/presentation/bloc/guides_bloc.dart';
 import '../../../../../web_core/global_fields/fields.dart';
 import '../../../../../web_core/internationalization/app_localizations.dart';
+import '../../../../../web_core/util/hover.dart';
+import '../../../../../widget/widget.dart';
+import '../analytics/analytics.dart';
+import '../convert/becoming_a_runner.dart';
+import '../convert/resigning.dart';
+import '../filter/filter.dart';
+import '../identity_verification/identity_verification.dart';
 
 
 class WalletBalance extends StatefulWidget {
@@ -103,6 +112,74 @@ class _WalletBalanceState extends State<WalletBalance> {
                       AppLocalizations.of(context).translate('''Your Goyerv wallet has two sections: Available and Pending balance. Funds you deposit go straight into your Available balance, which you can withdraw from at any time. Payments from requests you choose to accept first land in your Pending balance and remain there until the customer releases them as paid. Like a mini escrow. Once released, they move into your Available balance.\n\n\n'''),
                       style: Theme.of(context).textTheme.bodyLarge,
                     ),
+
+
+
+                    sbhavg,
+
+                    Text(AppLocalizations.of(context).translate("Was this helpful?"), style: Theme.of(context).textTheme.bodyLarge),
+
+                    sbhavg,
+
+
+                    Row(
+                      children: [
+
+                        OutlinedButton(
+                          onPressed: () => BlocProvider.of<GuidesBloc>(context).add(RateGuideEvent("2025/wallet/5", true)),
+                          style: OutlinedButton.styleFrom(
+                            side: BorderSide(color: grey),
+                            shape: StadiumBorder(),
+                            backgroundColor: transparent,
+                            foregroundColor: grey,
+                            padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
+                          ),
+                          child: Text(AppLocalizations.of(context).translate("Helpful"), style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: grey),),
+                        ),
+
+
+                        sbwmin,
+
+                        OutlinedButton(
+                          onPressed: () => BlocProvider.of<GuidesBloc>(context).add(RateGuideEvent("2025/wallet/3", false)),
+                          style: OutlinedButton.styleFrom(
+                            side: BorderSide(color: grey),
+                            shape: StadiumBorder(),
+                            backgroundColor: transparent,
+                            foregroundColor: grey,
+                            padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
+                          ),
+                          child: Text(AppLocalizations.of(context).translate("Not Helpful"), style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: grey),),
+                        ),
+
+
+                      ],
+                    ),
+
+
+                    sbhavg,
+
+
+                    Text(AppLocalizations.of(context).translate("Related Articles"), style: Theme.of(context).textTheme.bodyLarge),
+
+                    sbhmin,
+
+
+
+
+                    OnHover(builder: (isHovered, context) => TextButton(onPressed: () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (BuildContext context) => const Analytics())), child: Text(AppLocalizations.of(context).translate("Analytics\n\n"), style: Theme.of(context).textTheme.titleLarge!.copyWith(color: blue, decoration: isHovered? TextDecoration.underline : TextDecoration.underline)),)),
+
+                    OnHover(builder: (isHovered, context) => TextButton(onPressed: () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (BuildContext context) => const BecomingARunner())), child: Text(AppLocalizations.of(context).translate("Becoming a runner\n\n"), style: Theme.of(context).textTheme.titleLarge!.copyWith(color: blue, decoration: isHovered? TextDecoration.underline : TextDecoration.underline)),)),
+
+                    OnHover(builder: (isHovered, context) => TextButton(onPressed: () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (BuildContext context) => const Resigning())), child: Text(AppLocalizations.of(context).translate("How do I stop becoming a runner\n\n"), style: Theme.of(context).textTheme.titleLarge!.copyWith(color: blue, decoration: isHovered? TextDecoration.underline : TextDecoration.underline)),)),
+
+                    OnHover(builder: (isHovered, context) => TextButton(onPressed: () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (BuildContext context) => const Filters())), child: Text(AppLocalizations.of(context).translate("Filters\n\n"), style: Theme.of(context).textTheme.titleLarge!.copyWith(color: blue, decoration: isHovered? TextDecoration.underline : TextDecoration.underline)),)),
+
+                    OnHover(builder: (isHovered, context) => TextButton(onPressed: () => Navigator.of(context).push(MaterialPageRoute<void>(builder: (BuildContext context) => const HowDoIVerifyMyIdentity())), child: Text(AppLocalizations.of(context).translate("How do i verify my identity?\n\n"), style: Theme.of(context).textTheme.titleLarge!.copyWith(color: blue, decoration: isHovered? TextDecoration.underline : TextDecoration.underline)),)),
+
+
+
+                    sbhavg,
 
 
 

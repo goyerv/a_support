@@ -16,11 +16,12 @@ import '../../../../../guides/presentation/bloc/guides_bloc.dart';
 import '../../../../../web_core/global_fields/fields.dart';
 import '../../../../../web_core/internationalization/app_localizations.dart';
 import '../../../../../web_core/util/hover.dart';
+import '../../../../../widget/widget.dart';
 import '../identity_verification/identity_verification.dart';
-import '../post/how_do_I_delete_a_post.dart';
+import '../post/how_do_i_delete_a_post.dart';
 import '../post/how_do_i_schedule_a_post.dart';
 import '../post/posts.dart';
-import '../qr_scanner/how_do_I_scan_a_qr_code.dart';
+import '../qr_scanner/how_do_i_scan_qr_code.dart';
 
 
 class Filters extends StatefulWidget {
@@ -134,7 +135,7 @@ class _FiltersState extends State<Filters> {
                             foregroundColor: grey,
                             padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
                           ),
-                          child: Text("Helpful", style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: grey),),
+                          child: Text(AppLocalizations.of(context).translate("Helpful"), style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: grey),),
                         ),
 
 
@@ -149,7 +150,7 @@ class _FiltersState extends State<Filters> {
                             foregroundColor: grey,
                             padding: EdgeInsets.symmetric(horizontal: 24.0, vertical: 12.0),
                           ),
-                          child: Text("Not Helpful", style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: grey),),
+                          child: Text(AppLocalizations.of(context).translate("Not Helpful"), style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: grey),),
                         ),
 
 
