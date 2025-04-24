@@ -7,9 +7,12 @@
 
 
 
-![Goyerv Logo](assets/favicons/goyerv_icon.ico)
+<div align="center">
+  <img src="assets/favicons/goyerv_icon.ico" width="30%" alt="Goyerv Logo" />
+</div>
 
 
+<hr>
 
 
 # Goyerv Support: Support & Guides
