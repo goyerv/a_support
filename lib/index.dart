@@ -59,12 +59,21 @@ class _GoyervSupportState extends State<GoyervSupport> {
   late String locale;
   late final GoRouter router;
   late GlobalKey<NavigatorState> navigatorKey;
+  late String languageCode;
+  late String? countryCode;
 
 
   @override 
   void initState() {
     localesPreferences = LocalesPreferencesImpl();
+    r();
     super.initState();
+  }
+
+
+  void r() async {
+    await localesPreferences.getPlatformLocale().then((value) => languageCode =   value.first);
+    await localesPreferences.getPlatformLocale().then((value) => countryCode =  (value.elementAt(1) == ''? null : value.elementAt(1))!);
   }
 
 
@@ -86,13 +95,82 @@ class _GoyervSupportState extends State<GoyervSupport> {
     
         GoRoute(
           path: '/',
-          builder: (context, state) => Homepage()
+          builder: (context, state) {
+            languageCode = 'en';
+            countryCode = 'US';
+            return Homepage();
+          }
         ),
   
-   
+        GoRoute(
+          path: '/en/:path',
+          builder: (context, state) {
+            languageCode = 'en';
+            countryCode = 'US';
+            return Homepage();
+          }
+        ),
+  
+        GoRoute(
+          path: '/es/:path',
+          builder: (context, state) {
+            languageCode = 'es';
+            countryCode = 'ES';
+            return Homepage();
+          }
+        ),
+  
+        GoRoute(
+          path: '/fr/:path',
+          builder: (context, state) {
+            languageCode = 'fr';
+            countryCode = 'FR';
+            return Homepage();
+          }
+        ),
+
+        GoRoute(
+          path: '/hi/:path',
+          builder: (context, state) {
+            languageCode = 'hi';
+            countryCode = null;
+            return Homepage();
+          }
+        ),
+  
+        GoRoute(
+          path: '/ja/:path',
+          builder: (context, state) {
+            languageCode = 'ja';
+            countryCode = null;
+            return Homepage();
+          }
+        ),
+  
+        GoRoute(
+          path: '/zh-CN/:path',
+          builder: (context, state) {
+            languageCode = 'zh';
+            countryCode = 'CN';
+            return Homepage();
+          }
+        ),
+  
+        GoRoute(
+          path: '/zh-TW/:path',
+          builder: (context, state) {
+            languageCode = 'zh';
+            countryCode = 'TW';
+            return Homepage();
+          }
+        ),
+  
+
+
+
         // Deep links
         GoRoute(
-          path: '/2025/analytics/:path',
+          path: '${languageCode}/2025/analytics/:path',
           builder: (context, state) {
             if(state.pathParameters['path'] == "analytics") {
               return const Analytics();
@@ -103,7 +181,7 @@ class _GoyervSupportState extends State<GoyervSupport> {
         ),
         
         GoRoute(
-          path: '/2025/convert/:path',
+          path: '${languageCode}/2025/convert/:path',
           builder: (context, state) {
             if(state.pathParameters['path'] == "becoming-a-runner") {
               return const BecomingARunner();
@@ -119,7 +197,7 @@ class _GoyervSupportState extends State<GoyervSupport> {
         ),
         
         GoRoute(
-          path: '/2025/filter/:path',
+          path: '${languageCode}/2025/filter/:path',
           builder: (context, state) {
             if(state.pathParameters['path'] == "filters") {
               return const Filters();
@@ -131,7 +209,7 @@ class _GoyervSupportState extends State<GoyervSupport> {
         ),
         
         GoRoute(
-          path: '/2025/identity-verification/:path',
+          path: '${languageCode}/2025/identity-verification/:path',
           builder: (context, state) {
             if(state.pathParameters['path'] == "how-do-I-verify-my-identity") {
               return const HowDoIVerifyMyIdentity();
@@ -143,7 +221,7 @@ class _GoyervSupportState extends State<GoyervSupport> {
         ),
         
         GoRoute(
-          path: '/2025/post/:path',
+          path: '${languageCode}/2025/post/:path',
           builder: (context, state) {
             if(state.pathParameters['path'] == "how-do-I-delete-a-post") {
               return const HowDoIDeleteAPost();
@@ -164,7 +242,7 @@ class _GoyervSupportState extends State<GoyervSupport> {
 
     
         GoRoute(
-          path: '/2025/qr/:path',
+          path: '${languageCode}/2025/qr/:path',
           builder: (context, state) {
             if(state.pathParameters['path'] == "how-do-I-scan-qr-codes") {
               return const HowDoIScanAQRCode();
@@ -178,7 +256,7 @@ class _GoyervSupportState extends State<GoyervSupport> {
 
 
         GoRoute(
-          path: '/2025/requests/:path',
+          path: '${languageCode}/2025/requests/:path',
           builder: (context, state) {
             if(state.pathParameters['path'] == "how-do-I-counter-a-request") {
               return const HowDoICounterARequest();
@@ -199,7 +277,7 @@ class _GoyervSupportState extends State<GoyervSupport> {
 
 
         GoRoute(
-          path: '/2025/settings/:path',
+          path: '${languageCode}/2025/settings/:path',
           builder: (context, state) {
             if(state.pathParameters['path'] == "how-do-I-delete-my-account") {
               return const HowDoIDeleteMyAccount();
@@ -245,7 +323,7 @@ class _GoyervSupportState extends State<GoyervSupport> {
 
 
         GoRoute(
-          path: '/2025/wallet/:path',
+          path: '${languageCode}/2025/wallet/:path',
           builder: (context, state) {
             if(state.pathParameters['path'] == "how-do-I-make-deposits-into-my-account") {
               return const HowDoIMakeDeposits();
@@ -291,7 +369,7 @@ class _GoyervSupportState extends State<GoyervSupport> {
       darkTheme: darkTheme,
       themeMode: ThemeMode.system,
       debugShowCheckedModeBanner: false,
-      locale: Locale('${localesPreferences.getPlatformLocale().then((value) => value.first)}', '${localesPreferences.getPlatformLocale().then((value) => value.elementAt(1) == ''? null : value.elementAt(1))}'),
+      locale: Locale(languageCode, countryCode),
       supportedLocales: const [
         Locale('en', 'US'),
         Locale('zh', 'CN'),

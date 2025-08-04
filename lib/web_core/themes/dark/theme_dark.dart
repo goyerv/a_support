@@ -52,7 +52,7 @@ ThemeData darkTheme = ThemeData(
   ),  
   cardColor: black..withOpacity(0.8),
   canvasColor: monaiki,
-  cardTheme: CardTheme(
+  cardTheme: CardThemeData(
     color: black,
     elevation: 0.0,
     shadowColor: white..withOpacity(0.5),
@@ -76,7 +76,7 @@ ThemeData darkTheme = ThemeData(
     thickness: 10.0,
   ),
   dialogBackgroundColor: black,
-  dialogTheme: DialogTheme(
+  dialogTheme: DialogThemeData(
     backgroundColor: black,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(10.0),
@@ -226,7 +226,7 @@ ThemeData darkTheme = ThemeData(
     ),
     contentTextStyle: bodyLarge,
   ),
-  tabBarTheme: TabBarTheme(
+  tabBarTheme: TabBarThemeData(
     indicator: const UnderlineTabIndicator(
       borderRadius: BorderRadius.only(topLeft: Radius.circular(4.0), topRight: Radius.circular(4.0)),
       borderSide: BorderSide(width: 5.0, color: defaultColor),

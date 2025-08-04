@@ -52,7 +52,7 @@ ThemeData lightTheme = ThemeData(
   ),
   cardColor: white,
   canvasColor: whiteSmoke,
-  cardTheme: CardTheme(
+  cardTheme: CardThemeData(
     color: white,
     elevation: 0.0,
     shadowColor: black..withOpacity(0.4),
@@ -76,7 +76,7 @@ ThemeData lightTheme = ThemeData(
     thickness: 10.0,
   ),
   dialogBackgroundColor: white,
-  dialogTheme: DialogTheme(
+  dialogTheme: DialogThemeData(
     backgroundColor: white,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(10.0),
@@ -234,7 +234,7 @@ ThemeData lightTheme = ThemeData(
     ),
     contentTextStyle: bodyLarge,
   ),
-  tabBarTheme: TabBarTheme(
+  tabBarTheme: TabBarThemeData(
     indicator: const UnderlineTabIndicator(
       borderRadius: BorderRadius.only(topLeft: Radius.circular(4.0), topRight: Radius.circular(4.0)),
       borderSide: BorderSide(width: 5.0, color: defaultColor),
