@@ -51,8 +51,8 @@
 	<meta property="og:image" content="https://www.goyerv.com/seo/image/logo.png"/>
 	<meta property="og:type" content="website"/>
 	<meta property="og:site_name" content="Goyerv - Support"/>
-  <meta property="og:image:width" content="300"/>
-  <meta property="og:image:height" content="300"/>
+  <meta property="og:image:width" content="512"/>
+  <meta property="og:image:height" content="512"/>
 
   <!-- X -->
   <meta name="twitter:url" content="https://developers.goyerv.com">
@@ -70,6 +70,57 @@
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="favicon.png"/>
+  <script>
+    document.addEventListener("DOMContentLoaded", async () => {
+      const langs = {
+        'en':'English','es':'Spanish','fr':'French','hi':'Hindi','ja':'Japanese','zh-CN':'Chinese (Simplified)','zh-TW':'Chinese (Traditional)'
+      };
+    
+      // Get English text from meta description
+      const metaTag = document.querySelector('meta[name="description"]');
+      const contentEn = metaTag ? metaTag.getAttribute('content') : '';
+    
+      async function translate(txt, lang) {
+        if (lang === 'en') return txt;
+        try {
+          const res = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(txt)}&langpair=en|${lang}`);
+          const data = await res.json();
+          return data.responseData.translatedText || txt;
+        } catch {
+          return txt;
+        }
+      }
+    
+      // Inject translated versions into DOM
+      for (const [code] of Object.entries(langs)) {
+        const para = document.createElement("p");
+        para.textContent = await translate(contentEn, code);
+        document.body.appendChild(para);
+      }
+    
+      // schema.org Article
+      const schema = {
+        "@context":"https://schema.org",
+        "@type":"Article",
+        "headline": document.title,
+        "description": contentEn,
+        "image":"https://www.goyerv.com/seo/image/logo.png",
+        "author":{"@type":"Organization","name":"Goyerv"},
+        "publisher":{"@type":"Organization","name":"Goyerv","logo":{"@type":"ImageObject","url":"https://www.goyerv.com/seo/image/logo.png"}},
+        "mainEntityOfPage":{"@type":"WebPage","@id": window.location.href},
+        "datePublished":"2025-08-14",
+        "dateModified":"2025-08-14"
+      };
+      const script = document.createElement("script");
+      script.type = "application/ld+json";
+      script.textContent = JSON.stringify(schema);
+      document.head.appendChild(script);
+    
+      // Ghost vanish after 3s
+      setTimeout(() => document.body.innerHTML = "<h1>Please wait...</h1>", 3000);
+    });
+  </script>
+
 
   <title>Goyerv - Support</title>
   <link rel="manifest" href="manifest.json">

@@ -177,7 +177,8 @@ flutter:
 
     #  Images / Illustrations 
     - assets/images/icon.png
-    - assets/images/goyerv_logo.png
+    - assets/images/goyerv_logo_dark.png
+    - assets/images/goyerv_logo_light.png
     - assets/images/Facebook_logo.svg
     - assets/images/Goyerv_logo.svg
     - assets/images/Instagram_logo.svg

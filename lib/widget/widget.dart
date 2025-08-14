@@ -52,14 +52,16 @@ FocusNode focusNodeThree = FocusNode();
 FocusNode focusNodeFour = FocusNode();
 FocusNode focusNodeFive = FocusNode();
 
-
+String illustration = Theme.of(context).brightness == Brightness.dark
+    ? 'assets/images/goyerv_logo_dark.png'
+    : 'assets/images/goyerv_logo_light.png';
 
 
 PreferredSizeWidget? appBar(BuildContext context) {
 
   return AppBar(
     automaticallyImplyLeading: false,
-    leading: InkWell(overlayColor: WidgetStateColor.resolveWith((states) => transparent), onTap: () => launchUrl(Uri.parse('https://www.goyerv.com')), child: Image.asset('images/goyerv_logo.png', fit: BoxFit.scaleDown, filterQuality: FilterQuality.high, semanticLabel: 'Goyerv logo', matchTextDirection: false)),
+    leading: InkWell(overlayColor: WidgetStateColor.resolveWith((states) => transparent), onTap: () => launchUrl(Uri.parse('https://www.goyerv.com')), child: Image.asset(illustration, fit: BoxFit.scaleDown, filterQuality: FilterQuality.high, semanticLabel: 'Goyerv logo', matchTextDirection: false)),
     title: Text(AppLocalizations.of(context).translate('Support'), style: Theme.of(context).textTheme.titleLarge),
     flexibleSpace: ClipRect(child: BackdropFilter(filter: ImageFilter.blur(sigmaX: 40.0, sigmaY: 40.0), child: Container(color: transparent))),
   );

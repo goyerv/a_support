@@ -27,7 +27,7 @@ class AppLocalizations {
   static const LocalizationsDelegate<AppLocalizations> delegate = AppLocalizationsDelegate();
 
   Future<bool> load() async {
-    String jsonString = await rootBundle.loadString(locale.languageCode == 'zh'? 'assets/languages/${locale.languageCode}_${locale.countryCode}.json' : 'assets/languages/${locale.languageCode}.json');
+    String jsonString = await rootBundle.loadString(locale.languageCode == 'zh'? 'assets/languages/${locale.languageCode}-${locale.countryCode}.json' : 'assets/languages/${locale.languageCode}.json');
     var jsonMap = json.decode(jsonString);
     localizedStrings = jsonMap.map((key, value) => MapEntry(key, value.toString()));
     return true;
@@ -47,7 +47,7 @@ class AppLocalizationsDelegate extends LocalizationsDelegate<AppLocalizations> {
 
   @override 
   bool isSupported(Locale locale) {
-    return ['ar', 'bn', 'bg', 'my', 'ce', 'zh', 'zh_CN', 'zh_TW', 'hr', 'cs', 'da', 'nl', 'en', 'et', 'fi', 'fi', 'fr', 'ka', 'de', 'el', 'gu', 'ha', 'hi', 'hu', 'ig', 'id', 'it', 'it', 'ja', 'kn', 'km', 'ko', 'ms', 'ml', 'mr', 'nb', 'or', 'pl', 'pt', 'pa', 'ro', 'ru', 'es', 'ta', 'th', 'tr', 'uk', 'vi', 'cy', 'yr'].contains(locale.languageCode);
+    return ['es', 'fr', 'hi', 'ja', 'zh'].contains(locale.languageCode);
   }
 
   @override 

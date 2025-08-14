@@ -22,13 +22,14 @@
 
 
 
-<link rel="alternate" href="https://support.goyerv.com/" hreflang="en">
-<link rel="alternate" href="https://support.goyerv.com/es/" hreflang="es">
-<link rel="alternate" href="https://support.goyerv.com/fr/" hreflang="fr">
-<link rel="alternate" href="https://support.goyerv.com/hi/" hreflang="hi">
-<link rel="alternate" href="https://support.goyerv.com/ja/" hreflang="ja">
-<link rel="alternate" href="https://support.goyerv.com/zh-CN/" hreflang="zh-CN">
-<link rel="alternate" href="https://support.goyerv.com/zh-TW/" hreflang="zh-TW">
+  <meta rel="alternate" href="https://support.goyerv.com/2025/identity-verification/how-do-I-verify-my-identity.html" hreflang="en">
+  <meta rel="alternate" href="https://support.goyerv.com/es/2025/identity-verification/how-do-I-verify-my-identity.html" hreflang="es">
+  <meta rel="alternate" href="https://support.goyerv.com/fr/2025/identity-verification/how-do-I-verify-my-identity.html" hreflang="fr">
+  <meta rel="alternate" href="https://support.goyerv.com/hi/2025/identity-verification/how-do-I-verify-my-identity.html" hreflang="hi">
+  <meta rel="alternate" href="https://support.goyerv.com/ja/2025/identity-verification/how-do-I-verify-my-identity.html" hreflang="ja">
+  <meta rel="alternate" href="https://support.goyerv.com/zh-CN/2025/identity-verification/how-do-I-verify-my-identity.html" hreflang="zh-CN">
+  <meta rel="alternate" href="https://support.goyerv.com/zh-TW/2025/identity-verification/how-do-I-verify-my-identity.html" hreflang="zh-TW">  <meta name="description" content="The filters you have toggled on or off directly shape what you see in your runner post feed. Goyerv’s filtering system is designed to surface the most relevant posts based on your preferences, and it’s broken down into three main categories: Location, Run Category, and Medium of Transportation.">
+
 
 
 
@@ -40,8 +41,8 @@
 <meta content="https://www.goyerv.com/seo/image/logo.png" property="og:image">
 <meta content="article" property="og:type">
 <meta content="मैं अपनी पहचान कैसे सत्यापित करूं?" property="og:site_name"/>
-<meta content="300" property="og: image:width"/>
-<meta content="300" property="og: image:height"/>
+<meta content="512" property="og: image:width"/>
+<meta content="512" property="og: image:height"/>
 <!-- X -->
 <meta content="https://support.goyerv.com/hi/2025/identity-verification/how-do-I-verify-my-identity.html" name="twitter:url"/>
 <meta content="मैं अपनी पहचान कैसे सत्यापित करूं?" name="twitter:title"/>
@@ -53,17 +54,70 @@
 <meta content="मैं अपनी पहचान कैसे सत्यापित करूं?" name="apple-mobile-web-app-title"/>
 <link href="/icons/Icon-192.png" rel="apple-touch-icon"/>
 <!-- Favicon -->
-<link href="/favicon.png" rel="icon" type="image/png">
+<link href="favicon.png" rel="icon" type="image/png">
+<script>
+  document.addEventListener("DOMContentLoaded", async () => {
+    const langs = {
+      'en':'English','es':'Spanish','fr':'French','hi':'Hindi','ja':'Japanese','zh-CN':'Chinese (Simplified)','zh-TW':'Chinese (Traditional)'
+    };
+  
+    // Get English text from meta description
+    const metaTag = document.querySelector('meta[name="description"]');
+    const contentEn = metaTag ? metaTag.getAttribute('content') : '';
+  
+    async function translate(txt, lang) {
+      if (lang === 'en') return txt;
+      try {
+        const res = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(txt)}&langpair=en|${lang}`);
+        const data = await res.json();
+        return data.responseData.translatedText || txt;
+      } catch {
+        return txt;
+      }
+    }
+  
+    // Inject translated versions into DOM
+    for (const [code] of Object.entries(langs)) {
+      const para = document.createElement("p");
+      para.textContent = await translate(contentEn, code);
+      document.body.appendChild(para);
+    }
+  
+    // schema.org Article
+    const schema = {
+      "@context":"https://schema.org",
+      "@type":"Article",
+      "headline": document.title,
+      "description": contentEn,
+      "image":"https://www.goyerv.com/seo/image/logo.png",
+      "author":{"@type":"Organization","name":"Goyerv"},
+      "publisher":{"@type":"Organization","name":"Goyerv","logo":{"@type":"ImageObject","url":"https://www.goyerv.com/seo/image/logo.png"}},
+      "mainEntityOfPage":{"@type":"WebPage","@id": window.location.href},
+      "datePublished":"2025-08-14",
+      "dateModified":"2025-08-14"
+    };
+    const script = document.createElement("script");
+    script.type = "application/ld+json";
+    script.textContent = JSON.stringify(schema);
+    document.head.appendChild(script);
+  
+    // Ghost vanish after 3s
+    setTimeout(() => document.body.innerHTML = "<h1>Please wait...</h1>", 3000);
+  });
+</script>
+
 <title>मैं अपनी पहचान कैसे सत्यापित करूं?</title>
 <script>
-    // Redirect only if it's a human (basic detection)
-    if (!navigator.userAgent.includes('Googlebot')) {
-      const fullPath = window.location.pathname;
+  if (!navigator.userAgent.includes('Googlebot')) {
+    const fullPath = window.location.pathname + window.location.search + window.location.hash;
+    // Force load the root app shell (index.html) but keep the URL for GoRouter
+    if (!window.location.href.startsWith('https://support.goyerv.com/')) {
       window.location.href = `https://support.goyerv.com${fullPath}`;
     }
-  </script>
+  }
+</script>
 </head>
 <body>
-<h1>Redirecting...</h1>
+
 </body>
 </html>
