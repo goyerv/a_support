@@ -77,7 +77,7 @@ class GuidesRemoteDataSourceImpl implements GuidesRemoteDataSource {
 
     try {
       final response = await client_.post(
-        Uri.parse('https://static.goyerv.com/v1/support/search_support'),
+        Uri.parse('https://api.goyerv.com/v1/support/search_support'),
         headers: {'content-type': 'application/x-protobuf'},
         body: body,
       );
@@ -116,7 +116,7 @@ class GuidesRemoteDataSourceImpl implements GuidesRemoteDataSource {
 
     try {
       final response = await client_.post(
-        Uri.parse('https://static.goyerv.com/v1/support/guides_search'),
+        Uri.parse('https://api.goyerv.com/v1/support/guides_search'),
         headers: {'content-type': 'application/x-protobuf'},
         body: body,
       );
@@ -160,7 +160,7 @@ class GuidesRemoteDataSourceImpl implements GuidesRemoteDataSource {
 
     try {
       await client_.post(
-        Uri.parse('https://static.goyerv.com/v1/support/guides_search'),
+        Uri.parse('https://api.goyerv.com/v1/support/guides_search'),
         headers: {'content-type': 'application/x-protobuf'},
         body: body,
       );
