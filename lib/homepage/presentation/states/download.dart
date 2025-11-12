@@ -18,8 +18,10 @@ import '../../../widget/widget.dart';
 
 
 class Download extends StatefulWidget {
+
+  final void Function(Locale) onLocaleChanged;
   
-  const Download({Key? key}) : super(key: key);
+  const Download(this.onLocaleChanged, {Key? key}) : super(key: key);
 
   @override
   State<Download> createState() => _DownloadState();
@@ -43,7 +45,7 @@ class _DownloadState extends State<Download> {
   // You can either:
   // Have your users bypass it by right-clicking → Open.
   // Or sign (using notarytool) and notarize the app with Apple to reduce warnings:
-    // `codesign --deep --force --verbose --sign "Developer ID Application: YOUR NAME" YourApp.app`
+  // `codesign --deep --force --verbose --sign "Developer ID Application: YOUR NAME" YourApp.app`
 
 
 
@@ -60,7 +62,8 @@ class _DownloadState extends State<Download> {
           width: MediaQuery.of(context).size.width,
           color: Theme.of(context).primaryColor,
           child: FooterView(
-            footer: footer(context),
+            footer: footer(context, widget.onLocaleChanged),
+            flex: 8,
             children: [
 
               Padding(
@@ -68,36 +71,40 @@ class _DownloadState extends State<Download> {
                 child: Column(
                   children: [
 
-
                     sbhavg,
 
 
                     Text(AppLocalizations.of(context).translate("Download Goyerv"), textAlign: TextAlign.center, style: Theme.of(context).textTheme.headlineLarge),
                     Text(AppLocalizations.of(context).translate("Free and powered by open source. Crowdsourcing deliveries and logistics."), textAlign: TextAlign.center, style: Theme.of(context).textTheme.titleLarge!.copyWith(fontWeight: FontWeight.w400)),
 
-                    sbhavg,
+                    sbhmax,
 
 
                     Wrap(
-                      spacing: 30.0,
-                      runSpacing: 30.0,
                       alignment: WrapAlignment.spaceEvenly,
+                      crossAxisAlignment: WrapCrossAlignment.center,
+                      spacing: MediaQuery.of(context).size.width > 600 ? 30 : 0,
+                      runSpacing: 30,
+                      direction: MediaQuery.of(context).size.width > 600 ? Axis.horizontal : Axis.vertical,
                       children: [
 
 
                         SizedBox(
-                          width: MediaQuery.of(context).size.width >= 800? MediaQuery.of(context).size.width * 0.45 : MediaQuery.of(context).size.width * 0.7,
-                          height: MediaQuery.of(context).size.width * 0.45,
+                          
                           child: Column(
                             children: [
 
-                              SvgPicture.asset('images/android.svg', height: MediaQuery.of(context).size.height * 0.3),
-                              // SvgPicture.asset('images/float.svg', height: MediaQuery.of(context).size.height * 0.3, colorFilter: ColorFilter.mode(Theme.of(context).brightness == Brightness.dark? white : black, BlendMode.srcIn)),
+                              SvgPicture.asset('assets/images/android.svg', height: MediaQuery.of(context).size.height * 0.3),
+                              // SvgPicture.asset('assets/images/float.svg', height: MediaQuery.of(context).size.height * 0.3, colorFilter: ColorFilter.mode(Theme.of(context).brightness == Brightness.dark? white : black, BlendMode.srcIn)),
 
-                              TextButton(onPressed: () => launchUrl(Uri.parse('https://support.goyerv.com/assets/goyerv-android.apk')), child: Text(AppLocalizations.of(context).translate("Download\n"), textAlign: TextAlign.center, style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: blue))),
+                              sbhmin,
 
                               Text("ARM64 (arm64-v8a)", textAlign: TextAlign.center, style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: grey)),
 
+
+                              TextButton(onPressed: () => launchUrl(Uri.parse('https://support.goyerv.com/assets/goyerv-android.apk'), mode: LaunchMode.externalApplication), child: Text(AppLocalizations.of(context).translate("Download\n"), textAlign: TextAlign.center, style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: blue))),
+
+
                               
 
                             ],
@@ -107,18 +114,21 @@ class _DownloadState extends State<Download> {
 
 
                         SizedBox(
-                          width: MediaQuery.of(context).size.width >= 800? MediaQuery.of(context).size.width * 0.45 : MediaQuery.of(context).size.width * 0.7,
-                          height: MediaQuery.of(context).size.width * 0.45,
+                          
                           child: Column(
                             children: [
 
-                              SvgPicture.asset('images/windows.svg', height: MediaQuery.of(context).size.height * 0.3),
-                              // SvgPicture.asset('images/float.svg', height: MediaQuery.of(context).size.height * 0.3, colorFilter: ColorFilter.mode(Theme.of(context).brightness == Brightness.dark? white : black, BlendMode.srcIn)),
+                              SvgPicture.asset('assets/images/windows.svg', height: MediaQuery.of(context).size.height * 0.3),
+                              // SvgPicture.asset('assets/images/float.svg', height: MediaQuery.of(context).size.height * 0.3, colorFilter: ColorFilter.mode(Theme.of(context).brightness == Brightness.dark? white : black, BlendMode.srcIn)),
 
-                              TextButton(onPressed: () => launchUrl(Uri.parse('https://support.goyerv.com/assets/goyerv-windows.apk')), child: Text(AppLocalizations.of(context).translate("Download\n"), textAlign: TextAlign.center, style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: blue))),
+                              sbhmin,
 
                               Text("x86_64 (amd64)", textAlign: TextAlign.center, style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: grey)),
 
+
+                              TextButton(onPressed: () => launchUrl(Uri.parse('https://support.goyerv.com/assets/goyerv-windows.apk'), mode: LaunchMode.externalApplication), child: Text(AppLocalizations.of(context).translate("Download\n"), textAlign: TextAlign.center, style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: blue))),
+
+
                               
 
                             ],
@@ -128,18 +138,21 @@ class _DownloadState extends State<Download> {
 
 
                         SizedBox(
-                          width: MediaQuery.of(context).size.width >= 800? MediaQuery.of(context).size.width * 0.45 : MediaQuery.of(context).size.width * 0.7,
-                          height: MediaQuery.of(context).size.width * 0.45,
+                          
                           child: Column(
                             children: [
 
-                              SvgPicture.asset('images/windows.svg', height: MediaQuery.of(context).size.height * 0.3),
-                              // SvgPicture.asset('images/float.svg', height: MediaQuery.of(context).size.height * 0.3, colorFilter: ColorFilter.mode(Theme.of(context).brightness == Brightness.dark? white : black, BlendMode.srcIn)),
+                              SvgPicture.asset('assets/images/linux.svg', height: MediaQuery.of(context).size.height * 0.3),
+                              // SvgPicture.asset('assets/images/float.svg', height: MediaQuery.of(context).size.height * 0.3, colorFilter: ColorFilter.mode(Theme.of(context).brightness == Brightness.dark? white : black, BlendMode.srcIn)),
 
-                              TextButton(onPressed: () => launchUrl(Uri.parse('https://support.goyerv.com/assets/goyerv-linux.apk')), child: Text(AppLocalizations.of(context).translate("Download\n"), textAlign: TextAlign.center, style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: blue))),
+                              sbhmin,
 
                               Text("x86_64 (amd64)", textAlign: TextAlign.center, style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: grey)),
 
+
+                              TextButton(onPressed: () => launchUrl(Uri.parse('https://support.goyerv.com/assets/goyerv-linux.apk'), mode: LaunchMode.externalApplication), child: Text(AppLocalizations.of(context).translate("Download\n"), textAlign: TextAlign.center, style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: blue))),
+
+
                               
 
                             ],
@@ -149,19 +162,19 @@ class _DownloadState extends State<Download> {
 
 
                         SizedBox(
-                          width: MediaQuery.of(context).size.width >= 800? MediaQuery.of(context).size.width * 0.45 : MediaQuery.of(context).size.width * 0.7,
-                          height: MediaQuery.of(context).size.width * 0.45,
+                          
                           child: Column(
                             children: [
 
-                              SvgPicture.asset('images/apple.svg', height: MediaQuery.of(context).size.height * 0.3, colorFilter: ColorFilter.mode(Theme.of(context).brightness == Brightness.dark? white : black, BlendMode.srcIn)),
+                              SvgPicture.asset('assets/images/apple.svg', height: MediaQuery.of(context).size.height * 0.3, colorFilter: ColorFilter.mode(Theme.of(context).brightness == Brightness.dark? white : black, BlendMode.srcIn)),
+
+                              sbhmin,
+
+                              Text("ARM64 [Intel, Apple Silicon]", textAlign: TextAlign.center, style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: grey)),
+
 
                               TextButton(onPressed: null, child: Text(AppLocalizations.of(context).translate("Download (iOS)\n"), textAlign: TextAlign.center, style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: grey))),
 
-                              Text("ARM64 [Intel, Apple Silicon]", textAlign: TextAlign.center, style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: grey)),
-
-                              
-
                             ],
                           ),
                         ),
@@ -169,16 +182,19 @@ class _DownloadState extends State<Download> {
 
 
                         SizedBox(
-                          width: MediaQuery.of(context).size.width >= 800? MediaQuery.of(context).size.width * 0.45 : MediaQuery.of(context).size.width * 0.7,
-                          height: MediaQuery.of(context).size.width * 0.45,
+                          
                           child: Column(
                             children: [
 
-                              SvgPicture.asset('images/apple.svg', height: MediaQuery.of(context).size.height * 0.3, colorFilter: ColorFilter.mode(Theme.of(context).brightness == Brightness.dark? white : black, BlendMode.srcIn)),
+                              SvgPicture.asset('assets/images/apple.svg', height: MediaQuery.of(context).size.height * 0.3, colorFilter: ColorFilter.mode(Theme.of(context).brightness == Brightness.dark? white : black, BlendMode.srcIn)),
+
+                              sbhmin,
+
+                              Text("ARM64 [Intel, Apple Silicon]", textAlign: TextAlign.center, style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: grey)),
+
 
                               TextButton(onPressed: null, child: Text(AppLocalizations.of(context).translate("Download (MacOS)\n"), textAlign: TextAlign.center, style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: grey))),
 
-                              Text("ARM64 [Intel, Apple Silicon]", textAlign: TextAlign.center, style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: grey)),
 
                               
 

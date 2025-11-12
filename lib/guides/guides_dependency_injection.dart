@@ -14,17 +14,15 @@ Future<void> initGuides() async {
   // Data sources
   sl.registerLazySingleton<GuidesRemoteDataSource>(() => GuidesRemoteDataSourceImpl());
 
-  // Use cases
-  sl.registerLazySingleton(() => SupportSearch(sl()));
-  sl.registerLazySingleton(() => GuidesSearch(sl()));
-  sl.registerLazySingleton(() => RateGuide(sl()));
-
   // Repository
-  sl.registerLazySingleton<GuidesRepositoryContracts>(() => GuidesRepositoryContractsImpl(sl(), sl()));
+  sl.registerLazySingleton<GuidesRepositoryContracts>(() => GuidesRepositoryContractsImpl());
 
+  // Use cases
+  sl.registerSingleton<SupportSearch>(SupportSearch(sl()));
+  sl.registerSingleton<GuidesSearch>(GuidesSearch(sl()));
+  sl.registerSingleton<RateGuide>(RateGuide(sl()));
 
   // Bloc
-  sl.registerFactory(() => GuidesBloc(sl(), sl(), sl()));
-
+  sl.registerSingleton<GuidesBloc>(GuidesBloc(sl(), sl(), sl()));
 
 }

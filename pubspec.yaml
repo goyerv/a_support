@@ -30,7 +30,14 @@ dependencies:
   flutter:
     sdk: flutter
 
+  flutter_localizations:
+    sdk: flutter
+  
+  flutter_web_plugins:
+    sdk: flutter
 
+  web: ^1.1.1
+  
   # svg_renderer
   flutter_svg: ^2.0.7
   
@@ -39,7 +46,7 @@ dependencies:
   cupertino_icons: ^1.0.6
   
   # font_awesome
-  font_awesome_flutter: '>= 4.7.0'
+  font_awesome_flutter: ^10.5.0
   
   # http
   http: ^1.2.2
@@ -68,11 +75,8 @@ dependencies:
   # get_it
   get_it: ^8.0.3
 
-  # gradients
-  gradient_widgets: ^0.6.0
-
   # intl
-  intl: ^0.19.0
+  intl: ^0.20.2
 
   # rich_text
   rich_text_controller: ^2.0.1
@@ -118,8 +122,6 @@ dev_dependencies:
   flutter_test:
     sdk: flutter
 
-  flutter_localizations:
-    sdk: flutter
 
   # The "flutter_lints" package below contains a set of recommended lints to
   # encourage good coding practices. The lint set provided by the package is
@@ -177,18 +179,23 @@ flutter:
 
     #  Images / Illustrations 
     - assets/images/icon.png
+    - assets/images/goyerv_logo.svg
     - assets/images/goyerv_logo.png
-    - assets/images/Facebook_logo.svg
-    - assets/images/Goyerv_logo.svg
-    - assets/images/Instagram_logo.svg
+    - assets/images/coffee_light.svg
+    - assets/images/coffee_dark.svg
     - assets/images/LinkedIn_logo.svg
-    - assets/images/Threads_logo.svg
     - assets/images/X_logo.svg
-    - assets/images/YouTube_logo.svg
+
+    # SVGs
+    - assets/images/android.svg
+    - assets/images/apple.svg
+    - assets/images/linux.svg
+    - assets/images/windows.svg
+
 
     # Languages
-    - assets/languages/zh_CN.json
-    - assets/languages/zh_TW.json
+    - assets/languages/zh-CN.json
+    - assets/languages/zh-TW.json
     - assets/languages/en.json
     - assets/languages/fr.json
     - assets/languages/hi.json

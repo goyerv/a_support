@@ -21,12 +21,11 @@ typedef getGuidesData = Future<GuidesModel> Function();
 
 class GuidesRepositoryContractsImpl implements GuidesRepositoryContracts {
 
-  final GuidesRemoteDataSource remoteDataSource;
-  final Network network;
 
-  GuidesRepositoryContractsImpl(this.remoteDataSource, this.network);
+  GuidesRepositoryContractsImpl();
 
-
+  final GuidesRemoteDataSource remoteDataSource = GuidesRemoteDataSourceImpl();
+  final Network network = NetworkImpl();
 
   @override
   Future<Either<Errors, GuidesEntity>> supportSearch(String? query)async {

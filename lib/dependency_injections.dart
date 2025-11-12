@@ -24,13 +24,13 @@ import 'guides/presentation/bloc/guides_bloc.dart';
 
 
 part 'guides/guides_dependency_injection.dart';
-part 'email_support/email_support_dependency_injection_container.dart';
+part 'email_support/email_support_dependency_injection.dart';
 
 
 
 final sl = GetIt.instance;
 
 Future<void> init() async {
-  sl.registerLazySingleton(() => initEmailSupport());
-  sl.registerLazySingleton(() => initGuides());
+  await initEmailSupport();
+  await initGuides();
 }

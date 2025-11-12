@@ -18,7 +18,7 @@ ThemeData lightTheme = ThemeData(
     toolbarHeight: tbh,
   ),
   brightness: Brightness.light,
-  bottomAppBarTheme: BottomAppBarTheme(
+  bottomAppBarTheme: BottomAppBarThemeData(
     color: white..withOpacity(0.8),
     elevation: 0.0,
   ),
@@ -52,7 +52,7 @@ ThemeData lightTheme = ThemeData(
   ),
   cardColor: white,
   canvasColor: whiteSmoke,
-  cardTheme: CardTheme(
+  cardTheme: CardThemeData(
     color: white,
     elevation: 0.0,
     shadowColor: black..withOpacity(0.4),
@@ -76,7 +76,7 @@ ThemeData lightTheme = ThemeData(
     thickness: 10.0,
   ),
   dialogBackgroundColor: white,
-  dialogTheme: DialogTheme(
+  dialogTheme: DialogThemeData(
     backgroundColor: white,
     shape: RoundedRectangleBorder(
       borderRadius: BorderRadius.circular(10.0),
@@ -234,7 +234,7 @@ ThemeData lightTheme = ThemeData(
     ),
     contentTextStyle: bodyLarge,
   ),
-  tabBarTheme: TabBarTheme(
+  tabBarTheme: TabBarThemeData(
     indicator: const UnderlineTabIndicator(
       borderRadius: BorderRadius.only(topLeft: Radius.circular(4.0), topRight: Radius.circular(4.0)),
       borderSide: BorderSide(width: 5.0, color: defaultColor),
@@ -247,9 +247,14 @@ ThemeData lightTheme = ThemeData(
   ),
   textButtonTheme: TextButtonThemeData(
     style: ButtonStyle(
-      overlayColor: WidgetStateColor.resolveWith((states) => transparent),
-      backgroundColor: WidgetStateProperty.all(transparent),
-      textStyle: WidgetStateProperty.all(labelLarge..copyWith(color: blue)),
+      padding: WidgetStateProperty.all(EdgeInsets.zero),
+      minimumSize: WidgetStateProperty.all(Size(0, 0)),
+      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+      overlayColor: WidgetStateProperty.all(Colors.transparent),
+      backgroundColor: WidgetStateProperty.all(Colors.transparent),
+      textStyle: WidgetStateProperty.all(labelLarge.copyWith(color: blue)),
+      foregroundColor: WidgetStateProperty.all(blue),
+      visualDensity: VisualDensity(horizontal: -4, vertical: -4),
     ),
   ),
   textSelectionTheme: const TextSelectionThemeData(

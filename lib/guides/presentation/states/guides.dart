@@ -14,7 +14,6 @@ import 'package:shimmer/shimmer.dart';
 import 'package:timeago/timeago.dart' as timeago;
 
 
-import '../../../dependency_injections.dart';
 import '../../../web_core/global_fields/fields.dart';
 import '../../../web_core/internationalization/app_localizations.dart';
 import '../../../web_core/internationalization/locales_preferences.dart';
@@ -24,9 +23,11 @@ import '../widget/discussions_tile/discussions_template_handshake_widget.dart';
 
 class Guides extends StatefulWidget {
 
+  final void Function(Locale) onLocaleChanged;
+
   final String? query;
 
-  const Guides(this.query, {Key? key}) : super(key: key);
+  const Guides(this.onLocaleChanged, this.query, {Key? key}) : super(key: key);
 
   @override
   State<Guides> createState() => _GuidesState();
@@ -84,14 +85,14 @@ class _GuidesState extends State<Guides> {
           width: MediaQuery.of(context).size.width,
           color: Theme.of(context).primaryColor,
           child: FooterView(
-            footer: footer(context),
+            footer: footer(context, widget.onLocaleChanged),
+            flex: 8,
             children: [
 
               Padding(
                 padding: EdgeInsets.all(MediaQuery.of(context).size.width >= 800? 50.0 : 16.0),
                 child: Column(
                   children: [
-
 
                     SizedBox(
                       width: 200,
@@ -116,28 +117,25 @@ class _GuidesState extends State<Guides> {
                     sbhavg,
 
 
-                    BlocProvider(
-                      create: ((context) => sl<GuidesBloc>()),
-                      child: BlocConsumer(
-                        listener: ((context, state) {}),
-                        builder: ((context, state) {
-                          if (state is GuidesInitial) {
-                            return Container();
+                    BlocConsumer<GuidesBloc, GuidesState>(
+                      listener: ((context, state) {}),
+                      builder: ((context, state) {
+                        if (state is GuidesInitial) {
+                          return Container();
+                                      
+                        } else 
+                        if (state is GuidesLoading) {
+                          return loadingIndicator(context); 
+                        
+                        } else
+                        if (state is GuidesLoaded) {
+                          if (state.guidesEntity.guides != null) {
+                            return DiscussionsTemplateHandShakeWidget(state.guidesEntity.guides, locale);
                                         
-                          } else 
-                          if (state is GuidesLoading) {
-                            return loadingIndicator(context); 
-                          
-                          } else
-                          if (state is GuidesLoaded) {
-                            if (state.guidesEntity.guides != null) {
-                              return DiscussionsTemplateHandShakeWidget(state.guidesEntity.guides, locale);
-                    
-                            }
-                          
-                          } return Container();
-                        }),
-                      )
+                          }
+                        
+                        } return Container();
+                      }),
                     ),
                   ],
                 ),

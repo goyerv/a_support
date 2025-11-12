@@ -51,7 +51,7 @@ To get started with the Goyerv app locally, follow these steps:
 
 2. Clone the repository:
 ```console
-git clone https://github/com/Goyerv/a_community.git
+git clone https://github/com/Goyerv/a_support.git
 ```
 
 3. Install dependencies:
