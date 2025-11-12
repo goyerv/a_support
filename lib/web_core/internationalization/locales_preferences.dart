@@ -22,62 +22,62 @@ abstract class LocalesPreferences {
 }
 
 class LocalesPreferencesImpl implements LocalesPreferences {
-
-
-  LocalesPreferencesImpl(); 
+  LocalesPreferencesImpl();
 
   @override
   Future<List<String>> getPlatformLocale() async {
-    
+    final SharedPreferences sharedPreferences =
+        await SharedPreferences.getInstance();
 
-    final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    final stored = sharedPreferences.getStringList(platformKey);
+    if (stored != null && stored.isNotEmpty) {
+      return stored;
+    }
 
+    // Fallback to device platform locale
+    final raw = Platform.localeName.trim();
+    if (raw.isEmpty) {
+      return ['en']; // default fallback
+    }
 
-    final locale = sharedPreferences.getStringList(platformKey);
+    // Remove encoding/variant suffixes like ".UTF-8" or "@euro"
+    final base = raw.split('.').first.split('@').first;
 
+    // Accept separators '_' or '-'
+    List<String> parts;
+    if (base.contains('_')) {
+      parts = base.split('_');
+    } else if (base.contains('-')) {
+      parts = base.split('-');
+    } else {
+      parts = [base];
+    }
 
-    if (locale == null) {
-      if (Platform.localeName.contains('_') && Platform.localeName.contains('.')) {
-        var firstCut = Platform.localeName.split('.').first;
-        return [firstCut.split('_').first, firstCut.split('_').last];
-      
-      } else 
-      if (Platform.localeName.contains('_')) {
-        return [Platform.localeName.split('_').first, Platform.localeName.split('_').last];
-      }
-    
-    } return locale!; 
+    // Return language or [language, country] depending on availability
+    if (parts.length >= 2) {
+      return [parts[0], parts[1]];
+    }
+    return [parts[0]];
   }
-  
-
 
   @override
   Future<void> setPlatformLocale(List<String> locale) async {
-
-    final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-
-    sharedPreferences.setStringList(platformKey, locale);
-
+    final SharedPreferences sharedPreferences =
+        await SharedPreferences.getInstance();
+    await sharedPreferences.setStringList(platformKey, locale);
   }
-  
+
   @override
   Future<String> getLanguageKey() async {
-
-    final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-
-    return Future(() => sharedPreferences.getString(languageKey) ?? 'English');
-
+    final SharedPreferences sharedPreferences =
+        await SharedPreferences.getInstance();
+    return sharedPreferences.getString(languageKey) ?? 'English';
   }
-  
 
   @override
   Future<void> setLanguageKey(String language) async {
-
-    final SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
-
-    sharedPreferences.setString(languageKey, language);
-
+    final SharedPreferences sharedPreferences =
+        await SharedPreferences.getInstance();
+    await sharedPreferences.setString(languageKey, language);
   }
-
-
 }

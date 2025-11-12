@@ -23,10 +23,11 @@ typedef getEmailSupportData = Future<EmailSupportModel> Function();
 
 class EmailSupportRepositoryContractsImpl implements EmailSupportRepositoryContracts {
 
-  final EmailSupportRemoteDataSource remoteDataSource;
-  final Network network;
+  EmailSupportRepositoryContractsImpl();
 
-  EmailSupportRepositoryContractsImpl(this.remoteDataSource, this.network);
+  final EmailSupportRemoteDataSource remoteDataSource = EmailSupportRemoteDataSourceImpl();
+  final Network network = NetworkImpl();
+
 
   @override
   Future<Either<Errors, EmailSupportEntity>> sendSupportTicket(String? email, String? issue, List<String>? images) async {

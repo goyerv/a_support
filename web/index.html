@@ -10,6 +10,8 @@
   
     gtag('config', 'G-Y9875BW5KE');
   </script>
+  <script src="flutter_bootstrap.js" async></script>
+
   <!--
     If you are serving your web app in a path other than the root, change the
     href value below to reflect the base path you are serving from.
@@ -33,12 +35,12 @@
 
 
   <link rel="alternate" href="https://support.goyerv.com/" hreflang="en">
-  <link rel="alternate" href="https://support.goyerv.com/es/" hreflang="es">
-  <link rel="alternate" href="https://support.goyerv.com/fr/" hreflang="fr">
-  <link rel="alternate" href="https://support.goyerv.com/hi/" hreflang="hi">
-  <link rel="alternate" href="https://support.goyerv.com/ja/" hreflang="ja">
-  <link rel="alternate" href="https://support.goyerv.com/zh-CN/" hreflang="zh-CN">
-  <link rel="alternate" href="https://support.goyerv.com/zh-TW/" hreflang="zh-TW">
+  <link rel="alternate" href="https://support.goyerv.com/es/index.html" hreflang="es">
+  <link rel="alternate" href="https://support.goyerv.com/fr/index.html" hreflang="fr">
+  <link rel="alternate" href="https://support.goyerv.com/hi/index.html" hreflang="hi">
+  <link rel="alternate" href="https://support.goyerv.com/ja/index.html" hreflang="ja">
+  <link rel="alternate" href="https://support.goyerv.com/zh-CN/index.html" hreflang="zh-CN">
+  <link rel="alternate" href="https://support.goyerv.com/zh-TW/index.html" hreflang="zh-TW">
 
 
   <meta name="description" content="Goyerv Support is your trusted help center—featuring detailed guides, troubleshooting articles, and direct contact options. Get reliable solutions fast for delivery, account issues, and more.">
@@ -47,7 +49,7 @@
   <!-- Facebook -->
 	<meta property="og:title" content="Goyerv - Support"/>
 	<meta property="og:description" content="Goyerv Support is your trusted help center—featuring detailed guides, troubleshooting articles, and direct contact options. Get reliable solutions fast for delivery, account issues, and more."/>
-	<meta property="og:url" content="https://developers.goyerv.com"/>
+	<meta property="og:url" content="https://support.goyerv.com"/>
 	<meta property="og:image" content="https://www.goyerv.com/seo/image/logo.png"/>
 	<meta property="og:type" content="website"/>
 	<meta property="og:site_name" content="Goyerv - Support"/>
@@ -55,7 +57,7 @@
   <meta property="og:image:height" content="512"/>
 
   <!-- X -->
-  <meta name="twitter:url" content="https://developers.goyerv.com">
+  <meta name="twitter:url" content="https://support.goyerv.com">
   <meta name="twitter:title" content="Goyerv - Support">
   <meta name="twitter:description" content="Goyerv Support is your trusted help center—featuring detailed guides, troubleshooting articles, and direct contact options. Get reliable solutions fast for delivery, account issues, and more.">
   <meta name="twitter:image" content="https://www.goyerv.com/seo/image/logo.png">
@@ -63,40 +65,30 @@
 
 
   <!-- iOS meta tags & icons -->
-  <meta name="apple-mobile-web-app-capable" content="yes">
-  <meta name="apple-mobile-web-app-status-bar-style" content="black">
-  <meta name="apple-mobile-web-app-title" content="Goyerv - Support">
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
 
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-status-bar-style" content="black">
+  <meta name="mobile-web-app-title" content="Goyerv - Community">
+
   <!-- Favicon -->
-  <link rel="icon" type="image/png" href="favicon.png"/>
+  <link rel="shortcut icon" href="/favicon.ico" type="image/x-icon" />
+
   <script>
     document.addEventListener("DOMContentLoaded", async () => {
-      const langs = {
-        'en':'English','es':'Spanish','fr':'French','hi':'Hindi','ja':'Japanese','zh-CN':'Chinese (Simplified)','zh-TW':'Chinese (Traditional)'
-      };
+
     
       // Get English text from meta description
       const metaTag = document.querySelector('meta[name="description"]');
       const contentEn = metaTag ? metaTag.getAttribute('content') : '';
     
-      async function translate(txt, lang) {
-        if (lang === 'en') return txt;
-        try {
-          const res = await fetch(`https://api.mymemory.translated.net/get?q=${encodeURIComponent(txt)}&langpair=en|${lang}`);
-          const data = await res.json();
-          return data.responseData.translatedText || txt;
-        } catch {
-          return txt;
-        }
-      }
+
     
-      // Inject translated versions into DOM
-      for (const [code] of Object.entries(langs)) {
-        const para = document.createElement("p");
-        para.textContent = await translate(contentEn, code);
-        document.body.appendChild(para);
-      }
+      const para = document.createElement("p");
+      para.textContent = contentEn;
+    para.style.color = "white";
+      para.style.color = "white";
+      document.body.appendChild(para);
     
       // schema.org Article
       const schema = {
@@ -117,35 +109,12 @@
       document.head.appendChild(script);
     
       // Ghost vanish after 3s
-      setTimeout(() => document.body.innerHTML = "<h1>Please wait...</h1>", 3000);
+      setTimeout(() => document.body.innerHTML = "", 3000);
     });
   </script>
-
-
   <title>Goyerv - Support</title>
   <link rel="manifest" href="manifest.json">
-
-  <script>
-    // The value below is injected by flutter build, do not touch.
-    var serviceWorkerVersion = null;
-  </script>
-  <!-- This script adds the flutter initialization JS code -->
-  <script src="flutter.js" defer></script>
 </head>
 <body>
-  <script>
-    window.addEventListener('load', function(ev) {
-      // Download main.dart.js
-      _flutter.loader.loadEntrypoint({
-        serviceWorker: {
-          serviceWorkerVersion: serviceWorkerVersion,
-        }
-      }).then(function(engineInitializer) {
-        return engineInitializer.initializeEngine();
-      }).then(function(appRunner) {
-        return appRunner.runApp();
-      });
-    });
-  </script>
 </body>
 </html>

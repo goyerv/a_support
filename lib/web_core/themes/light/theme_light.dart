@@ -18,7 +18,7 @@ ThemeData lightTheme = ThemeData(
     toolbarHeight: tbh,
   ),
   brightness: Brightness.light,
-  bottomAppBarTheme: BottomAppBarTheme(
+  bottomAppBarTheme: BottomAppBarThemeData(
     color: white..withOpacity(0.8),
     elevation: 0.0,
   ),
@@ -247,9 +247,14 @@ ThemeData lightTheme = ThemeData(
   ),
   textButtonTheme: TextButtonThemeData(
     style: ButtonStyle(
-      overlayColor: WidgetStateColor.resolveWith((states) => transparent),
-      backgroundColor: WidgetStateProperty.all(transparent),
-      textStyle: WidgetStateProperty.all(labelLarge..copyWith(color: blue)),
+      padding: WidgetStateProperty.all(EdgeInsets.zero),
+      minimumSize: WidgetStateProperty.all(Size(0, 0)),
+      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+      overlayColor: WidgetStateProperty.all(Colors.transparent),
+      backgroundColor: WidgetStateProperty.all(Colors.transparent),
+      textStyle: WidgetStateProperty.all(labelLarge.copyWith(color: blue)),
+      foregroundColor: WidgetStateProperty.all(blue),
+      visualDensity: VisualDensity(horizontal: -4, vertical: -4),
     ),
   ),
   textSelectionTheme: const TextSelectionThemeData(

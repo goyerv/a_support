@@ -18,7 +18,7 @@ ThemeData darkTheme = ThemeData(
     toolbarHeight: tbh,
   ),
   brightness: Brightness.dark,
-  bottomAppBarTheme: BottomAppBarTheme(
+  bottomAppBarTheme: BottomAppBarThemeData(
     color: black..withOpacity(0.8),
     elevation: 0.0,
   ),
@@ -30,11 +30,11 @@ ThemeData darkTheme = ThemeData(
       size: 26.0,
     ),
     unselectedIconTheme: const IconThemeData(
-      color: white,
+      color: Colors.white70,
       size: 26.0,
     ),
     selectedItemColor: defaultColor,
-    unselectedItemColor: white,
+    unselectedItemColor: Colors.white70,
     selectedLabelStyle: labelLarge.copyWith(color: defaultColor),
     unselectedLabelStyle: labelLarge.copyWith(color: white),
     showSelectedLabels: true,
@@ -66,7 +66,7 @@ ThemeData darkTheme = ThemeData(
     ),
     side: const BorderSide(
       width: 0.5,
-      color: white,
+      color: Colors.white70,
     ),
   ),  
   dividerColor: monaiki,
@@ -89,8 +89,8 @@ ThemeData darkTheme = ThemeData(
   disabledColor: grey..withOpacity(0.7),
   dropdownMenuTheme: DropdownMenuThemeData(
     inputDecorationTheme: InputDecorationTheme(
-      labelStyle: bodyLarge.copyWith(color: white),
-      floatingLabelStyle: labelLarge.copyWith(color: white),
+      labelStyle: bodyLarge.copyWith(color: Colors.white70),
+      floatingLabelStyle: labelLarge.copyWith(color: Colors.white70),
       helperStyle: labelLarge.copyWith(color: white54),
       hintStyle: labelLarge.copyWith(color: white54),
       errorStyle: labelMedium.copyWith(color: red),
@@ -117,7 +117,7 @@ ThemeData darkTheme = ThemeData(
       enabledBorder: const OutlineInputBorder(
         borderRadius: BorderRadius.all(Radius.circular(10.0)),
         borderSide:  BorderSide(
-          color: white,
+          color: Colors.white70,
           width: 1.0,
         ),
       ),
@@ -137,8 +137,8 @@ ThemeData darkTheme = ThemeData(
   hoverColor: monaiki,
   hintColor: white54,
   inputDecorationTheme: InputDecorationTheme(
-    labelStyle: bodyLarge.copyWith(color: white),
-    floatingLabelStyle: labelLarge.copyWith(color: white),
+    labelStyle: bodyLarge.copyWith(color: Colors.white70),
+    floatingLabelStyle: labelLarge.copyWith(color: Colors.white70),
     helperStyle: labelLarge.copyWith(color: white54),
     hintStyle: labelLarge.copyWith(color: white54),
     errorStyle: labelMedium.copyWith(color: red),
@@ -165,13 +165,13 @@ ThemeData darkTheme = ThemeData(
     enabledBorder: const OutlineInputBorder(
       borderRadius: BorderRadius.all(Radius.circular(10.0)),
       borderSide:  BorderSide(
-        color: white,
+        color: Colors.white70,
         width: 1.0,
       ),
     ),
   ),
   iconTheme: const IconThemeData(
-    color: white,
+    color: Colors.white70,
     size: 10.0,
   ),
   listTileTheme: ListTileThemeData(
@@ -189,7 +189,7 @@ ThemeData darkTheme = ThemeData(
   primaryColorLight: monaikiLighter,
   primaryColorDark: monaiki,
   primaryIconTheme: const IconThemeData(
-    color: white,
+    color: Colors.white70,
     size: 26.0,
   ),
   // platform: TargetPlatform.android, for mobile device
@@ -233,15 +233,19 @@ ThemeData darkTheme = ThemeData(
       insets: EdgeInsets.symmetric(horizontal: 16.0)
     ),
     indicatorSize: TabBarIndicatorSize.tab,
-    labelColor: white,
+    labelColor: Colors.white70,
     indicatorColor: defaultColor,
     overlayColor: WidgetStateProperty.all(transparent),
   ),
   textButtonTheme: TextButtonThemeData(
     style: ButtonStyle(
-      overlayColor: WidgetStateColor.resolveWith((states) => transparent),
-      backgroundColor: WidgetStateProperty.all(transparent),
-      textStyle: WidgetStateProperty.all(labelLarge..copyWith(color: blue)),
+      padding: WidgetStateProperty.all(EdgeInsets.zero),
+      minimumSize: WidgetStateProperty.all(Size.zero),
+      tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+      overlayColor: WidgetStateProperty.all(Colors.transparent),
+      backgroundColor: WidgetStateProperty.all(Colors.transparent),
+      textStyle: WidgetStateProperty.all(labelLarge.copyWith(color: blue)),
+      foregroundColor: WidgetStateProperty.all(blue),
     ),
   ),
   textSelectionTheme: const TextSelectionThemeData(
