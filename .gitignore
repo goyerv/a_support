@@ -9,7 +9,7 @@
 .history
 .svn/
 .VSCodeCounter/
-
+.vscode 
 
 # IntelliJ related
 *.iml
@@ -25,7 +25,9 @@
 .project
 .settings/
 android/
-windows/
+/windows/
+/linux/
+/macos/
 ios/
 .metadata
 pubspec.lock
