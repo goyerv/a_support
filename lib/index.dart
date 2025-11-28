@@ -170,6 +170,10 @@ class _GoyervSupportState extends State<GoyervSupport> {
                 if (languageCode != "zh-TW")  web.window.location.reload();
               return Homepage(updateLocale);
             
+            } else 
+            if(state.pathParameters[':languageCode'] == "download") {
+              return Download(updateLocale);
+            
             } 
             return Homepage(updateLocale);
           }
