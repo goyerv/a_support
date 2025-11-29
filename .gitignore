@@ -10,6 +10,7 @@
 .svn/
 .VSCodeCounter/
 .vscode/
+.htaccess
 
 # IntelliJ related
 *.iml

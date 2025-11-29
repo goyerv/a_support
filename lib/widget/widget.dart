@@ -36,15 +36,15 @@ Uri uriLinkedIn = Uri.parse('https://www.linkedin.com/company/goyerv/');
 // TikTok
 
 
-Uri uriTerms = Uri.parse('https://legal.goyerv.com');
-Uri uriPrivacy = Uri.parse('https://legal.goyerv.com');
+Uri uriTerms = Uri.parse('https://legal.goyerv.com/terms');
+Uri uriPrivacy = Uri.parse('https://legal.goyerv.com/privacy');
 Uri uriSupport = Uri.parse('https://support.goyerv.com');
-Uri uriDevelopers = Uri.parse('https://developers.goyerv.com');
+Uri uriDevelopers = Uri.parse('https://github.com/goyerv');
 Uri uriCommunity = Uri.parse('https://community.goyerv.com');
 Uri uriBulletin = Uri.parse('https://bulletin.goyerv.com');
 Uri uriCareers = Uri.parse('https://careers.goyerv.com');
-Uri uriResources = Uri.parse('https://Resources.goyerv.com');
-Uri uriAbout = Uri.parse('https://legal.goyerv.com');
+Uri uriResources = Uri.parse('https://resources.goyerv.com');
+Uri uriAbout = Uri.parse('https://legal.goyerv.com/about-us');
 
 
 FocusNode focusNodeOne = FocusNode();
@@ -60,7 +60,7 @@ PreferredSizeWidget? appBar(BuildContext context) {
     automaticallyImplyLeading: false,
     leading: Padding(
       padding: const EdgeInsets.only(left: 20),
-      child: InkWell(overlayColor: WidgetStateColor.resolveWith((states) => transparent), onTap: () => launchUrl(Uri.parse('https://www.goyerv.com')), child: Image.asset('assets/images/goyerv_logo.png', fit: BoxFit.scaleDown, filterQuality: FilterQuality.high, semanticLabel: 'Goyerv logo', matchTextDirection: false, width: 27.0, height: 27.0, cacheWidth: 27, cacheHeight: 27,)),
+      child: InkWell(overlayColor: WidgetStateColor.resolveWith((states) => transparent), onTap: () => launchUrl(Uri.parse('https://www.goyerv.com')), child: Image.asset('assets/images/goyerv_logo.png', fit: BoxFit.scaleDown, filterQuality: FilterQuality.high, semanticLabel: 'Goyerv logo', matchTextDirection: false, width: 27.0, height: 27.0, cacheWidth: 27, cacheHeight: 27)),
     ),
     title: Text(AppLocalizations.of(context).translate('Support'), style: Theme.of(context).textTheme.titleLarge),
     flexibleSpace: ClipRect(child: BackdropFilter(filter: ImageFilter.blur(sigmaX: 20.0, sigmaY: 20.0), child: Container(color: transparent))),
@@ -137,7 +137,7 @@ Footer footer(BuildContext context, Function(Locale) onLocaleChanged) {
             alignment: WrapAlignment.center,
             crossAxisAlignment: WrapCrossAlignment.center,
             spacing: screenWidth > 600 ? 16 : 0,
-            runSpacing: 20,
+            runSpacing: 16,
             direction: screenWidth > 600 ? Axis.horizontal : Axis.vertical,
             children: [
               

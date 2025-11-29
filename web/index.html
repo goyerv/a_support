@@ -10,7 +10,6 @@
   
     gtag('config', 'G-Y9875BW5KE');
   </script>
-  <script src="flutter_bootstrap.js" async></script>
 
   <!--
     If you are serving your web app in a path other than the root, change the
@@ -25,7 +24,8 @@
     This is a placeholder for base href that will be replaced by the value of
     the `--base-href` argument provided to `flutter build`.
   -->
-  <base href="/">
+  <base href="$FLUTTER_BASE_HREF">
+  <script src="flutter_bootstrap.js" async></script>
 
   <meta charset="UTF-8">
   <meta content="IE=Edge" http-equiv="X-UA-Compatible">
@@ -67,7 +67,7 @@
   <!-- iOS meta tags & icons -->
   <link rel="apple-touch-icon" href="icons/Icon-192.png">
 
-  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="no">
   <meta name="mobile-web-app-status-bar-style" content="black">
   <meta name="mobile-web-app-title" content="Goyerv - Community">
 
@@ -86,7 +86,6 @@
     
       const para = document.createElement("p");
       para.textContent = contentEn;
-    para.style.color = "white";
       para.style.color = "white";
       document.body.appendChild(para);
     
