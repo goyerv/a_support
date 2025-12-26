@@ -56,41 +56,42 @@
 <!-- Favicon -->
 <link href="favicon.png" rel="icon" type="image/png">
 <script>
-  document.addEventListener("DOMContentLoaded", async () => {
+document.addEventListener("DOMContentLoaded", () => {
+  const metaTag = document.querySelector('meta[name="description"]');
+  const contentEn = metaTag ? metaTag.getAttribute('content') : '';
 
-  
-    // Get English text from meta description
-    const metaTag = document.querySelector('meta[name="description"]');
-    const contentEn = metaTag ? metaTag.getAttribute('content') : '';
-  
+  // Temporary SEO text
+  const para = document.createElement("p");
+  para.id = "seoPara";
+  para.textContent = contentEn;
+  para.style.color = "white";
+  document.body.appendChild(para);
 
-  
-    const para = document.createElement("p");
-    para.textContent = contentEn;
-    para.style.color = "white";
-    document.body.appendChild(para);
-  
-    // schema.org Article
-    const schema = {
-      "@context":"https://schema.org",
-      "@type":"Article",
-      "headline": document.title,
-      "description": contentEn,
-      "image":"https://www.goyerv.com/seo/image/logo.png",
-      "author":{"@type":"Organization","name":"Goyerv"},
-      "publisher":{"@type":"Organization","name":"Goyerv","logo":{"@type":"ImageObject","url":"https://www.goyerv.com/seo/image/logo.png"}},
-      "mainEntityOfPage":{"@type":"WebPage","@id": window.location.href},
-      "datePublished":"2025-08-14",
-      "dateModified":"2025-08-14"
-    };
-    const script = document.createElement("script");
-    script.type = "application/ld+json";
-    script.textContent = JSON.stringify(schema);
-    document.head.appendChild(script);
-  
-    // Ghost vanish after 3s
-    setTimeout(() => document.body.innerHTML = "", 3000);
-  });
+  // Structured data
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": document.title,
+    "description": contentEn,
+    "image": "https://www.goyerv.com/seo/image/logo.png",
+    "author": {"@type": "Organization", "name": "Goyerv"},
+    "publisher": {"@type": "Organization", "name": "Goyerv", "logo": {"@type":"ImageObject","url":"https://www.goyerv.com/seo/image/logo.png"}},
+    "mainEntityOfPage": {"@type": "WebPage", "@id": window.location.href},
+    "datePublished": "2025-08-14",
+    "dateModified": "2025-08-14"
+  };
+
+  const script = document.createElement("script");
+  script.type = "application/ld+json";
+  script.textContent = JSON.stringify(schema);
+  document.head.appendChild(script);
+
+  // Remove only the SEO text after 3s
+  setTimeout(() => {
+    const el = document.getElementById("seoPara");
+    if (el) el.remove();
+  }, 3000);
+});
 </script>
 
 <title>Comment créer un post?</title>

@@ -77,6 +77,8 @@ class _GoyervSupportState extends State<GoyervSupport> {
   void initState() {
     languageCode = '';
     countryCode = '';
+    localesPreferences = LocalesPreferencesImpl();
+
     navigatorKey = GlobalKey<NavigatorState>();
     r();
     super.initState();
@@ -106,6 +108,31 @@ class _GoyervSupportState extends State<GoyervSupport> {
 
 
 
+  void handleLocaleChange(String? languageCode_) {
+    if (languageCode_ == null) return;
+    
+    final localeMap = {
+      'en': ['en', 'US'],
+      'es': ['es', 'ES'],
+      'fr': ['fr', 'FR'],
+      'hi': ['hi', ''], 
+      'ja': ['ja', 'JP'],
+      'zh-CN': ['zh', 'CN'],
+      'zh-TW': ['zh', 'TW'],
+    };
+    
+    if (localeMap.containsKey(languageCode_)) {
+      final locale = localeMap[languageCode_]!;
+      localesPreferences.setPlatformLocale(locale);
+      
+      if (languageCode_ != languageCode) {
+        web.window.location.reload();
+      }
+    }
+  }
+
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -114,464 +141,298 @@ class _GoyervSupportState extends State<GoyervSupport> {
       initialLocation: '/',
       navigatorKey: navigatorKey,
       routes: [
-    
+
         GoRoute(
           path: '/',
           builder: (context, state) {
-            return Homepage(updateLocale);
-          }
+            // handleLocaleChange('en'); 
+            return Homepage(updateLocale, _locale!.languageCode);
+          },
         ),
-  
+        
+
+        // A. ROOT ROUTE - Handles the path segment for the locale (e.g., /ja)
+        // This is the parent for ALL multilingual content.
+
         GoRoute(
-          path: ':languageCode',
+          path: '/:languageCode', 
+          
           builder: (context, state) {
-            if(state.pathParameters[':languageCode'] == "en") {
-              return Homepage(updateLocale);
+            final languageCode = state.pathParameters['languageCode'];
             
-            } else 
-            if(state.pathParameters[':languageCode'] == "es") {
-              localesPreferences
-                          .setPlatformLocale(['es', 'ES']);
-                if (languageCode != "es")  web.window.location.reload();
-              return Homepage(updateLocale);
-            
-            } else 
-            if(state.pathParameters[':languageCode'] == "fr") {
-              localesPreferences
-                          .setPlatformLocale(['fr', 'FR']);
-                if (languageCode != "fr")  web.window.location.reload();
-              return Homepage(updateLocale);
-            
-            } else 
-            if(state.pathParameters[':languageCode'] == "hi") {
-              localesPreferences
-                          .setPlatformLocale(['hi', '']);
-                if (languageCode != "hi")  web.window.location.reload();
-              return Homepage(updateLocale);
-            
-            } else 
-            if(state.pathParameters[':languageCode'] == "ja") {
-              localesPreferences
-                          .setPlatformLocale(['es', 'ES']);
-                if (languageCode != "ja")  web.window.location.reload();
-              return Homepage(updateLocale);
-            
-            } else 
-            if(state.pathParameters[':languageCode'] == "zh-CN") {
-              localesPreferences
-                          .setPlatformLocale(['es', 'ES']);
-                if (languageCode != "zh-CN")  web.window.location.reload();
-              return Homepage(updateLocale);
-            
-            } else 
-            if(state.pathParameters[':languageCode'] == "zh-TW") {
-              localesPreferences
-                          .setPlatformLocale(['es', 'ES']);
-                if (languageCode != "zh-TW")  web.window.location.reload();
-              return Homepage(updateLocale);
-            
-            } else 
-            if(state.pathParameters[':languageCode'] == "download") {
+            if (languageCode == 'download') {
               return Download(updateLocale);
             
-            } 
-            return Homepage(updateLocale);
-          }
-        ),
-  
-
-
-        // Normal Links 
-        GoRoute(
-          path: '/guides/analytics/analytics',
-          builder: (context, state) => Analytics(updateLocale),
-        ),
-  
-        GoRoute(
-          path: '/guides/convert',
-          builder: (context, state) => Homepage(updateLocale),
-          routes: [
-
-            GoRoute(
-              path: 'becoming-a-runner',
-              builder: (context, state) => BecomingARunner(updateLocale),
-            ),
-
-            GoRoute(
-              path: 'how-do-I-stop-becoming-a-runner',
-              builder: (context, state) => Resigning(updateLocale),
-            ),
-
-          ]
-        ),
-
-        GoRoute(
-          path: '/guides/filter/filters',
-          builder: (context, state) => Filters(updateLocale),
-        ),
-
-        GoRoute(
-          path: '/guides/identity-verification/how-do-I-verify-my-identity',
-          builder: (context, state) => HowDoIVerifyMyIdentity(updateLocale),
-        ),
-
-        GoRoute(
-          path: '/guides/post',
-          builder: (context, state) => Homepage(updateLocale),
-          routes: [
-
-            GoRoute(
-              path: 'how-do-I-delete-a-post',
-              builder: (context, state) => HowDoIDeleteAPost(updateLocale),
-            ),
-
-            GoRoute(
-              path: 'how-do-I-schedule-a-post',
-              builder: (context, state) => HowDoIScheduleAPost(updateLocale),
-            ),
-
-            GoRoute(
-              path: 'how-do-I-make-a-post',
-              builder: (context, state) => HowDoIMakeAPost(updateLocale),
-            ),
-
-          ]
-        ),
-
-
-        GoRoute(
-          path: '/guides/qr/how-do-I-scan-qr-codes',
-          builder: (context, state) => HowDoIScanAQRCode(updateLocale),
-        ),
-
-
-        GoRoute(
-          path: '/guides/requests',
-          builder: (context, state) => Homepage(updateLocale),
-          routes: [
-
-            GoRoute(
-              path: 'how-do-I-counter-a-request',
-              builder: (context, state) => HowDoICounterARequest(updateLocale),
-            ),
-
-            GoRoute(
-              path: 'how-do-I-make-a-request',
-              builder: (context, state) => HowDoIMakeARequest(updateLocale),
-            ),
-
-            GoRoute(
-              path: 'terminating-a-request',
-              builder: (context, state) => TerminatingRequests(updateLocale),
-            ),
-
-          ]
-        ),
-
-
-
-        GoRoute(
-          path: '/guides/settings',
-          builder: (context, state) => Homepage(updateLocale),
-          routes: [
-
-            GoRoute(
-              path: 'how-do-I-delete-my-account',
-              builder: (context, state) => HowDoIDeleteMyAccount(updateLocale),
-            ),
-
-            GoRoute(
-              path: 'how-do-I-delete-a-saved-bank-account',
-              builder: (context, state) => HowDoIDeleteSavedBankAccount(updateLocale),
-            ),
-
-            GoRoute(
-              path: 'how-do-I-delete-a-saved-card',
-              builder: (context, state) => HowDoIDeleteSavedCard(updateLocale),
-            ),
-
-            GoRoute(
-              path: 'how-do-I-change-my-email-address',
-              builder: (context, state) => HowDoIChangeMyEmailAddress(updateLocale),
-            ),
-
-            GoRoute(
-              path: 'how-do-I-change-my-name',
-              builder: (context, state) => HowDoIChangeMyName(updateLocale),
-            ),
-
-            GoRoute(
-              path: 'how-do-I-change-my-phone-number',
-              builder: (context, state) => HowDoIChangeMyPhoneNumber(updateLocale),
-            ),
-
-            GoRoute(
-              path: 'set-transaction-pin',
-              builder: (context, state) => SetTransactionPin(updateLocale),
-            ),
-
-            GoRoute(
-              path: 'web-indexing',
-              builder: (context, state) => ToggleWebIndexing(updateLocale),
-            ),
-
-            GoRoute(
-              path: 'two-factor-authentication',
-              builder: (context, state) => TwoFactorAuthentication(updateLocale),
-            ),
-
-          ]
-        ),
-
-
-
-        GoRoute(
-          path: '/guides/wallet',
-          builder: (context, state) => Homepage(updateLocale),
-          routes: [
-
-            GoRoute(
-              path: 'how-do-I-make-deposits-into-my-account',
-              builder: (context, state) => HowDoIMakeDeposits(updateLocale),
-            ),
-
-            GoRoute(
-              path: 'how-do-I-make-withdrawals-from-my-account',
-              builder: (context, state) => HowDoIMakeWithdrawals(updateLocale),
-            ),
-
-            GoRoute(
-              path: 'what-do-the-locks-on-my-account-mean',
-              builder: (context, state) => WhatDoLocksMean(updateLocale),
-            ),
-
-            GoRoute(
-              path: 'how-do-I-make-transfers-on-goyerv',
-              builder: (context, state) => HowDoIMakeTransfers(updateLocale),
-            ),
-
-            GoRoute(
-              path: 'wallet-balance',
-              builder: (context, state) => WalletBalance(updateLocale),
-            ),
-
-          ]
-        ),
-
-
-        GoRoute(
-          path: '/email-support',
-          builder: (context, state) => EmailSupport(updateLocale),
-        ),
-
-        GoRoute(
-          path: '/download',
-          builder: (context, state) => Download(updateLocale),
-        ),
-
-
-        GoRoute(
-          path: '/guides/:query',
-          builder: (context, state) => Guides(updateLocale, state.pathParameters['query']),
-        ),
-
-
-
-
-
-
-
-
-
-
-
-
-        // Deep links
-        GoRoute(
-          path: ':languageCode/guides/analytics/:path',
-          builder: (context, state) {
-            if(state.pathParameters['path'] == "analytics") {
-              return Analytics(updateLocale);
-            }
-
-            return Homepage(updateLocale);
-          }
-        ),
-        
-        GoRoute(
-          path: ':languageCode/guides/convert/:path',
-          builder: (context, state) {
-            if(state.pathParameters['path'] == "becoming-a-runner") {
-              return BecomingARunner(updateLocale);
-            
             } else 
-            if (state.pathParameters['path'] == "how-do-I-stop-becoming-a-runner") {
-              return Resigning(updateLocale);
-              
+
+            // Until you add a new en locale to google, don't display the en in the url for now
+            // so it does not conflict.
+            if (languageCode == 'en') {
+              return Homepage(updateLocale, _locale!.languageCode);
             }
+            
+            // 2. Handle the locale change
+            handleLocaleChange(languageCode);
+            
+            return Homepage(updateLocale, _locale!.languageCode);
 
-            return Homepage(updateLocale);
-          }
-        ),
+          },
+          
+          // NEST ALL GUIDES AND CONTENT ROUTES. 
+          // Their paths are relative to '/:languageCode'
+          routes: [
+            
+            // Guides Parent Route (for paths that have a section name after the locale)
+            GoRoute(
+              path: 'guides',
+              builder: (context, state) => Homepage(updateLocale, _locale!.languageCode), // Landing page for /ja/guides
+              routes: [
+
+                GoRoute(
+                  path: 'analytics/analytics',
+                  builder: (context, state) => Analytics(updateLocale, _locale!.languageCode),
+                ),
+
+                GoRoute(
+                  path: 'convert',
+                  builder: (context, state) => Homepage(updateLocale, _locale!.languageCode),
+                  routes: [
         
-        GoRoute(
-          path: ':languageCode/guides/filter/:path',
-          builder: (context, state) {
-            if(state.pathParameters['path'] == "filters") {
-              return Filters(updateLocale);
-            
-            } 
-
-            return Homepage(updateLocale);
-          }
-        ),
+                    GoRoute(
+                      path: 'becoming-a-runner',
+                      builder: (context, state) => BecomingARunner(updateLocale, _locale!.languageCode),
+                    ),
         
-        GoRoute(
-          path: ':languageCode/guides/identity-verification/:path',
-          builder: (context, state) {
-            if(state.pathParameters['path'] == "how-do-I-verify-my-identity") {
-              return HowDoIVerifyMyIdentity(updateLocale);
-            
-            } 
-
-            return Homepage(updateLocale);
-          }
-        ),
+                    GoRoute(
+                      path: 'how-do-I-stop-becoming-a-runner',
+                      builder: (context, state) => Resigning(updateLocale, _locale!.languageCode),
+                    ),
         
-        GoRoute(
-          path: ':languageCode/guides/post/:path',
-          builder: (context, state) {
-            if(state.pathParameters['path'] == "how-do-I-delete-a-post") {
-              return HowDoIDeleteAPost(updateLocale);
-            
-            } else 
-            if (state.pathParameters['path'] == "how-do-I-schedule-a-post") {
-              return HowDoIScheduleAPost(updateLocale);
-              
-            } else 
-            if (state.pathParameters['path'] == "how-do-I-make-a-post") {
-              return HowDoIMakeAPost(updateLocale);
-            
-            }
+                  ]
+                ),
 
-            return Homepage(updateLocale);
-          }
-        ),
+
+                GoRoute(
+                  path: 'filters',
+                  builder: (context, state) => Homepage(updateLocale, _locale!.languageCode),
+                  routes: [
+
+                    GoRoute(
+                      path: 'filter',
+                      builder: (context, state) => Filters(updateLocale, _locale!.languageCode),
+                    ),
+
+                  ]
+                ),
+        
+                GoRoute(
+                  path: 'identity-verification',
+                  builder: (context, state) => Homepage(updateLocale, _locale!.languageCode),
+                  routes: [
+
+                    GoRoute(
+                      path: 'how-do-I-verify-my-identity',
+                      builder: (context, state) => HowDoIVerifyMyIdentity(updateLocale, _locale!.languageCode),
+                    ),
+
+                  ]
+                ),
+
+
+                GoRoute(
+                  path: 'post',
+                  builder: (context, state) => Homepage(updateLocale, _locale!.languageCode),
+                  routes: [
+        
+                    GoRoute(
+                      path: 'how-do-I-delete-a-post',
+                      builder: (context, state) => HowDoIDeleteAPost(updateLocale, _locale!.languageCode),
+                    ),
+        
+                    GoRoute(
+                      path: 'how-do-I-schedule-a-post',
+                      builder: (context, state) => HowDoIScheduleAPost(updateLocale, _locale!.languageCode),
+                    ),
+        
+                    GoRoute(
+                      path: 'how-do-I-make-a-post',
+                      builder: (context, state) => HowDoIMakeAPost(updateLocale, _locale!.languageCode),
+                    ),
+        
+                  ]
+                ),
+        
+        
+                GoRoute(
+                  path: 'qr-scanner',
+                  builder: (context, state) => Homepage(updateLocale, _locale!.languageCode),
+                  routes: [
+
+                    GoRoute(
+                      path: 'how-do-I-scan-qr-codes',
+                      builder: (context, state) => Filters(updateLocale, _locale!.languageCode),
+                    ),
+
+                  ]
+                ),
+
+
+                GoRoute(
+                  path: 'requests',
+                  builder: (context, state) => Homepage(updateLocale, _locale!.languageCode),
+                  routes: [
+        
+                    GoRoute(
+                      path: 'how-do-I-counter-a-request',
+                      builder: (context, state) => HowDoICounterARequest(updateLocale, _locale!.languageCode),
+                    ),
+        
+                    GoRoute(
+                      path: 'how-do-I-make-a-request',
+                      builder: (context, state) => HowDoIMakeARequest(updateLocale, _locale!.languageCode),
+                    ),
+        
+                    GoRoute(
+                      path: 'terminating-a-request',
+                      builder: (context, state) => TerminatingRequests(updateLocale, _locale!.languageCode),
+                    ),
+        
+                  ]
+                ),
+
+
+
+                GoRoute(
+                  path: 'settings',
+                  builder: (context, state) => Homepage(updateLocale, _locale!.languageCode),
+                  routes: [
+        
+                    GoRoute(
+                      path: 'how-do-I-delete-my-account',
+                      builder: (context, state) => HowDoIDeleteMyAccount(updateLocale, _locale!.languageCode),
+                    ),
+        
+                    GoRoute(
+                      path: 'how-do-I-delete-a-saved-bank-account',
+                      builder: (context, state) => HowDoIDeleteSavedBankAccount(updateLocale, _locale!.languageCode),
+                    ),
+        
+                    GoRoute(
+                      path: 'how-do-I-delete-a-saved-card',
+                      builder: (context, state) => HowDoIDeleteSavedCard(updateLocale, _locale!.languageCode),
+                    ),
+        
+                    GoRoute(
+                      path: 'how-do-I-change-my-email-address',
+                      builder: (context, state) => HowDoIChangeMyEmailAddress(updateLocale, _locale!.languageCode),
+                    ),
+        
+                    GoRoute(
+                      path: 'how-do-I-change-my-name',
+                      builder: (context, state) => HowDoIChangeMyName(updateLocale, _locale!.languageCode),
+                    ),
+        
+                    GoRoute(
+                      path: 'how-do-I-change-my-phone-number',
+                      builder: (context, state) => HowDoIChangeMyPhoneNumber(updateLocale, _locale!.languageCode),
+                    ),
+        
+                    GoRoute(
+                      path: 'set-transaction-pin',
+                      builder: (context, state) => SetTransactionPin(updateLocale, _locale!.languageCode),
+                    ),
+        
+                    GoRoute(
+                      path: 'web-indexing',
+                      builder: (context, state) => ToggleWebIndexing(updateLocale, _locale!.languageCode),
+                    ),
+        
+                    GoRoute(
+                      path: 'two-factor-authentication',
+                      builder: (context, state) => TwoFactorAuthentication(updateLocale, _locale!.languageCode),
+                    ),
+        
+                  ]
+                ),
+        
+        
+        
+                GoRoute(
+                  path: 'wallet',
+                  builder: (context, state) => Homepage(updateLocale, _locale!.languageCode),
+                  routes: [
+        
+                    GoRoute(
+                      path: 'how-do-I-make-deposits-into-my-account',
+                      builder: (context, state) => HowDoIMakeDeposits(updateLocale, _locale!.languageCode),
+                    ),
+        
+                    GoRoute(
+                      path: 'how-do-I-make-withdrawals-from-my-account',
+                      builder: (context, state) => HowDoIMakeWithdrawals(updateLocale, _locale!.languageCode),
+                    ),
+        
+                    GoRoute(
+                      path: 'what-do-the-locks-on-my-account-mean',
+                      builder: (context, state) => WhatDoLocksMean(updateLocale, _locale!.languageCode),
+                    ),
+        
+                    GoRoute(
+                      path: 'how-do-I-make-transfers-on-goyerv',
+                      builder: (context, state) => HowDoIMakeTransfers(updateLocale, _locale!.languageCode),
+                    ),
+        
+                    GoRoute(
+                      path: 'wallet-balance',
+                      builder: (context, state) => WalletBalance(updateLocale, _locale!.languageCode),
+                    ),
+        
+                  ]
+                ),
+
+              ]
+            ),
+
+
+            // Other top-level, locale-aware routes (Example: /ja/email-support)
+            GoRoute(
+              path: '/email-support',
+              builder: (context, state) => EmailSupport(updateLocale),
+            ),
+        
+               
+        
+            // Search/Query Route (Example: /ja/guides/analytics)
+            // This guy can no longer be /guides/:query else go router will just match up 
+            // until /guides/ and everything else will go as parameter. 
+            // better you separate it
+            GoRoute(
+              path: '/q/:query',
+              builder: (context, state) => Guides(updateLocale, state.pathParameters['query']),
+            ),
+
 
     
-        GoRoute(
-          path: ':languageCode/guides/qr/:path',
-          builder: (context, state) {
-            if(state.pathParameters['path'] == "how-do-I-scan-qr-codes") {
-              return HowDoIScanAQRCode(updateLocale);
-            
-            } 
-
-            return Homepage(updateLocale);
-          }
+          ],
         ),
+        
 
 
 
-        GoRoute(
-          path: ':languageCode/guides/requests/:path',
-          builder: (context, state) {
-            if(state.pathParameters['path'] == "how-do-I-counter-a-request") {
-              return HowDoICounterARequest(updateLocale);
-            
-            } else 
-            if (state.pathParameters['path'] == "how-do-I-make-a-request") {
-              return HowDoIMakeARequest(updateLocale);
-              
-            } else 
-            if (state.pathParameters['path'] == "terminating-a-request") {
-              return TerminatingRequests(updateLocale);
-            
-            }
 
-            return Homepage(updateLocale);
-          }
-        ),
-
-
-        GoRoute(
-          path: ':languageCode/guides/settings/:path',
-          builder: (context, state) {
-            if(state.pathParameters['path'] == "how-do-I-delete-my-account") {
-              return HowDoIDeleteMyAccount(updateLocale);
-            
-            } else 
-            if (state.pathParameters['path'] == "how-do-I-delete-a-saved-bank-account") {
-              return HowDoIDeleteSavedBankAccount(updateLocale);
-              
-            } else 
-            if (state.pathParameters['path'] == "how-do-I-delete-a-saved-card") {
-              return HowDoIDeleteSavedCard(updateLocale);
-            
-            } else
-            if (state.pathParameters['path'] == "how-do-I-change-my-email-address") {
-              return HowDoIChangeMyEmailAddress(updateLocale);
-            
-            } else
-            if (state.pathParameters['path'] == "how-do-I-change-my-name") {
-              return HowDoIChangeMyName(updateLocale);
-            
-            } else
-            if (state.pathParameters['path'] == "how-do-I-change-my-phone-number") {
-              return HowDoIChangeMyPhoneNumber(updateLocale);
-            
-            } else
-            if (state.pathParameters['path'] == "set-transaction-pin") {
-              return SetTransactionPin(updateLocale);
-            
-            } else
-            if (state.pathParameters['path'] == "web-indexing") {
-              return ToggleWebIndexing(updateLocale);
-            
-            } else
-            if (state.pathParameters['path'] == "two-factor-authentication") {
-              return TwoFactorAuthentication(updateLocale);
-            
-            }
-
-            return Homepage(updateLocale);
-          }
-        ),
-
-
-
-        GoRoute(
-          path: ':languageCode/guides/wallet/:path',
-          builder: (context, state) {
-            if(state.pathParameters['path'] == "how-do-I-make-deposits-into-my-account") {
-              return HowDoIMakeDeposits(updateLocale);
-            
-            } else 
-            if (state.pathParameters['path'] == "how-do-I-make-withdrawals-from-my-account") {
-              return HowDoIMakeWithdrawals(updateLocale);
-              
-            } else 
-            if (state.pathParameters['path'] == "what-do-the-locks-on-my-account-mean") {
-              return WhatDoLocksMean(updateLocale);
-            
-            } else
-            if (state.pathParameters['path'] == "how-do-I-make-transfers-on-goyerv") {
-              return HowDoIMakeTransfers(updateLocale);
-            
-            } else
-            if (state.pathParameters['path'] == "wallet-balance") {
-              return WalletBalance(updateLocale);
-            
-            } 
-
-            return Homepage(updateLocale);
-          }
-        ),
-
-
-
-      ]
+      ],
     );
+
+
+
+
+
+
+
+
+
+
+
 
     return MultiBlocProvider(
       providers: [

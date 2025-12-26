@@ -23,8 +23,9 @@ import '../../../../../widget/widget.dart';
 class HowDoIMakeDeposits extends StatefulWidget {
 
   final void Function(Locale) onLocaleChanged;
+  final String locale;
 
-  const HowDoIMakeDeposits(this.onLocaleChanged, {Key? key}) : super(key: key);
+  const HowDoIMakeDeposits(this.onLocaleChanged, this.locale, {Key? key}) : super(key: key);
 
   @override
   State<HowDoIMakeDeposits> createState() => _HowDoIMakeDepositsState();
@@ -34,6 +35,9 @@ class HowDoIMakeDeposits extends StatefulWidget {
 
 
 class _HowDoIMakeDepositsState extends State<HowDoIMakeDeposits> {
+
+
+
 
 
   @override 
@@ -89,7 +93,7 @@ class _HowDoIMakeDepositsState extends State<HowDoIMakeDeposits> {
                     MouseRegion(
                       cursor: SystemMouseCursors.click,
                       child: GestureDetector(
-                        onTap: () => Share.share("https://support.goyerv.com/guides/wallet/how-do-I-make-deposits-into-my-account.html"),
+                        onTap: () => Share.share("https://support.goyerv.com/${widget.locale}/guides/wallet/how-do-I-make-deposits-into-my-account.html"),
                         child: Container(
                           padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 5),
                           decoration: BoxDecoration(
@@ -192,15 +196,15 @@ class _HowDoIMakeDepositsState extends State<HowDoIMakeDeposits> {
                     sbhmin,
 
 
-                    OnHover(builder: (isHovered, context) => TextButton(onPressed: () => context.go('/guides/wallet/how-do-I-make-withdrawals-from-my-account'), child: Text(AppLocalizations.of(context).translate("How do I make withdrawals from my account?"), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: blue, decoration: isHovered? TextDecoration.underline : TextDecoration.none, decorationColor: blue)),)),
+                    OnHover(builder: (isHovered, context) => TextButton(onPressed: () => context.go('/${widget.locale}/guides/wallet/how-do-I-make-withdrawals-from-my-account'), child: Text(AppLocalizations.of(context).translate("How do I make withdrawals from my account?"), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: blue, decoration: isHovered? TextDecoration.underline : TextDecoration.none, decorationColor: blue)),)),
 
-                    OnHover(builder: (isHovered, context) => TextButton(onPressed: () => context.go('/guides/wallet/what-do-the-locks-on-my-account-mean'), child: Text(AppLocalizations.of(context).translate("What do the locks on my account mean?"), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: blue, decoration: isHovered? TextDecoration.underline : TextDecoration.none, decorationColor: blue)),)),
+                    OnHover(builder: (isHovered, context) => TextButton(onPressed: () => context.go('/${widget.locale}/guides/wallet/what-do-the-locks-on-my-account-mean'), child: Text(AppLocalizations.of(context).translate("What do the locks on my account mean?"), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: blue, decoration: isHovered? TextDecoration.underline : TextDecoration.none, decorationColor: blue)),)),
 
-                    OnHover(builder: (isHovered, context) => TextButton(onPressed: () => context.go('/guides/wallet/how-do-I-make-transfers-on-goyerv'), child: Text(AppLocalizations.of(context).translate("How do I make transfers on Goyerv?"), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: blue, decoration: isHovered? TextDecoration.underline : TextDecoration.none, decorationColor: blue)),)),
+                    OnHover(builder: (isHovered, context) => TextButton(onPressed: () => context.go('/${widget.locale}/guides/wallet/how-do-I-make-transfers-on-goyerv'), child: Text(AppLocalizations.of(context).translate("How do I make transfers on Goyerv?"), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: blue, decoration: isHovered? TextDecoration.underline : TextDecoration.none, decorationColor: blue)),)),
 
-                    OnHover(builder: (isHovered, context) => TextButton(onPressed: () => context.go('/guides/wallet/wallet-balance'), child: Text(AppLocalizations.of(context).translate("Wallet balance"), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: blue, decoration: isHovered? TextDecoration.underline : TextDecoration.none, decorationColor: blue)),)),
+                    OnHover(builder: (isHovered, context) => TextButton(onPressed: () => context.go('/${widget.locale}/guides/wallet/wallet-balance'), child: Text(AppLocalizations.of(context).translate("Wallet balance"), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: blue, decoration: isHovered? TextDecoration.underline : TextDecoration.none, decorationColor: blue)),)),
 
-                    OnHover(builder: (isHovered, context) => TextButton(onPressed: () => context.go('/guides/analytics/analytics'), child: Text(AppLocalizations.of(context).translate("Analytics"), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: blue, decoration: isHovered? TextDecoration.underline : TextDecoration.none, decorationColor: blue)),)),
+                    OnHover(builder: (isHovered, context) => TextButton(onPressed: () => context.go('/${widget.locale}/guides/analytics/analytics'), child: Text(AppLocalizations.of(context).translate("Analytics"), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: blue, decoration: isHovered? TextDecoration.underline : TextDecoration.none, decorationColor: blue)),)),
 
 
 
