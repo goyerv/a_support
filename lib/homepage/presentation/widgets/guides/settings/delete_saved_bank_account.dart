@@ -24,8 +24,9 @@ import '../../../../../widget/widget.dart';
 class HowDoIDeleteSavedBankAccount extends StatefulWidget {
 
   final void Function(Locale) onLocaleChanged;
+  final String locale;
   
-  const HowDoIDeleteSavedBankAccount(this.onLocaleChanged, {Key? key}) : super(key: key);
+  const HowDoIDeleteSavedBankAccount(this.onLocaleChanged, this.locale, {Key? key}) : super(key: key);
 
   @override
   State<HowDoIDeleteSavedBankAccount> createState() => _HowDoIDeleteSavedBankAccountState();
@@ -37,6 +38,10 @@ class HowDoIDeleteSavedBankAccount extends StatefulWidget {
 class _HowDoIDeleteSavedBankAccountState extends State<HowDoIDeleteSavedBankAccount> {
 
 
+
+
+
+  
   @override 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -90,7 +95,7 @@ class _HowDoIDeleteSavedBankAccountState extends State<HowDoIDeleteSavedBankAcco
                     MouseRegion(
                       cursor: SystemMouseCursors.click,
                       child: GestureDetector(
-                        onTap: () => Share.share("https://support.goyerv.com/guides/settings/how-do-I-delete-a-saved-bank-account.html"),
+                        onTap: () => Share.share("https://support.goyerv.com/${widget.locale}/guides/settings/how-do-I-delete-a-saved-bank-account.html"),
                         child: Container(
                           padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 5),
                           decoration: BoxDecoration(
@@ -192,15 +197,15 @@ class _HowDoIDeleteSavedBankAccountState extends State<HowDoIDeleteSavedBankAcco
                     sbhmin,
 
 
-                    OnHover(builder: (isHovered, context) => TextButton(onPressed: () => context.go('/guides/settings/how-do-I-delete-a-saved-card'), child: Text(AppLocalizations.of(context).translate("How do I delete a saved card?"), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: blue, decoration: isHovered? TextDecoration.underline : TextDecoration.none, decorationColor: blue)),)),
+                    OnHover(builder: (isHovered, context) => TextButton(onPressed: () => context.go('/${widget.locale}/guides/settings/how-do-I-delete-a-saved-card'), child: Text(AppLocalizations.of(context).translate("How do I delete a saved card?"), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: blue, decoration: isHovered? TextDecoration.underline : TextDecoration.none, decorationColor: blue)),)),
 
-                    OnHover(builder: (isHovered, context) => TextButton(onPressed: () => context.go('/guides/settings/how-do-I-change-my-email-address'), child: Text(AppLocalizations.of(context).translate("How do I change my email address?"), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: blue, decoration: isHovered? TextDecoration.underline : TextDecoration.none, decorationColor: blue)),)),
+                    OnHover(builder: (isHovered, context) => TextButton(onPressed: () => context.go('/${widget.locale}/guides/settings/how-do-I-change-my-email-address'), child: Text(AppLocalizations.of(context).translate("How do I change my email address?"), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: blue, decoration: isHovered? TextDecoration.underline : TextDecoration.none, decorationColor: blue)),)),
 
-                    OnHover(builder: (isHovered, context) => TextButton(onPressed: () => context.go('/guides/settings/how-do-I-change-my-name'), child: Text(AppLocalizations.of(context).translate("How do I change my name?"), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: blue, decoration: isHovered? TextDecoration.underline : TextDecoration.none, decorationColor: blue)),)),
+                    OnHover(builder: (isHovered, context) => TextButton(onPressed: () => context.go('/${widget.locale}/guides/settings/how-do-I-change-my-name'), child: Text(AppLocalizations.of(context).translate("How do I change my name?"), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: blue, decoration: isHovered? TextDecoration.underline : TextDecoration.none, decorationColor: blue)),)),
 
-                    OnHover(builder: (isHovered, context) => TextButton(onPressed: () => context.go('/guides/settings/how-do-I-change-my-phone-number'), child: Text(AppLocalizations.of(context).translate("How do I change my phone number?"), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: blue, decoration: isHovered? TextDecoration.underline : TextDecoration.none, decorationColor: blue)),)),
+                    OnHover(builder: (isHovered, context) => TextButton(onPressed: () => context.go('/${widget.locale}/guides/settings/how-do-I-change-my-phone-number'), child: Text(AppLocalizations.of(context).translate("How do I change my phone number?"), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: blue, decoration: isHovered? TextDecoration.underline : TextDecoration.none, decorationColor: blue)),)),
 
-                    OnHover(builder: (isHovered, context) => TextButton(onPressed: () => context.go('/guides/settings/set-transaction-pin'), child: Text(AppLocalizations.of(context).translate("Set transaction pin"), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: blue, decoration: isHovered? TextDecoration.underline : TextDecoration.none, decorationColor: blue)),)),
+                    OnHover(builder: (isHovered, context) => TextButton(onPressed: () => context.go('/${widget.locale}/guides/settings/set-transaction-pin'), child: Text(AppLocalizations.of(context).translate("Set transaction pin"), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: blue, decoration: isHovered? TextDecoration.underline : TextDecoration.none, decorationColor: blue)),)),
 
 
                     sbhavg,

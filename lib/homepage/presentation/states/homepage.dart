@@ -20,6 +20,7 @@ import 'package:url_launcher/url_launcher.dart';
 import '../../../guides/presentation/bloc/guides_bloc.dart';
 import '../../../web_core/global_fields/fields.dart';
 import '../../../web_core/internationalization/app_localizations.dart';
+import '../../../web_core/internationalization/locales_preferences.dart';
 import '../../../web_core/util/hover.dart';
 import '../../../widget/widget.dart';
 import '../widgets/guides/analytics/analytics.dart';
@@ -53,8 +54,9 @@ import '../widgets/guides/wallet/wallet_balance.dart';
 class Homepage extends StatefulWidget {
 
   final void Function(Locale) onLocaleChanged;
+  final String locale;
   
-  const Homepage(this.onLocaleChanged, {Key? key}) : super(key: key);
+  const Homepage(this.onLocaleChanged, this.locale, {Key? key}) : super(key: key);
 
   @override 
   State<Homepage> createState() => _HomepageState();
@@ -77,6 +79,8 @@ class _HomepageState extends State<Homepage> {
 
   String? query;
 
+  late LocalesPreferencesImpl localesPreferences;
+  String locale = 'en';
 
 
 
@@ -86,10 +90,10 @@ class _HomepageState extends State<Homepage> {
 
     _textFieldFocusNode = FocusNode();
     _buttonFocusNode = FocusNode();
-
+ 
     r();
 
-    pages = [Analytics(widget.onLocaleChanged), BecomingARunner(widget.onLocaleChanged), Resigning(widget.onLocaleChanged), Filters(widget.onLocaleChanged), HowDoIVerifyMyIdentity(widget.onLocaleChanged), HowDoIDeleteAPost(widget.onLocaleChanged), HowDoIScheduleAPost(widget.onLocaleChanged), HowDoIMakeAPost(widget.onLocaleChanged), HowDoIScanAQRCode(widget.onLocaleChanged),HowDoICounterARequest(widget.onLocaleChanged), HowDoIMakeARequest(widget.onLocaleChanged), TerminatingRequests(widget.onLocaleChanged), HowDoIDeleteMyAccount(widget.onLocaleChanged), HowDoIDeleteSavedBankAccount(widget.onLocaleChanged), HowDoIDeleteSavedCard(widget.onLocaleChanged), HowDoIChangeMyEmailAddress(widget.onLocaleChanged), HowDoIChangeMyName(widget.onLocaleChanged), HowDoIChangeMyPhoneNumber(widget.onLocaleChanged), SetTransactionPin(widget.onLocaleChanged), ToggleWebIndexing(widget.onLocaleChanged), TwoFactorAuthentication(widget.onLocaleChanged), HowDoIMakeDeposits(widget.onLocaleChanged), HowDoIMakeWithdrawals(widget.onLocaleChanged), WhatDoLocksMean(widget.onLocaleChanged), HowDoIMakeTransfers(widget.onLocaleChanged), WalletBalance(widget.onLocaleChanged)];
+    pages = [Analytics(widget.onLocaleChanged, widget.locale), BecomingARunner(widget.onLocaleChanged, widget.locale), Resigning(widget.onLocaleChanged, widget.locale), Filters(widget.onLocaleChanged, widget.locale), HowDoIVerifyMyIdentity(widget.onLocaleChanged, widget.locale), HowDoIDeleteAPost(widget.onLocaleChanged, widget.locale), HowDoIScheduleAPost(widget.onLocaleChanged, widget.locale), HowDoIMakeAPost(widget.onLocaleChanged, widget.locale), HowDoIScanAQRCode(widget.onLocaleChanged, widget.locale),HowDoICounterARequest(widget.onLocaleChanged, widget.locale), HowDoIMakeARequest(widget.onLocaleChanged, widget.locale), TerminatingRequests(widget.onLocaleChanged, widget.locale), HowDoIDeleteMyAccount(widget.onLocaleChanged, widget.locale), HowDoIDeleteSavedBankAccount(widget.onLocaleChanged, widget.locale), HowDoIDeleteSavedCard(widget.onLocaleChanged, widget.locale), HowDoIChangeMyEmailAddress(widget.onLocaleChanged, widget.locale), HowDoIChangeMyName(widget.onLocaleChanged, widget.locale), HowDoIChangeMyPhoneNumber(widget.onLocaleChanged, widget.locale), SetTransactionPin(widget.onLocaleChanged, widget.locale), ToggleWebIndexing(widget.onLocaleChanged, widget.locale), TwoFactorAuthentication(widget.onLocaleChanged, widget.locale), HowDoIMakeDeposits(widget.onLocaleChanged, widget.locale), HowDoIMakeWithdrawals(widget.onLocaleChanged, widget.locale), WhatDoLocksMean(widget.onLocaleChanged, widget.locale), HowDoIMakeTransfers(widget.onLocaleChanged, widget.locale), WalletBalance(widget.onLocaleChanged, widget.locale)];
 
     super.initState();
 
@@ -98,6 +102,10 @@ class _HomepageState extends State<Homepage> {
 
   void r() async {
     articles = [AppLocalizations.of(context).translate('Analytics'), AppLocalizations.of(context).translate('Becoming a runner'), AppLocalizations.of(context).translate('How do I stop becoming a runner?'), AppLocalizations.of(context).translate('Filters'), AppLocalizations.of(context).translate('How do I verify my identity?'), AppLocalizations.of(context).translate('How do I delete my post?'), AppLocalizations.of(context).translate('How do I schedule a post?'), AppLocalizations.of(context).translate('How do I create a post?'), AppLocalizations.of(context).translate('How do I scan qr-codes?'), AppLocalizations.of(context).translate('How do I counter a request?'), AppLocalizations.of(context).translate('How do I make a request?'), AppLocalizations.of(context).translate('Terminating request'), AppLocalizations.of(context).translate('How do I delete my account?'), AppLocalizations.of(context).translate('How do I delete a saved bank account?'), AppLocalizations.of(context).translate('How do I delete a saved card?'), AppLocalizations.of(context).translate('How do I change my email address?'), AppLocalizations.of(context).translate('How do I change my name?'), AppLocalizations.of(context).translate('How do I change my phone number?'), AppLocalizations.of(context).translate('Set transaction pin'), AppLocalizations.of(context).translate('Web indexing'), AppLocalizations.of(context).translate('Two-factor authentication'), AppLocalizations.of(context).translate('How do I make deposits into my account?'), AppLocalizations.of(context).translate('How do I make withdrawals from my account?'), AppLocalizations.of(context).translate('What do the locks on my account mean?'), AppLocalizations.of(context).translate('How do I make transfers?'), AppLocalizations.of(context).translate('Wallet balance'), ];
+
+    final localeData = await localesPreferences.getPlatformLocale();
+    locale = localeData.first.isNotEmpty ? localeData.first : 'en';
+
   }
 
 
@@ -185,23 +193,23 @@ class _HomepageState extends State<Homepage> {
 
         sbhavg,
         
-        OnHover(builder: (isHovered, context) => TextButton(onPressed: () => context.go('/guides/post/how-do-I-make-a-post'), child: Text(AppLocalizations.of(context).translate("How do I create a post?\n"), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: isHovered? blue : Theme.of(context).textTheme.titleMedium!.color, decoration: isHovered? TextDecoration.underline : TextDecoration.none, decorationColor: blue)),)),
+        OnHover(builder: (isHovered, context) => TextButton(onPressed: () => context.go('/${widget.locale}/guides/post/how-do-I-make-a-post'), child: Text(AppLocalizations.of(context).translate("How do I create a post?\n"), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: isHovered? blue : Theme.of(context).textTheme.titleMedium!.color, decoration: isHovered? TextDecoration.underline : TextDecoration.none, decorationColor: blue)),)),
 
         sbhmin,
 
-        OnHover(builder: (isHovered, context) => TextButton(onPressed: () => context.go('/guides/qr/how-do-I-scan-qr-codes'), child: Text(AppLocalizations.of(context).translate("How do I scan QR-Codes?\n"), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: isHovered? blue : Theme.of(context).textTheme.titleMedium!.color, decoration: isHovered? TextDecoration.underline : TextDecoration.none, decorationColor: blue)),)),
+        OnHover(builder: (isHovered, context) => TextButton(onPressed: () => context.go('/${widget.locale}/guides/qr-scanner/how-do-I-scan-qr-codes'), child: Text(AppLocalizations.of(context).translate("How do I scan QR-Codes?\n"), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: isHovered? blue : Theme.of(context).textTheme.titleMedium!.color, decoration: isHovered? TextDecoration.underline : TextDecoration.none, decorationColor: blue)),)),
 
         sbhmin,
 
-        OnHover(builder: (isHovered, context) => TextButton(onPressed: () => context.go('/guides/requests/how-do-I-make-a-request'), child: Text(AppLocalizations.of(context).translate("How do I make a request?\n"), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: isHovered? blue : Theme.of(context).textTheme.titleMedium!.color, decoration: isHovered? TextDecoration.underline : TextDecoration.none, decorationColor: blue)),)),
+        OnHover(builder: (isHovered, context) => TextButton(onPressed: () => context.go('/${widget.locale}/guides/requests/how-do-I-make-a-request'), child: Text(AppLocalizations.of(context).translate("How do I make a request?\n"), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: isHovered? blue : Theme.of(context).textTheme.titleMedium!.color, decoration: isHovered? TextDecoration.underline : TextDecoration.none, decorationColor: blue)),)),
 
         sbhmin,
 
-        OnHover(builder: (isHovered, context) => TextButton(onPressed: () => context.go('/guides/wallet/how-do-I-make-withdrawals-from-my-account'), child: Text(AppLocalizations.of(context).translate("How do I make withdrawals?\n"), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: isHovered? blue : Theme.of(context).textTheme.titleMedium!.color, decoration: isHovered? TextDecoration.underline : TextDecoration.none, decorationColor: blue)),)),
+        OnHover(builder: (isHovered, context) => TextButton(onPressed: () => context.go('/${widget.locale}/guides/wallet/how-do-I-make-withdrawals-from-my-account'), child: Text(AppLocalizations.of(context).translate("How do I make withdrawals?\n"), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: isHovered? blue : Theme.of(context).textTheme.titleMedium!.color, decoration: isHovered? TextDecoration.underline : TextDecoration.none, decorationColor: blue)),)),
 
         sbhmin,
 
-        OnHover(builder: (isHovered, context) => TextButton(onPressed: () => context.go('/guides/settings/set-transaction-pin'), child: Text(AppLocalizations.of(context).translate("Set transaction pin\n"), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: isHovered? blue : Theme.of(context).textTheme.titleMedium!.color, decoration: isHovered? TextDecoration.underline : TextDecoration.none, decorationColor: blue)),)),
+        OnHover(builder: (isHovered, context) => TextButton(onPressed: () => context.go('/${widget.locale}/guides/settings/set-transaction-pin'), child: Text(AppLocalizations.of(context).translate("Set transaction pin\n"), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: isHovered? blue : Theme.of(context).textTheme.titleMedium!.color, decoration: isHovered? TextDecoration.underline : TextDecoration.none, decorationColor: blue)),)),
 
 
         sbhmax,
@@ -251,12 +259,19 @@ class _HomepageState extends State<Homepage> {
                             onTap: () {
                               onSelected(option);  
                               for (int i = 0; i < articles.length; i++) {
+
+                                // Check if the query is already a topic written on and then
+                                // navigate the user appropriately.
                                 if (option == articles[i]) {
                                   Navigator.of(context).push(MaterialPageRoute<void>(builder: (BuildContext context) => pages[i]));
                                 }
                               
                               }
-                              context.go('/guides/${option}');
+
+                              // else go the screen which searches all posts in the community 
+                              // to see if a question which has been asked before matches 
+                              // the query.
+                              context.go('/${widget.locale}/q/${option}');
                             },
                             title: Text(option, style: Theme.of(context).textTheme.bodyLarge!.copyWith(fontWeight: FontWeight.bold)),
                           ),
@@ -339,7 +354,7 @@ class _HomepageState extends State<Homepage> {
                   sbhmin,
 
                   TextButton(
-                    onPressed: () => context.go('/email-support'),
+                    onPressed: () => context.go('/${widget.locale}/email-support'),
                     child: Text(
                       AppLocalizations.of(context).translate('Contact support'),
                       style: Theme.of(context).textTheme.bodyLarge!.copyWith(color: blue),

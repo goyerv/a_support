@@ -23,8 +23,9 @@ import '../../../../../widget/widget.dart';
 class Analytics extends StatefulWidget {
 
   final void Function(Locale) onLocaleChanged;
+  final String locale;
   
-  const Analytics(this.onLocaleChanged, {Key? key}) : super(key: key);
+  const Analytics(this.onLocaleChanged, this.locale, {Key? key}) : super(key: key);
 
   @override
   State<Analytics> createState() => _AnalyticsState();
@@ -36,6 +37,9 @@ class Analytics extends StatefulWidget {
 class _AnalyticsState extends State<Analytics> {
 
 
+
+
+  
   @override 
   Widget build(BuildContext context) {
     return Scaffold(
@@ -90,7 +94,7 @@ class _AnalyticsState extends State<Analytics> {
                     MouseRegion(
                       cursor: SystemMouseCursors.click,
                       child: GestureDetector(
-                        onTap: () => Share.share("https://support.goyerv.com/guides/analytics/analytics.html"),
+                        onTap: () => Share.share("https://support.goyerv.com/${widget.locale}/guides/analytics/analytics.html"),
                         child: Container(
                           padding: const EdgeInsets.symmetric(horizontal: 9, vertical: 5),
                           decoration: BoxDecoration(
@@ -171,15 +175,15 @@ class _AnalyticsState extends State<Analytics> {
 
                     sbhmin,
 
-                    OnHover(builder: (isHovered, context) => TextButton(onPressed: () => context.go('/guides/convert/becoming-a-runner'), child: Text(AppLocalizations.of(context).translate("Becoming a runner"), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: blue, decoration: isHovered? TextDecoration.underline : TextDecoration.none, decorationColor: blue)),)),
+                    OnHover(builder: (isHovered, context) => TextButton(onPressed: () => context.go('/${widget.locale}/guides/convert/becoming-a-runner'), child: Text(AppLocalizations.of(context).translate("Becoming a runner"), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: blue, decoration: isHovered? TextDecoration.underline : TextDecoration.none, decorationColor: blue)),)),
 
-                    OnHover(builder: (isHovered, context) => TextButton(onPressed: () => context.go('/guides/how-do-I-stop-becoming-a-runner'), child: Text(AppLocalizations.of(context).translate("How do I stop becoming a runner?"), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: blue, decoration: isHovered? TextDecoration.underline : TextDecoration.none, decorationColor: blue)),)),
+                    OnHover(builder: (isHovered, context) => TextButton(onPressed: () => context.go('/${widget.locale}/guides/how-do-I-stop-becoming-a-runner'), child: Text(AppLocalizations.of(context).translate("How do I stop becoming a runner?"), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: blue, decoration: isHovered? TextDecoration.underline : TextDecoration.none, decorationColor: blue)),)),
 
-                    OnHover(builder: (isHovered, context) => TextButton(onPressed: () => context.go('/guides/filter/filters'), child: Text(AppLocalizations.of(context).translate("Filters?"), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: blue, decoration: isHovered? TextDecoration.underline : TextDecoration.none, decorationColor: blue)),)),
+                    OnHover(builder: (isHovered, context) => TextButton(onPressed: () => context.go('/${widget.locale}/guides/filters/filter'), child: Text(AppLocalizations.of(context).translate("Filters?"), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: blue, decoration: isHovered? TextDecoration.underline : TextDecoration.none, decorationColor: blue)),)),
 
-                    OnHover(builder: (isHovered, context) => TextButton(onPressed: () => context.go('/guides/identity-verification/how-do-I-verify-my-identity'), child: Text(AppLocalizations.of(context).translate("How do I verify my identity?"), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: blue, decoration: isHovered? TextDecoration.underline : TextDecoration.none, decorationColor: blue)),)),
+                    OnHover(builder: (isHovered, context) => TextButton(onPressed: () => context.go('/${widget.locale}/guides/identity-verification/how-do-I-verify-my-identity'), child: Text(AppLocalizations.of(context).translate("How do I verify my identity?"), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: blue, decoration: isHovered? TextDecoration.underline : TextDecoration.none, decorationColor: blue)),)),
 
-                    OnHover(builder: (isHovered, context) => TextButton(onPressed: () => context.go('/guides/post/how-do-I-delete-a-post'), child: Text(AppLocalizations.of(context).translate("How do I delete my post?"), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: blue, decoration: isHovered? TextDecoration.underline : TextDecoration.none, decorationColor: blue)),)),
+                    OnHover(builder: (isHovered, context) => TextButton(onPressed: () => context.go('/${widget.locale}/guides/post/how-do-I-delete-a-post'), child: Text(AppLocalizations.of(context).translate("How do I delete my post?"), style: Theme.of(context).textTheme.titleMedium!.copyWith(color: blue, decoration: isHovered? TextDecoration.underline : TextDecoration.none, decorationColor: blue)),)),
 
 
                     sbhavg,
