@@ -14,6 +14,8 @@ import '../../global_fields/fields.dart';
 ThemeData lightTheme = ThemeData(
   appBarTheme: const AppBarTheme(
     backgroundColor: white,
+    surfaceTintColor: black,
+    shadowColor: transparent,
     elevation: 0.0,
     toolbarHeight: tbh,
   ),

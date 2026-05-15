@@ -14,6 +14,8 @@ import '../../global_fields/fields.dart';
 ThemeData darkTheme = ThemeData(
   appBarTheme: const AppBarTheme(
     backgroundColor: black,
+    surfaceTintColor: black,
+    shadowColor: transparent,
     elevation: 0.0,
     toolbarHeight: tbh,
   ),

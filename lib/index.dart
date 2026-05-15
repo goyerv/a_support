@@ -156,7 +156,6 @@ class _GoyervSupportState extends State<GoyervSupport> {
 
         GoRoute(
           path: '/:languageCode', 
-          
           builder: (context, state) {
             final languageCode = state.pathParameters['languageCode'];
             
@@ -270,7 +269,7 @@ class _GoyervSupportState extends State<GoyervSupport> {
 
                     GoRoute(
                       path: 'how-do-I-scan-qr-codes',
-                      builder: (context, state) => Filters(updateLocale, _locale!.languageCode),
+                      builder: (context, state) => HowDoIScanAQRCode(updateLocale, _locale!.languageCode),
                     ),
 
                   ]
